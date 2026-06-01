@@ -1,0 +1,53 @@
+import type { Metadata } from "next";
+import { ListingCard } from "@/components/ListingCard";
+import { PageHero } from "@/components/PageHero";
+import { SectionHeader } from "@/components/SectionHeader";
+import { BreadcrumbJsonLd } from "@/components/StructuredData";
+import { materials, siteConfig } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Engineering Plastic Materials: ABS, PC, Nylon, Acetal, PEEK, PTFE, PVC, HDPE, PP, Acrylic",
+  description:
+    "Compare engineering plastic materials including ABS, polycarbonate, nylon, acetal, PEEK, PTFE, PVC, HDPE, PP, and acrylic for custom parts.",
+  alternates: {
+    canonical: `${siteConfig.url}/materials`
+  }
+};
+
+export default function MaterialsPage() {
+  return (
+    <main>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Materials", path: "/materials" }
+        ]}
+      />
+      <PageHero
+        eyebrow="Materials"
+        title="Engineering plastic sheets, rods, films, and machinable stock"
+        text="Find practical material options for impact resistance, wear, clarity, chemical resistance, food processing, electrical insulation, and high-performance applications."
+      />
+      <section className="bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <SectionHeader
+            eyebrow="Material library"
+            title="50+ plastic options, with the core industrial grades organized here"
+            text="If a drawing lists a trade name or an unclear material, send it with your RFQ and we will help match a practical equivalent."
+          />
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {materials.map((material) => (
+              <ListingCard
+                key={material.slug}
+                href={`/materials/${material.slug}`}
+                eyebrow={material.eyebrow}
+                title={material.title}
+                text={material.summary}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
