@@ -29,7 +29,7 @@ export const siteConfig = {
   description:
     "US-focused supplier for engineering plastics, cut-to-size plastic sheets, plastic rods, films, CNC machined plastic parts, and custom fabrication.",
   email: "sales@apexpolyworks.com",
-  phone: "+1 (888) 410-9275",
+  phone: "+852 65550970",
   address: "United States sourcing and engineering support"
 };
 
