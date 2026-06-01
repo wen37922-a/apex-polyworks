@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { QuoteForm } from "@/components/QuoteForm";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -51,6 +51,13 @@ export default function ContactPage() {
                 <span>
                   <span className="block font-semibold text-graphite">Phone</span>
                   <span className="mt-1 block text-sm text-steel">{siteConfig.phone}</span>
+                </span>
+              </Link>
+              <Link href={siteConfig.whatsappUrl} className="flex gap-4 rounded-md border border-graphite/10 bg-slate-50 p-4 hover:border-teal/40">
+                <MessageCircle className="mt-1 size-5 shrink-0 text-teal" aria-hidden="true" />
+                <span>
+                  <span className="block font-semibold text-graphite">WhatsApp</span>
+                  <span className="mt-1 block text-sm text-steel">{siteConfig.whatsapp}</span>
                 </span>
               </Link>
               <div className="flex gap-4 rounded-md border border-graphite/10 bg-slate-50 p-4">

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import {
   industryLinks,
   materialLinks,
@@ -33,6 +33,10 @@ export function Footer() {
               <Link className="flex items-center gap-3 hover:text-white" href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, "")}`}>
                 <Phone className="size-4" aria-hidden="true" />
                 {siteConfig.phone}
+              </Link>
+              <Link className="flex items-center gap-3 hover:text-white" href={siteConfig.whatsappUrl}>
+                <MessageCircle className="size-4" aria-hidden="true" />
+                WhatsApp: {siteConfig.whatsapp}
               </Link>
               <span className="flex items-center gap-3">
                 <MapPin className="size-4" aria-hidden="true" />

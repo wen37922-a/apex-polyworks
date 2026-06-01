@@ -8,9 +8,19 @@ export function OrganizationJsonLd() {
     url: siteConfig.url,
     email: siteConfig.email,
     telephone: siteConfig.phone,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        email: siteConfig.email,
+        telephone: siteConfig.phone,
+        areaServed: "US",
+        availableLanguage: ["English"]
+      }
+    ],
     areaServed: "US",
     description: siteConfig.description,
-    sameAs: []
+    sameAs: [siteConfig.whatsappUrl]
   };
 
   return (
