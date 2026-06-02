@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Terms and Conditions",
   description:
-    "Terms and Conditions for using the Apex Polymer Works website and submitting RFQs for plastic materials and custom parts.",
+    "Terms and Conditions for using the Apex PolyWorks website and submitting RFQs for plastic materials and custom parts.",
   alternates: {
     canonical: `${siteConfig.url}/terms-and-conditions`
   }

@@ -32,7 +32,7 @@ import {
 export const metadata: Metadata = {
   title: "Engineering Plastics, CNC Machining, and Cut-to-Size Plastic Supply",
   description:
-    "Apex Polymer Works helps US buyers source engineering plastic sheets, rods, films, CNC machined plastic parts, and custom fabrication with no MOQ options.",
+    "Apex PolyWorks helps US buyers source engineering plastic sheets, rods, films, CNC machined plastic parts, and custom fabrication with no MOQ options.",
   alternates: {
     canonical: siteConfig.url
   }

@@ -1,4 +1,4 @@
-# Apex Polymer Works
+# Apex PolyWorks
 
 Next.js + TypeScript + Tailwind CSS B2B website for engineering plastics, plastic CNC machining, cut-to-size plastic sheets, rods, films, and custom plastic fabrication.
 

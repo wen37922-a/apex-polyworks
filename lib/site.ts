@@ -23,7 +23,7 @@ export type BlogPost = {
 };
 
 export const siteConfig = {
-  name: "Apex Polymer Works",
+  name: "Apex PolyWorks",
   url: "https://apexpolyworks.com",
   lastModified: "2026-06-01",
   description:
@@ -32,7 +32,7 @@ export const siteConfig = {
   phone: "+852 6555 0970",
   whatsapp: "+852 6555 0970",
   whatsappUrl: "https://wa.me/85265550970",
-  address: "United States sourcing and engineering support"
+  address: "Hong Kong sales office serving US industrial buyers"
 };
 
 export const services: DetailItem[] = [
@@ -43,7 +43,7 @@ export const services: DetailItem[] = [
     summary:
       "Milled and turned plastic parts from prototypes to repeat production, with material guidance before quote release.",
     description:
-      "Apex Polymer Works machines engineering plastics for fixtures, wear parts, housings, insulators, fluid handling components, guards, and replacement parts. Our team reviews material behavior, tolerance needs, edge finish, and production volume before quoting so buyers get a practical manufacturing path instead of a generic price.",
+      "Apex PolyWorks machines engineering plastics for fixtures, wear parts, housings, insulators, fluid handling components, guards, and replacement parts. Our team reviews material behavior, tolerance needs, edge finish, and production volume before quoting so buyers get a practical manufacturing path instead of a generic price.",
     highlights: [
       "3-axis and 4-axis CNC milling for plates, blocks, and complex profiles",
       "CNC turning for bushings, rollers, spacers, sleeves, and threaded parts",
@@ -516,7 +516,7 @@ export const products: DetailItem[] = [
     summary:
       "Engineering plastic sheets in full-size, cut-to-size, masked, drilled, routed, bent, or polished formats.",
     description:
-      "Apex Polymer Works supplies plastic sheets for machining, fabrication, guarding, maintenance, and production. Buyers can request exact dimensions, mixed material kits, recurring blanks, or finished panel work.",
+      "Apex PolyWorks supplies plastic sheets for machining, fabrication, guarding, maintenance, and production. Buyers can request exact dimensions, mixed material kits, recurring blanks, or finished panel work.",
     highlights: [
       "ABS, PC, acrylic, PVC, HDPE, PP, nylon, acetal, PEEK, PTFE, and more",
       "Cut-to-size, drilled, routed, bent, polished, and masked options",

@@ -8,8 +8,8 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Apex Polymer Works | Engineering Plastics and CNC Plastic Machining",
-    template: "%s | Apex Polymer Works"
+    default: "Apex PolyWorks | Engineering Plastics and CNC Plastic Machining",
+    template: "%s | Apex PolyWorks"
   },
   description: siteConfig.description,
   keywords: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "polycarbonate sheets"
   ],
   openGraph: {
-    title: "Apex Polymer Works | Engineering Plastics and CNC Plastic Machining",
+    title: "Apex PolyWorks | Engineering Plastics and CNC Plastic Machining",
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,

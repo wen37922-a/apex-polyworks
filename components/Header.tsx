@@ -6,7 +6,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-graphite/10 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-6 py-4 lg:px-8">
-        <Link href="/" className="flex items-center gap-3" aria-label="Apex Polymer Works home">
+        <Link href="/" className="flex items-center gap-3" aria-label="Apex PolyWorks home">
           <span className="grid size-10 place-items-center rounded-md bg-teal text-white">
             <Quote className="size-5" aria-hidden="true" />
           </span>

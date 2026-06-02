@@ -8,9 +8,9 @@ import { BreadcrumbJsonLd } from "@/components/StructuredData";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About Apex Polymer Works",
+  title: "About Apex PolyWorks",
   description:
-    "Learn how Apex Polymer Works supports US buyers with engineering plastics, CNC machining, cut-to-size materials, and custom fabrication.",
+    "Learn how Apex PolyWorks supports US buyers with engineering plastics, CNC machining, cut-to-size materials, and custom fabrication.",
   alternates: {
     canonical: `${siteConfig.url}/about`
   }
@@ -28,7 +28,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About us"
         title="A sourcing and fabrication partner for buyers who need clear plastic part answers"
-        text="Apex Polymer Works is built around fast RFQ review, practical material guidance, and production-ready plastic materials and parts for US industrial teams."
+        text="Apex PolyWorks is built around fast RFQ review, practical material guidance, and production-ready plastic materials and parts for US industrial teams."
       />
       <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_1fr] lg:px-8">

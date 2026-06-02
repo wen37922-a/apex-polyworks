@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Privacy Policy for Apex Polymer Works, including how RFQ, contact, and project information may be collected and used.",
+    "Privacy Policy for Apex PolyWorks, including how RFQ, contact, and project information may be collected and used.",
   alternates: {
     canonical: `${siteConfig.url}/privacy-policy`
   }
@@ -51,7 +51,7 @@ export default function PrivacyPolicyPage() {
       <PageHero
         eyebrow="Privacy"
         title="Privacy Policy"
-        text="This policy explains how Apex Polymer Works handles RFQ, contact, and project information submitted through the website."
+        text="This policy explains how Apex PolyWorks handles RFQ, contact, and project information submitted through the website."
         primaryCta="Request a Quote"
         secondaryCta="Contact Sales"
       />

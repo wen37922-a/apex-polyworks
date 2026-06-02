@@ -28,11 +28,11 @@ export function Footer() {
             <div className="mt-6 grid gap-3 text-sm text-white/75">
               <Link className="flex items-center gap-3 hover:text-white" href={`mailto:${siteConfig.email}`}>
                 <Mail className="size-4" aria-hidden="true" />
-                {siteConfig.email}
+                Email: {siteConfig.email}
               </Link>
               <Link className="flex items-center gap-3 hover:text-white" href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, "")}`}>
                 <Phone className="size-4" aria-hidden="true" />
-                {siteConfig.phone}
+                Phone: {siteConfig.phone}
               </Link>
               <Link className="flex items-center gap-3 hover:text-white" href={siteConfig.whatsappUrl}>
                 <MessageCircle className="size-4" aria-hidden="true" />

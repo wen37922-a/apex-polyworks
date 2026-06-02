@@ -8,9 +8,9 @@ import { BreadcrumbJsonLd } from "@/components/StructuredData";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact Apex Polymer Works",
+  title: "Contact Apex PolyWorks",
   description:
-    "Contact Apex Polymer Works for engineering plastics, CNC plastic machining, cut-to-size sheets, rods, films, and custom plastic fabrication.",
+    "Contact Apex PolyWorks for engineering plastics, CNC plastic machining, cut-to-size sheets, rods, films, and custom plastic fabrication.",
   alternates: {
     canonical: `${siteConfig.url}/contact`
   }

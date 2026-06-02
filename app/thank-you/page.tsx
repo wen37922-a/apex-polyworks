@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Thank You for Your RFQ",
   description:
-    "Thank you for submitting a quote request to Apex Polymer Works.",
+    "Thank you for submitting a quote request to Apex PolyWorks.",
   robots: {
     index: false,
     follow: false
