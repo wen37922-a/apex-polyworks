@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { CheckCircle2, Send, Upload } from "lucide-react";
+import { Send, Upload } from "lucide-react";
 
 const fieldClass =
   "min-h-11 rounded-md border border-graphite/15 bg-white px-3 text-sm text-graphite outline-none transition placeholder:text-steel/60 focus:border-teal focus:ring-4 focus:ring-teal/10";
@@ -31,20 +31,52 @@ const countries = [
 
 export function QuoteForm({ compact = false }: { compact?: boolean }) {
   const router = useRouter();
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formStartedAt] = useState(() => Date.now());
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
   const [fileName, setFileName] = useState("");
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setIsSubmitted(true);
-    setFileName("");
-    event.currentTarget.reset();
-    router.push("/thank-you");
+    setError("");
+    setIsSubmitting(true);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    formData.set("formStartedAt", String(formStartedAt));
+    formData.set("drawingFileName", fileName);
+
+    try {
+      const response = await fetch("/api/request-quote", {
+        method: "POST",
+        body: formData,
+        cache: "no-store"
+      });
+
+      const data = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
+
+      if (!response.ok) {
+        throw new Error(data?.error || "Unable to submit the RFQ. Please email sales@apexpolyworks.com directly.");
+      }
+
+      if (data?.ok !== true) {
+        throw new Error("Unable to submit the RFQ. Please email sales@apexpolyworks.com directly.");
+      }
+
+      router.push("/thank-you");
+    } catch (submitError) {
+      setError(submitError instanceof Error ? submitError.message : "Unable to submit the RFQ. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
     <form
+      action="/api/request-quote"
       className="grid gap-4 rounded-md border border-graphite/10 bg-white p-5 shadow-soft"
+      encType="multipart/form-data"
+      method="post"
       onSubmit={handleSubmit}
     >
       <div>
@@ -54,14 +86,18 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
         </p>
       </div>
 
-      {isSubmitted ? (
-        <div className="flex gap-3 rounded-md border border-teal/20 bg-mint p-4 text-sm leading-6 text-graphite" role="status">
-          <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-teal" aria-hidden="true" />
-          <span>
-            Thank you. Your RFQ has been submitted successfully. Our sales team will review the project details and respond within 24 hours.
-          </span>
+      {error ? (
+        <div className="rounded-md border border-red-200 bg-red-50 p-4 text-sm leading-6 text-red-800" role="alert">
+          {error}
         </div>
       ) : null}
+
+      <label className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden">
+        Website
+        <input name="website" tabIndex={-1} autoComplete="off" />
+      </label>
+      <input type="hidden" name="formStartedAt" value={formStartedAt} readOnly />
+      <input type="hidden" name="drawingFileName" value={fileName} readOnly />
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-medium text-graphite">
@@ -141,8 +177,8 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
         Project Description
         <textarea className={`${fieldClass} min-h-36 py-3`} name="projectDescription" placeholder="Dimensions, tolerance, finish, application, deadline, shipping destination..." required={!compact} />
       </label>
-      <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-amber px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-amber/90 focus:outline-none focus:ring-4 focus:ring-amber/20" type="submit">
-        Send RFQ
+      <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-amber px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-amber/90 focus:outline-none focus:ring-4 focus:ring-amber/20 disabled:cursor-not-allowed disabled:bg-steel" type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "Sending RFQ..." : "Send RFQ"}
         <Send className="size-4" aria-hidden="true" />
       </button>
     </form>
