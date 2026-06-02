@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Copy, Lock, Upload } from "lucide-react";
+import { Copy, ExternalLink, Lock, Trash2, Upload } from "lucide-react";
 
 const fieldClass =
   "min-h-11 rounded-md border border-graphite/15 bg-white px-3 text-sm text-graphite outline-none transition placeholder:text-steel/60 focus:border-teal focus:ring-4 focus:ring-teal/10";
@@ -53,6 +53,14 @@ export function AdminImageUploader() {
         ...currentImages.filter((currentImage) => currentImage.url !== image.url)
       ].slice(0, maxRecentImages);
 
+      window.localStorage.setItem(recentImagesKey, JSON.stringify(nextImages));
+      return nextImages;
+    });
+  }
+
+  function deleteRecentImage(url: string) {
+    setRecentImages((currentImages) => {
+      const nextImages = currentImages.filter((image) => image.url !== url);
       window.localStorage.setItem(recentImagesKey, JSON.stringify(nextImages));
       return nextImages;
     });
@@ -258,16 +266,33 @@ export function AdminImageUploader() {
                         {Math.round(image.size / 1024)} KB
                       </p>
                     </div>
-                    <div className="flex flex-col gap-3 sm:flex-row">
+                    <div className="flex flex-col gap-3 lg:flex-row">
                       <input className={`${fieldClass} min-w-0 flex-1`} value={image.url} readOnly />
+                      <button
+                        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-red-200 bg-white px-4 py-2 text-sm font-semibold text-red-700 hover:border-red-300 hover:bg-red-50"
+                        type="button"
+                        onClick={() => deleteRecentImage(image.url)}
+                      >
+                        Delete
+                        <Trash2 className="size-4" aria-hidden="true" />
+                      </button>
                       <button
                         className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-teal px-4 py-2 text-sm font-semibold text-white hover:bg-teal/90"
                         type="button"
                         onClick={() => copyImageUrl(image.url)}
                       >
-                        {copiedUrl === image.url ? "Copied" : "Copy"}
+                        {copiedUrl === image.url ? "Copied" : "Copy URL"}
                         <Copy className="size-4" aria-hidden="true" />
                       </button>
+                      <a
+                        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-graphite/15 bg-white px-4 py-2 text-sm font-semibold text-graphite hover:border-teal hover:text-teal"
+                        href={image.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Open
+                        <ExternalLink className="size-4" aria-hidden="true" />
+                      </a>
                     </div>
                   </div>
                 </div>
