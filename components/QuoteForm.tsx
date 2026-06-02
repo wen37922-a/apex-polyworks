@@ -159,7 +159,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
         <span className="flex min-h-12 cursor-pointer items-center justify-between gap-3 rounded-md border border-dashed border-graphite/25 bg-slate-50 px-4 py-3 text-sm font-medium text-steel transition hover:border-teal/50 hover:bg-mint/40">
           <span className="inline-flex items-center gap-2">
             <Upload className="size-4" aria-hidden="true" />
-            {fileName || "PDF, STEP, DXF, DWG, or image file"}
+            {fileName || "PDF, STEP, DXF, DWG, or image file up to 20MB"}
           </span>
           <span className="rounded-md bg-white px-3 py-1 text-xs font-semibold text-graphite shadow-sm">
             Choose File
@@ -169,7 +169,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
           className="sr-only"
           name="drawing"
           type="file"
-          accept=".pdf,.step,.stp,.dxf,.dwg,.jpg,.jpeg,.png"
+          accept=".pdf,.step,.stp,.dxf,.dwg,.jpg,.jpeg,.png,.webp"
           onChange={(event) => setFileName(event.target.files?.[0]?.name ?? "")}
         />
       </label>

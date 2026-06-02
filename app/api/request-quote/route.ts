@@ -1,9 +1,22 @@
+import { put } from "@vercel/blob";
 import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
 const resendEndpoint = "https://api.resend.com/emails";
 const defaultToEmail = "sales@apexpolyworks.com";
+const maxUploadBytes = 20 * 1024 * 1024;
+const allowedExtensions = new Set([
+  "pdf",
+  "step",
+  "stp",
+  "dxf",
+  "dwg",
+  "png",
+  "jpg",
+  "jpeg",
+  "webp"
+]);
 
 type RfqPayload = {
   name: string;
@@ -15,6 +28,7 @@ type RfqPayload = {
   serviceNeeded: string;
   quantity: string;
   drawingFileName: string;
+  drawingUrl: string;
   projectDescription: string;
 };
 
@@ -39,6 +53,22 @@ function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function getFileExtension(fileName: string) {
+  const extension = fileName.split(".").pop()?.toLowerCase() || "";
+  return extension;
+}
+
+function getSafeFileName(fileName: string) {
+  const cleanedName = fileName
+    .trim()
+    .replace(/[/\\?%*:|"<>]/g, "-")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .slice(0, 120);
+
+  return cleanedName || "drawing-upload";
+}
+
 function fieldRow(label: string, value: string) {
   return `
     <tr>
@@ -61,7 +91,8 @@ function buildEmail(payload: RfqPayload) {
     `Material: ${payload.material || "Not provided"}`,
     `Service Needed: ${payload.serviceNeeded || "Not provided"}`,
     `Quantity: ${payload.quantity || "Not provided"}`,
-    `Drawing Upload: ${payload.drawingFileName || "No file name provided"}`,
+    `Drawing Upload: ${payload.drawingFileName || "No file uploaded"}`,
+    `Drawing Download Link: ${payload.drawingUrl || "No file uploaded"}`,
     "",
     "Project Description:",
     payload.projectDescription || "Not provided"
@@ -79,7 +110,8 @@ function buildEmail(payload: RfqPayload) {
         ${fieldRow("Material", payload.material)}
         ${fieldRow("Service Needed", payload.serviceNeeded)}
         ${fieldRow("Quantity", payload.quantity)}
-        ${fieldRow("Drawing Upload", payload.drawingFileName || "No file name provided")}
+        ${fieldRow("Drawing Upload", payload.drawingFileName || "No file uploaded")}
+        ${fieldRow("Drawing Download Link", payload.drawingUrl)}
       </table>
       <h2 style="font-size:16px;margin:22px 0 8px;">Project Description</h2>
       <div style="max-width:760px;white-space:pre-wrap;border:1px solid #e5e7eb;background:#f8fafc;padding:14px;">${escapeHtml(payload.projectDescription || "Not provided")}</div>
@@ -93,6 +125,7 @@ export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   const fromEmail = process.env.RFQ_FROM_EMAIL;
   const toEmail = process.env.RFQ_TO_EMAIL || defaultToEmail;
+  const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
 
   if (!apiKey || !fromEmail) {
     return NextResponse.json(
@@ -126,6 +159,7 @@ export async function POST(request: Request) {
     serviceNeeded: clean(formData.get("serviceNeeded"), 180),
     quantity: clean(formData.get("quantity"), 120),
     drawingFileName: clean(formData.get("drawingFileName"), 260),
+    drawingUrl: "",
     projectDescription: clean(formData.get("projectDescription"), 4000)
   };
 
@@ -141,6 +175,42 @@ export async function POST(request: Request) {
       { error: "Please enter a valid business email address." },
       { status: 400 }
     );
+  }
+
+  const drawing = formData.get("drawing");
+  if (drawing instanceof File && drawing.size > 0) {
+    if (!blobToken) {
+      return NextResponse.json(
+        { error: "Drawing upload storage is not configured yet. Please contact sales@apexpolyworks.com or try again later." },
+        { status: 500 }
+      );
+    }
+
+    if (drawing.size > maxUploadBytes) {
+      return NextResponse.json(
+        { error: "Drawing upload must be 20MB or smaller." },
+        { status: 400 }
+      );
+    }
+
+    const extension = getFileExtension(drawing.name);
+    if (!allowedExtensions.has(extension)) {
+      return NextResponse.json(
+        { error: "Unsupported drawing file type. Please upload PDF, STEP, STP, DXF, DWG, PNG, JPG, JPEG, or WEBP." },
+        { status: 400 }
+      );
+    }
+
+    const safeFileName = getSafeFileName(drawing.name);
+    const pathname = `rfq-uploads/${Date.now()}-${safeFileName}`;
+    const blob = await put(pathname, drawing, {
+      access: "public",
+      addRandomSuffix: true,
+      token: blobToken
+    });
+
+    payload.drawingFileName = drawing.name;
+    payload.drawingUrl = blob.url;
   }
 
   const email = buildEmail(payload);
