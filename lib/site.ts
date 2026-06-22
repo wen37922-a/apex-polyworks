@@ -7,6 +7,22 @@ export type DetailItem = {
   highlights: string[];
   specs: string[];
   applications: string[];
+  heroImage?: {
+    src: string;
+    alt: string;
+  };
+  featureImage?: {
+    src: string;
+    alt: string;
+    title: string;
+    text: string;
+  };
+  galleryImages?: {
+    src: string;
+    alt: string;
+  }[];
+  galleryTitle?: string;
+  galleryText?: string;
   seoTitle: string;
   seoDescription: string;
 };
@@ -34,6 +50,99 @@ export const siteConfig = {
   whatsappUrl: "https://wa.me/85265550970",
   address: "Hong Kong sales office serving US industrial buyers"
 };
+
+const peekSheetImages = {
+  hero: {
+    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134683304-peek-sheet-4-WqAf6XEcfIWq45uAg3Pg2DA9ffnojb.webp",
+    alt: "Natural PEEK sheet stock for precision machining"
+  },
+  gallery: [
+    {
+      src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134654887-peek-sheet-3-pcMOr4FbUGq6WQ6ZtFiCa5SKtMUktT.webp",
+      alt: "PEEK plastic sheet surface and thickness view"
+    },
+    {
+      src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134669577-peek-sheet-2-UPAhf4gpr557LSvihX9sZ2d7eQ1rJQ.webp",
+      alt: "Machinable PEEK plate material for industrial parts"
+    },
+    {
+      src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134697332-peek-sheet-5-vDSHVTBo4hYJSLmqClmou0cQ8WKLwV.webp",
+      alt: "PEEK sheet stock stacked for fabrication"
+    },
+    {
+      src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134704720-peek-sheet-6-aZlNYbzKqeJ5MQvv4o5eQdQqmheNku.webp",
+      alt: "High performance PEEK sheet for cut to size orders"
+    },
+    {
+      src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134712937-peek-sheet-7-RnucSKet1WoVoXeD8xFqFDvS1wVbfr.webp",
+      alt: "PEEK engineering plastic plate ready for CNC cutting"
+    },
+    {
+      src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134721456-peek-sheet-8-4zdf3WpBJ9wZBpbqlMVYXBf4fNeL7V.webp",
+      alt: "PEEK sheet material for demanding industrial applications"
+    }
+  ],
+  warehouse: {
+    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134731423-peek-warehouse-inventory-main-1200-4a8D9c8UbXM3znrcKy6Ke1KD4ILxtq.webp",
+    alt: "PEEK plastic warehouse inventory and stock material"
+  }
+};
+
+const peekRodImages = {
+  hero: {
+    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134600318-peek-rod-1-0UJzW7RMBl7XOlyKOm3tEO6TgwGzrU.webp",
+    alt: "Natural PEEK rod stock for CNC turning"
+  },
+  gallery: [
+    {
+      src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134605963-peek-rod-2-sfOEzAPNwhBOxaB9THtphEeQT8QtTv.webp",
+      alt: "PEEK round bar stock for bushings and spacers"
+    },
+    {
+      src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134612579-peek-rod-3-OM1NQs4ciiZfLIROtEkqifGcZ68EIU.webp",
+      alt: "PEEK plastic rods prepared for precision machining"
+    },
+    {
+      src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134620767-peek-rod-4-k00hKpOtEZscx8edQpKhFPEfg8N8Tf.webp",
+      alt: "High performance PEEK rod material for industrial components"
+    }
+  ]
+};
+
+const peekCncImages = [
+  {
+    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134507708-peek-cnc%E5%9B%BE1-Pyau8a8ctGrTZGK56cMHYPmmNUcZkK.webp",
+    alt: "CNC machined PEEK plastic component with precise milled features"
+  },
+  {
+    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134520033-peek-cnc%E5%9B%BE2-pOGRYOEvQjuysSzVXbwUCb4nja5wKA.webp",
+    alt: "Precision PEEK machined part for engineering applications"
+  },
+  {
+    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134533843-peek-cnc%E5%9B%BE3-xKzrkB27J9mnmwy46lW2jaKrC8JS60.webp",
+    alt: "Custom CNC milled PEEK part with tight detail work"
+  },
+  {
+    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134539239-peek-cnc%E5%9B%BE4-KgyoVQeDflchuKrcKsmOsx1YSiC59f.webp",
+    alt: "Machined PEEK plastic component for high performance use"
+  },
+  {
+    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134544516-peek-cnc%E5%9B%BE5-r0FcLiF4dfAdiV3DAuBZGmejsq72Lx.webp",
+    alt: "PEEK CNC machining sample part with clean surface finish"
+  },
+  {
+    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134561731-peek-cnc%E5%9B%BE6-uJ9Ba3nQHSe9cMUYbppmWOHfaqGJSk.webp",
+    alt: "Custom PEEK part machined from engineering plastic stock"
+  },
+  {
+    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134571749-peek-cnc%E5%9B%BE7-xR5UUCtJAT5PAh8FecTuBRp1MfrGmR.webp",
+    alt: "PEEK machined plastic component for demanding industrial assemblies"
+  },
+  {
+    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134577091-peek-cnc%E5%9B%BE8-Oru9Qesn6iDzPGU9d3TFe5vl9rplfK.webp",
+    alt: "Finished CNC machined PEEK part ready for inspection"
+  }
+];
 
 export const services: DetailItem[] = [
   {
@@ -63,6 +172,14 @@ export const services: DetailItem[] = [
       "Medical and lab fixtures",
       "Conveyor change parts"
     ],
+    heroImage: {
+      src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
+      alt: "PEEK plastic stock and CNC machining setup for custom parts"
+    },
+    galleryImages: peekCncImages,
+    galleryTitle: "PEEK CNC machining gallery",
+    galleryText:
+      "Examples of machined PEEK components, milled features, clean edges, and finished plastic parts for high-performance applications.",
     seoTitle: "CNC Plastic Machining Services for US Buyers",
     seoDescription:
       "Get CNC machined plastic parts in PEEK, PTFE, acetal, nylon, PC, HDPE, PVC, and more with no MOQ and fast quote support."
@@ -509,6 +626,71 @@ export const materials: DetailItem[] = [
 ];
 
 export const products: DetailItem[] = [
+  {
+    title: "PEEK Sheet",
+    slug: "peek-sheet",
+    eyebrow: "High-performance sheet",
+    summary:
+      "Natural PEEK sheets and cut-to-size PEEK plates for high-temperature, chemical-resistant, and precision machined parts.",
+    description:
+      "PEEK sheet is selected when a plastic plate must combine heat resistance, mechanical strength, chemical stability, and dimensional performance. Apex PolyWorks supplies PEEK sheet stock, cut-to-size blanks, and CNC-ready plates for engineers and purchasing teams working on demanding industrial projects.",
+    highlights: [
+      "Natural PEEK sheets, plates, and CNC-ready cut blanks",
+      "Suitable for high-temperature, chemical, wear, and insulation applications",
+      "Cut-to-size support for prototypes, replacement parts, and production blanks",
+      "Material certificates and grade details available on request"
+    ],
+    specs: [
+      "Confirm thickness, sheet size, grade, tolerance, and quantity before quote",
+      "Premium material yield planning helps control project cost",
+      "Unfilled, glass-filled, carbon-filled, and bearing grades reviewed by requirement",
+      "Best RFQ inputs include drawing, final dimensions, application, and operating temperature"
+    ],
+    applications: ["Insulators", "Valve plates", "Fixtures", "Wear pads", "Aerospace parts"],
+    heroImage: peekSheetImages.hero,
+    featureImage: {
+      ...peekSheetImages.warehouse,
+      title: "PEEK sheet inventory and cut-to-size supply",
+      text: "Stock availability, thickness, cut size, and packing requirements can be reviewed together before quote release."
+    },
+    galleryImages: peekSheetImages.gallery,
+    galleryTitle: "PEEK sheet gallery",
+    galleryText:
+      "Review PEEK sheet surfaces, plate formats, stocked material, and cut-to-size supply options for CNC machining or fabrication.",
+    seoTitle: "PEEK Sheet and Cut-to-Size PEEK Plate",
+    seoDescription:
+      "Buy PEEK sheet and cut-to-size PEEK plate for high-temperature, chemical-resistant, precision machined industrial parts."
+  },
+  {
+    title: "PEEK Rod",
+    slug: "peek-rod",
+    eyebrow: "High-performance round stock",
+    summary:
+      "PEEK rod stock for CNC turned parts, bushings, spacers, seals, sleeves, and high-performance round components.",
+    description:
+      "PEEK rod is used for precision turned plastic parts that need strength, heat resistance, chemical resistance, and dimensional stability. Apex PolyWorks supports PEEK rod supply, cut blanks, and made-to-print CNC turned components for demanding industrial applications.",
+    highlights: [
+      "Natural PEEK rods for CNC turning and precision machining",
+      "Cut rod blanks for prototype, maintenance, and production orders",
+      "Useful for bushings, spacers, sleeves, seals, and small mechanical parts",
+      "Material guidance for grade, diameter, tolerance, and operating environment"
+    ],
+    specs: [
+      "Confirm diameter, length, grade, tolerance, quantity, and lead time",
+      "Saw-cut blanks can be paired with CNC turning or milling",
+      "Filled PEEK grades can be reviewed for wear, stiffness, or bearing performance",
+      "Share temperature, load, chemical exposure, and mating surface details"
+    ],
+    applications: ["Bushings", "Spacers", "Sleeves", "Seals", "Pump components"],
+    heroImage: peekRodImages.hero,
+    galleryImages: peekRodImages.gallery,
+    galleryTitle: "PEEK rod gallery",
+    galleryText:
+      "See natural PEEK round stock and cut rod material commonly used for CNC turning and precision plastic components.",
+    seoTitle: "PEEK Rod Stock and CNC Machined PEEK Rod Parts",
+    seoDescription:
+      "Source PEEK rod stock, cut PEEK rod blanks, and CNC machined PEEK round parts for high-performance industrial use."
+  },
   {
     title: "Plastic Sheets",
     slug: "plastic-sheets",
