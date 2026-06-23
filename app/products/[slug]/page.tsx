@@ -8,7 +8,9 @@ type PageProps = {
 };
 
 export function generateStaticParams() {
-  return products.map((product) => ({ slug: product.slug }));
+  return products
+    .filter((product) => !["peek-rod", "peek-sheet"].includes(product.slug))
+    .map((product) => ({ slug: product.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

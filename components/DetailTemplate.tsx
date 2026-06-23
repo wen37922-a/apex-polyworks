@@ -42,7 +42,6 @@ export function DetailTemplate({ item, parentLabel }: DetailTemplateProps) {
                 src={item.heroImage.src}
                 alt={item.heroImage.alt}
                 fill
-                priority
                 sizes="(min-width: 1024px) 42vw, 100vw"
                 className="object-cover"
               />
@@ -91,14 +90,14 @@ export function DetailTemplate({ item, parentLabel }: DetailTemplateProps) {
                 <p className="mt-4 text-sm leading-7 text-steel">{item.galleryText}</p>
               ) : null}
             </div>
-            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5 lg:grid-cols-4">
               {item.galleryImages.map((image) => (
                 <div key={image.src} className="relative aspect-[4/3] overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm">
                   <Image
                     src={image.src}
                     alt={image.alt}
                     fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
                     className="object-cover transition duration-300 hover:scale-[1.02]"
                   />
                 </div>
