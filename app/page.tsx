@@ -50,7 +50,9 @@ const images = {
   cncSecondary:
     "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134591199-peek-hero2-9gA9kx8TxOtwLPvMivYEyGhFHOHAlD.webp",
   acrylic:
-    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310308684-acrylic-sheet-sample-board-1200x1200-QhwXrfWHnftFj4c4fIDey7HDf6ss6a.webp"
+    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310308684-acrylic-sheet-sample-board-1200x1200-QhwXrfWHnftFj4c4fIDey7HDf6ss6a.webp",
+  homeHero:
+    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310242085-%E9%A6%96%E9%A1%B5%E5%9B%BE-SdCioi4FEcTobWU4vj0Q2yelZ7UUao.png"
 };
 
 const cncImages = [
@@ -228,7 +230,7 @@ export default function HomePage() {
       <FaqJsonLd items={faq} />
 
       <section className="border-b border-graphite/10 bg-slate-50">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:px-8 lg:py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[0.82fr_1fr] lg:items-center lg:px-8 lg:py-20">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal">
               US-focused plastic material and fabrication partner
@@ -265,36 +267,15 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-          <div className="grid gap-4">
-            <div className="relative min-h-[17rem] overflow-hidden rounded-md border border-graphite/10 bg-white shadow-soft sm:min-h-[22rem]">
-              <Image
-                src={images.cncHero}
-                alt="Apex PolyWorks PEEK plastic material and CNC machining hero image"
-                fill
-                sizes="(min-width: 1024px) 45vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm">
-                <Image
-                  src={images.cncHero}
-                  alt="CNC machining setup for PEEK engineering plastic parts"
-                  fill
-                  sizes="(min-width: 1024px) 22vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm">
-                <Image
-                  src={images.peekSheetHero}
-                  alt="PEEK sheet material collage for engineering plastic sourcing"
-                  fill
-                  sizes="(min-width: 1024px) 22vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
+          <div className="relative min-h-[20rem] overflow-hidden rounded-md border border-graphite/10 bg-white shadow-soft sm:min-h-[28rem]">
+            <Image
+              src={images.homeHero}
+              alt="Engineering plastic materials and custom CNC machined plastic parts for Apex PolyWorks"
+              fill
+              priority
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              className="object-cover"
+            />
           </div>
         </div>
       </section>
