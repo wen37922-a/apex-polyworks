@@ -48,7 +48,9 @@ const images = {
   cncHero:
     "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
   cncSecondary:
-    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134591199-peek-hero2-9gA9kx8TxOtwLPvMivYEyGhFHOHAlD.webp"
+    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134591199-peek-hero2-9gA9kx8TxOtwLPvMivYEyGhFHOHAlD.webp",
+  acrylic:
+    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310308684-acrylic-sheet-sample-board-1200x1200-QhwXrfWHnftFj4c4fIDey7HDf6ss6a.webp"
 };
 
 const cncImages = [
@@ -103,17 +105,17 @@ const materialCards = [
   },
   {
     title: "UHMWPE",
-    href: "/request-a-quote",
+    href: "/materials/hdpe",
     image: images.warehouse,
     alt: "UHMWPE and industrial plastic stock inventory for wear parts",
     text: "Wear-resistant plastic option for guides, liners, conveyor parts, and plant maintenance."
   },
   {
-    title: "NYLON",
-    href: "/materials/nylon-pa",
-    image: images.peekRodDetail,
-    alt: "Nylon engineering plastic rod stock reference for machined parts",
-    text: "Tough bearing-grade plastic for bushings, rollers, gears, wear pads, and guide rails."
+    title: "Acrylic",
+    href: "/materials/acrylic-pmma",
+    image: images.acrylic,
+    alt: "Acrylic PMMA sheet sample board for display and fabrication projects",
+    text: "Clear and colored PMMA for displays, guards, covers, polished panels, and custom fabrication."
   }
 ];
 
@@ -189,6 +191,36 @@ const buyerTrustBlocks = [
   }
 ];
 
+const heroCapabilityTags = [
+  "Engineering Plastics",
+  "Custom CNC Machining",
+  "Fast RFQ Response",
+  "Global Shipping"
+];
+
+const whyChooseBlocks = [
+  {
+    icon: ShieldCheck,
+    title: "Engineering Expertise",
+    text: "Material selection support for wear, heat, clarity, chemical exposure, tolerance, and production route."
+  },
+  {
+    icon: Settings2,
+    title: "CNC Machining",
+    text: "Plastic milling, turning, routing, drilling, finishing, and made-to-print component support."
+  },
+  {
+    icon: Layers3,
+    title: "Material Inventory",
+    text: "PEEK, PTFE, UHMWPE, acrylic, nylon, acetal, PC, HDPE, PP, PVC, and specialty grades."
+  },
+  {
+    icon: BadgeCheck,
+    title: "Fast Quote Response",
+    text: "Clear RFQ review for drawings, stock sizes, cut-to-size blanks, prototypes, and repeat orders."
+  }
+];
+
 export default function HomePage() {
   return (
     <main>
@@ -215,6 +247,14 @@ export default function HomePage() {
               <ButtonLink href="/materials" variant="secondary">
                 View Materials
               </ButtonLink>
+            </div>
+            <div className="mt-6 grid gap-2 sm:grid-cols-2">
+              {heroCapabilityTags.map((tag) => (
+                <span key={tag} className="inline-flex min-h-10 items-center gap-2 rounded-md border border-graphite/10 bg-white px-3 py-2 text-sm font-semibold text-graphite shadow-sm">
+                  <CheckCircle2 className="size-4 text-teal" aria-hidden="true" />
+                  {tag}
+                </span>
+              ))}
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
               {trustBadges.map((badge) => (
@@ -268,6 +308,26 @@ export default function HomePage() {
               <p className="mt-2 text-sm leading-6 text-steel">{item.text}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <SectionHeader
+            eyebrow="Why choose Apex PolyWorks"
+            title="Built for industrial buyers who need answers, drawings reviewed, and quotes moving"
+            text="Apex PolyWorks combines material supply, CNC plastic machining, inventory support, and responsive RFQ communication for purchasing and engineering teams."
+            align="center"
+          />
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {whyChooseBlocks.map((item) => (
+              <div key={item.title} className="rounded-md border border-graphite/10 bg-slate-50 p-5 shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft">
+                <item.icon className="size-6 text-teal" aria-hidden="true" />
+                <h2 className="mt-4 text-xl font-semibold text-graphite">{item.title}</h2>
+                <p className="mt-2 text-sm leading-6 text-steel">{item.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -331,9 +391,9 @@ export default function HomePage() {
       <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionHeader
-            eyebrow="Material categories"
-            title="Core engineering plastics for industrial RFQs"
-            text="Start with a material family, or send the application details and let our team compare practical options for heat, wear, chemicals, impact, and machinability."
+            eyebrow="Featured materials"
+            title="Featured Materials for fast RFQ review"
+            text="Start with PEEK, PTFE, UHMWPE, or Acrylic, then send dimensions, quantity, drawings, and application notes for a practical quote."
             align="center"
           />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
