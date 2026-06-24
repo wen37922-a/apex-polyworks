@@ -599,7 +599,7 @@ export const materials: DetailItem[] = [
       "Source PP sheet, rod, film, and welded polypropylene parts for chemical tanks, lab trays, ducts, and wet process use."
   },
   {
-    title: "Acrylic PMMA",
+    title: "Acrylic / PMMA",
     slug: "acrylic-pmma",
     eyebrow: "Optical clarity",
     summary:

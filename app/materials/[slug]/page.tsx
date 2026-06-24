@@ -8,7 +8,9 @@ type PageProps = {
 };
 
 export function generateStaticParams() {
-  return materials.map((material) => ({ slug: material.slug }));
+  return materials
+    .filter((material) => material.slug !== "acrylic-pmma")
+    .map((material) => ({ slug: material.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

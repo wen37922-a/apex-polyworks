@@ -54,8 +54,8 @@ const materialImages: Record<string, { src: string; alt: string }> = {
     alt: "PP polypropylene machined plastic component placeholder for material supply"
   },
   "acrylic-pmma": {
-    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134669577-peek-sheet-2-UPAhf4gpr557LSvihX9sZ2d7eQ1rJQ.webp",
-    alt: "Acrylic PMMA plastic sheet stock placeholder for clear material applications"
+    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310308684-acrylic-sheet-sample-board-1200x1200-QhwXrfWHnftFj4c4fIDey7HDf6ss6a.webp",
+    alt: "Acrylic PMMA sheet sample board for clear and colored plastic material supply"
   }
 };
 
