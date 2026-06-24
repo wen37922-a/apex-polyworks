@@ -27,9 +27,9 @@ export default function RequestQuotePage() {
       <PageHero
         eyebrow="Request a quote"
         title="Send drawings, material lists, or custom plastic part requirements"
-        text="A complete RFQ is usually reviewed within 24 hours. If your material is not fixed, describe the environment and we will suggest practical options."
+        text="A complete RFQ is usually reviewed within 12 hours. If your material is not fixed, describe the environment and we will suggest practical options."
         primaryCta="Complete RFQ"
-        secondaryCta="Contact Sales"
+        secondaryCta="Upload Drawing"
       />
       <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">

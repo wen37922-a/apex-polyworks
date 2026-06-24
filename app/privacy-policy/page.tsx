@@ -53,7 +53,7 @@ export default function PrivacyPolicyPage() {
         title="Privacy Policy"
         text="This policy explains how Apex PolyWorks handles RFQ, contact, and project information submitted through the website."
         primaryCta="Request a Quote"
-        secondaryCta="Contact Sales"
+        secondaryCta="Request a Quote"
       />
       <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">

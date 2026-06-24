@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd } from "@/components/StructuredData";
@@ -64,6 +64,19 @@ const fallbackMaterialImage = {
   alt: "Engineering plastic warehouse inventory placeholder for material supply"
 };
 
+const materialBuyerNotes: Record<string, string[]> = {
+  abs: ["Properties: tough, economical, impact resistant", "Applications: housings, covers, panels", "Machinability: easy to cut, drill, and machine"],
+  "polycarbonate-pc": ["Properties: clear, tough, high impact strength", "Applications: guards, windows, shields", "Machinability: cuts, drills, and forms well"],
+  "nylon-pa": ["Properties: wear resistant and mechanically tough", "Applications: bushings, rollers, gears", "Machinability: good for bearing-grade parts"],
+  "pom-acetal": ["Properties: low friction and dimensionally stable", "Applications: gears, spacers, valve parts", "Machinability: excellent for tight detail work"],
+  peek: ["Properties: high heat and chemical resistance", "Applications: aerospace, medical, sealing parts", "Machinability: premium material for precision parts"],
+  ptfe: ["Properties: very low friction and chemical resistant", "Applications: seals, gaskets, liners", "Machinability: requires material-aware tolerances"],
+  pvc: ["Properties: chemical resistant and rigid", "Applications: tanks, panels, ducting", "Machinability: suitable for cutting and fabrication"],
+  hdpe: ["Properties: tough, moisture resistant, economical", "Applications: liners, guides, food equipment", "Machinability: practical for wear and utility parts"],
+  pp: ["Properties: lightweight and chemical resistant", "Applications: trays, tanks, lab components", "Machinability: good for fabricated industrial parts"],
+  "acrylic-pmma": ["Properties: clear, rigid, polishable", "Applications: displays, windows, covers", "Machinability: cuts and polishes for cosmetic parts"]
+};
+
 export default function MaterialsPage() {
   return (
     <main>
@@ -88,11 +101,15 @@ export default function MaterialsPage() {
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {materials.map((material) => {
               const image = materialImages[material.slug] || fallbackMaterialImage;
+              const notes = materialBuyerNotes[material.slug] || [
+                "Properties: engineering plastic performance by grade",
+                "Applications: industrial parts and material stock",
+                "Machinability: reviewed by drawing and tolerance"
+              ];
 
               return (
-                <Link
+                <div
                   key={material.slug}
-                  href={`/materials/${material.slug}`}
                   className="group flex h-full flex-col overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-slate-50">
@@ -108,12 +125,31 @@ export default function MaterialsPage() {
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-teal">{material.eyebrow}</p>
                     <h3 className="mt-3 text-xl font-semibold text-graphite">{material.title}</h3>
                     <p className="mt-3 flex-1 text-sm leading-6 text-steel">{material.summary}</p>
-                    <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-teal">
-                      View Details
-                      <ArrowRight className="size-4 transition group-hover:translate-x-1" aria-hidden="true" />
-                    </span>
+                    <div className="mt-5 grid gap-2">
+                      {notes.map((note) => (
+                        <p key={note} className="flex gap-2 text-sm leading-6 text-ink">
+                          <CheckCircle2 className="mt-1 size-4 shrink-0 text-teal" aria-hidden="true" />
+                          <span>{note}</span>
+                        </p>
+                      ))}
+                    </div>
+                    <div className="mt-6 grid gap-2 sm:grid-cols-2">
+                      <Link
+                        href={`/materials/${material.slug}`}
+                        className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-graphite/15 bg-white px-4 py-2 text-sm font-semibold text-graphite hover:border-teal hover:text-teal"
+                      >
+                        View Material
+                        <ArrowRight className="size-4" aria-hidden="true" />
+                      </Link>
+                      <Link
+                        href="/request-a-quote"
+                        className="inline-flex min-h-10 items-center justify-center rounded-md bg-amber px-4 py-2 text-sm font-semibold text-white hover:bg-amber/90"
+                      >
+                        Request Quote
+                      </Link>
+                    </div>
                   </div>
-                </Link>
+                </div>
               );
             })}
           </div>

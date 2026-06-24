@@ -2,34 +2,24 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Send, Upload } from "lucide-react";
+import { Clock3, Send, Upload } from "lucide-react";
 
 const fieldClass =
   "min-h-11 rounded-md border border-graphite/15 bg-white px-3 text-sm text-graphite outline-none transition placeholder:text-steel/60 focus:border-teal focus:ring-4 focus:ring-teal/10";
 
-const services = [
-  "CNC Plastic Machining",
-  "Laser Cutting",
-  "Cut-to-Size Plastic Sheets",
-  "Injection Molding",
-  "Plastic Bending",
-  "Plastic Welding",
-  "Surface Finishing",
-  "Material Supply",
-  "Not Sure Yet"
-];
+type QuoteFormProps = {
+  compact?: boolean;
+  showQuantity?: boolean;
+  title?: string;
+  description?: string;
+};
 
-const countries = [
-  "United States",
-  "Canada",
-  "Mexico",
-  "United Kingdom",
-  "Germany",
-  "Australia",
-  "Other"
-];
-
-export function QuoteForm({ compact = false }: { compact?: boolean }) {
+export function QuoteForm({
+  compact = false,
+  showQuantity = false,
+  title = "Request pricing and lead time",
+  description = "Share material, drawings, and end-use details. We respond within 12 hours."
+}: QuoteFormProps) {
   const router = useRouter();
   const [formStartedAt] = useState(() => Date.now());
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -80,9 +70,13 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
       onSubmit={handleSubmit}
     >
       <div>
-        <p className="text-lg font-semibold text-graphite">Request pricing and lead time</p>
+        <p className="text-lg font-semibold text-graphite">{title}</p>
         <p className="mt-2 text-sm leading-6 text-steel">
-          Share material, quantity, drawings, and end-use details. A complete RFQ usually gets reviewed within 24 hours.
+          {description}
+        </p>
+        <p className="mt-3 inline-flex items-center gap-2 rounded-md bg-mint px-3 py-2 text-sm font-semibold text-teal">
+          <Clock3 className="size-4" aria-hidden="true" />
+          We respond within 12 hours
         </p>
       </div>
 
@@ -98,6 +92,9 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
       </label>
       <input type="hidden" name="formStartedAt" value={formStartedAt} readOnly />
       <input type="hidden" name="drawingFileName" value={fileName} readOnly />
+      <input type="hidden" name="company" value="Not provided" readOnly />
+      <input type="hidden" name="country" value="United States" readOnly />
+      <input type="hidden" name="serviceNeeded" value="Material Supply / CNC Machining" readOnly />
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-medium text-graphite">
@@ -105,54 +102,23 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
           <input className={fieldClass} name="name" placeholder="Jane Smith" required />
         </label>
         <label className="grid gap-2 text-sm font-medium text-graphite">
-          Company
-          <input className={fieldClass} name="company" placeholder="Company name" required />
-        </label>
-      </div>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className="grid gap-2 text-sm font-medium text-graphite">
           Email
           <input className={fieldClass} name="email" placeholder="name@company.com" type="email" required />
         </label>
-        <label className="grid gap-2 text-sm font-medium text-graphite">
-          Phone
-          <input className={fieldClass} name="phone" placeholder="+1" />
-        </label>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className="grid gap-2 text-sm font-medium text-graphite">
-          Country
-          <select className={fieldClass} name="country" defaultValue="United States" required>
-            {countries.map((country) => (
-              <option key={country} value={country}>
-                {country}
-              </option>
-            ))}
-          </select>
-        </label>
+      <div className={`grid gap-4 ${showQuantity ? "sm:grid-cols-2" : ""}`}>
         <label className="grid gap-2 text-sm font-medium text-graphite">
           Material
-          <input className={fieldClass} name="material" placeholder="PEEK, acetal, PC, HDPE..." required={!compact} />
+          <input className={fieldClass} name="material" placeholder="PEEK, PTFE, UHMWPE, Nylon..." required={!compact} />
         </label>
-      </div>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className="grid gap-2 text-sm font-medium text-graphite">
-          Service Needed
-          <select className={fieldClass} name="serviceNeeded" defaultValue="" required={!compact}>
-            <option value="" disabled>
-              Select a service
-            </option>
-            {services.map((service) => (
-              <option key={service} value={service}>
-                {service}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="grid gap-2 text-sm font-medium text-graphite">
-          Quantity
-          <input className={fieldClass} name="quantity" placeholder="1 prototype, 50 pcs, 20 sheets..." required={!compact} />
-        </label>
+        {showQuantity ? (
+          <label className="grid gap-2 text-sm font-medium text-graphite">
+            Quantity
+            <input className={fieldClass} name="quantity" placeholder="10 pcs, 2 sheets, 1 prototype..." />
+          </label>
+        ) : (
+          <input type="hidden" name="quantity" value="" readOnly />
+        )}
       </div>
       <label className="grid gap-2 text-sm font-medium text-graphite">
         Drawing Upload
@@ -174,8 +140,8 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
         />
       </label>
       <label className="grid gap-2 text-sm font-medium text-graphite">
-        Project Description
-        <textarea className={`${fieldClass} min-h-36 py-3`} name="projectDescription" placeholder="Dimensions, tolerance, finish, application, deadline, shipping destination..." required={!compact} />
+        Message
+        <textarea className={`${fieldClass} min-h-32 py-3`} name="projectDescription" placeholder="Dimensions, tolerance, application, deadline, shipping destination..." required={!compact} />
       </label>
       <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-amber px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-amber/90 focus:outline-none focus:ring-4 focus:ring-amber/20 disabled:cursor-not-allowed disabled:bg-steel" type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Sending RFQ..." : "Send RFQ"}

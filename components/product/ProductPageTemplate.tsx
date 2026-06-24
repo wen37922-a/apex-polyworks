@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/ButtonLink";
+import { QuoteForm } from "@/components/QuoteForm";
 
 export type ProductPageProps = {
   title: string;
@@ -47,10 +48,13 @@ export function ProductPageTemplate({
             <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight text-graphite sm:text-5xl">
               {title}
             </h1>
+            <p className="mt-4 text-lg font-semibold text-teal">
+              High-performance engineering plastic for demanding environments
+            </p>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-steel">{description}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/request-a-quote">Request Quote</ButtonLink>
-              <ButtonLink href="/contact" variant="secondary">Contact Sales</ButtonLink>
+              <ButtonLink href="/request-a-quote">Request a Quote</ButtonLink>
+              <ButtonLink href="/request-a-quote" variant="secondary">Send Drawing</ButtonLink>
             </div>
           </div>
           <div className="relative min-h-[18rem] overflow-hidden rounded-md border border-graphite/10 bg-white shadow-soft sm:min-h-[24rem]">
@@ -62,6 +66,23 @@ export function ProductPageTemplate({
               className="object-cover"
             />
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-graphite/10 bg-white py-16 lg:py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber">
+              Quick RFQ
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold text-graphite">
+              Send a drawing or material request
+            </h2>
+            <p className="mt-4 text-base leading-8 text-steel">
+              Use the quick form to send material type, quantity, and drawing files. Apex PolyWorks reviews complete RFQs within 12 hours.
+            </p>
+          </div>
+          <QuoteForm compact showQuantity title={`Quick RFQ for ${title}`} description="Name, email, material type, quantity, and drawing upload are enough to start." />
         </div>
       </section>
 
@@ -155,6 +176,18 @@ export function ProductPageTemplate({
 
       <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mb-10">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal">
+              Industries served
+            </p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {["Aerospace", "Automotive", "Electronics", "Medical"].map((industry) => (
+                <div key={industry} className="rounded-md border border-graphite/10 bg-slate-50 px-4 py-5 text-sm font-semibold text-graphite">
+                  {industry}
+                </div>
+              ))}
+            </div>
+          </div>
           <div className="rounded-md bg-graphite px-6 py-10 text-white lg:px-10">
             <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>

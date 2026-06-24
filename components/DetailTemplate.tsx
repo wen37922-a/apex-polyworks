@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Gauge, Ruler, Send, Settings2 } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
+import { QuoteForm } from "@/components/QuoteForm";
 import { BreadcrumbJsonLd } from "@/components/StructuredData";
 import { DetailItem } from "@/lib/site";
 
@@ -11,6 +12,13 @@ type DetailTemplateProps = {
 
 export function DetailTemplate({ item, parentLabel }: DetailTemplateProps) {
   const parentPath = `/${parentLabel.toLowerCase()}`;
+  const isCncPage = item.slug === "cnc-plastic-machining";
+  const showQuickRfq = parentLabel === "Materials" || parentLabel === "Products";
+  const cncCapabilities = [
+    [Settings2, "5-axis machining", "Complex plastic parts, fixtures, pockets, profiles, and multi-sided features."],
+    [Ruler, "Tight tolerance +/-0.01mm", "Tolerance is reviewed by material, geometry, wall thickness, and application."],
+    [Gauge, "Prototype + mass production", "One-off repair parts, samples, bridge orders, and repeat production batches."]
+  ] as const;
 
   return (
     <main>
@@ -30,10 +38,15 @@ export function DetailTemplate({ item, parentLabel }: DetailTemplateProps) {
             <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight text-graphite sm:text-5xl">
               {item.title}
             </h1>
+            {(parentLabel === "Materials" || parentLabel === "Products") ? (
+              <p className="mt-4 text-lg font-semibold text-teal">
+                High-performance engineering plastic for demanding environments
+              </p>
+            ) : null}
             <p className="mt-5 max-w-3xl text-lg leading-8 text-steel">{item.description}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/request-a-quote">Request a Quote</ButtonLink>
-              <ButtonLink href="/contact" variant="secondary">Ask a Material Question</ButtonLink>
+              <ButtonLink href="/request-a-quote" variant="secondary">Send Drawing</ButtonLink>
             </div>
           </div>
           {item.heroImage ? (
@@ -49,6 +62,41 @@ export function DetailTemplate({ item, parentLabel }: DetailTemplateProps) {
           ) : null}
         </div>
       </section>
+
+      {showQuickRfq ? (
+        <section className="border-b border-graphite/10 bg-white py-16 lg:py-20">
+          <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:px-8">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber">
+                Quick RFQ
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold text-graphite">
+                Request price, lead time, and stock availability
+              </h2>
+              <p className="mt-4 text-base leading-8 text-steel">
+                Send material type, quantity, drawing, or application notes. Our team responds within 12 hours when the RFQ is complete.
+              </p>
+            </div>
+            <QuoteForm compact showQuantity title={`Quick RFQ for ${item.title}`} description="Start with name, email, material type, quantity, and drawing upload." />
+          </div>
+        </section>
+      ) : null}
+
+      {isCncPage ? (
+        <section className="border-b border-graphite/10 bg-white py-16 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="grid gap-5 md:grid-cols-3">
+              {cncCapabilities.map(([Icon, title, text]) => (
+                <div key={title} className="rounded-md border border-graphite/10 bg-slate-50 p-5 shadow-sm">
+                  <Icon className="size-6 text-teal" aria-hidden="true" />
+                  <h2 className="mt-4 text-xl font-semibold text-graphite">{title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-steel">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_0.85fr] lg:px-8">
@@ -107,6 +155,34 @@ export function DetailTemplate({ item, parentLabel }: DetailTemplateProps) {
         </section>
       ) : null}
 
+      {isCncPage && item.galleryImages?.length ? (
+        <section className="bg-white py-16 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber">
+                Process images
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold text-graphite">
+                Workshop, machining parts, and inspection examples
+              </h2>
+            </div>
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              {item.galleryImages.slice(0, 3).map((image) => (
+                <div key={`process-${image.src}`} className="relative aspect-[4/3] overflow-hidden rounded-md border border-graphite/10 bg-slate-50 shadow-sm">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       {item.featureImage ? (
         <section className="bg-white py-16 lg:py-20">
           <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.95fr_1fr] lg:items-center lg:px-8">
@@ -145,6 +221,31 @@ export function DetailTemplate({ item, parentLabel }: DetailTemplateProps) {
           </div>
         </div>
       </section>
+
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal">
+            Industries served
+          </p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {["Aerospace", "Automotive", "Electronics", "Medical"].map((industry) => (
+              <div key={industry} className="rounded-md border border-graphite/10 bg-slate-50 px-4 py-5 text-sm font-semibold text-graphite">
+                {industry}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {isCncPage ? (
+        <ButtonLink
+          href="/request-a-quote"
+          className="fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 shadow-soft lg:inline-flex"
+        >
+          <Send className="size-4" aria-hidden="true" />
+          Send Drawing for Quote
+        </ButtonLink>
+      ) : null}
 
       <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-7xl rounded-md bg-graphite px-6 py-10 text-white lg:px-10">

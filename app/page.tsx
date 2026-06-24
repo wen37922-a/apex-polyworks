@@ -6,7 +6,9 @@ import {
   CheckCircle2,
   Factory,
   FileCheck2,
+  Globe2,
   Layers3,
+  Settings2,
   ShieldCheck,
   Wrench
 } from "lucide-react";
@@ -164,6 +166,29 @@ const capabilityBlocks = [
   }
 ];
 
+const buyerTrustBlocks = [
+  {
+    icon: ShieldCheck,
+    title: "ISO / Industrial Quality",
+    text: "Material traceability and inspection notes available on request."
+  },
+  {
+    icon: BadgeCheck,
+    title: "Fast RFQ Response within 12 Hours",
+    text: "Send drawings, material, quantity, and application notes for faster review."
+  },
+  {
+    icon: Globe2,
+    title: "Global Shipping to US & EU",
+    text: "Export-ready packing for industrial buyers and procurement teams."
+  },
+  {
+    icon: Settings2,
+    title: "Custom CNC Machining Available",
+    text: "Prototype, replacement, and repeat production plastic parts."
+  }
+];
+
 export default function HomePage() {
   return (
     <main>
@@ -177,15 +202,18 @@ export default function HomePage() {
               US-focused plastic material and fabrication partner
             </p>
             <h1 className="mt-5 text-4xl font-semibold leading-tight text-graphite sm:text-6xl">
-              Apex PolyWorks Engineering Plastics and CNC Plastic Machining
+              Engineering Plastics Supplier for Precision Manufacturing
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-steel">
-              Source plastic sheets, rods, films, and custom machined parts from one responsive team built for industrial RFQs, prototypes, maintenance, and repeat production.
+            <p className="mt-5 text-xl font-semibold leading-8 text-teal">
+              PEEK / PTFE / UHMWPE / CNC Machined Parts Delivered Fast
+            </p>
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-steel">
+              Apex PolyWorks helps US B2B buyers source plastic sheets, rods, cut-to-size blanks, and custom machined parts with a clear RFQ path.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/request-a-quote">Request a Quote</ButtonLink>
-              <ButtonLink href="/services/cnc-plastic-machining" variant="secondary">
-                Explore CNC Machining
+              <ButtonLink href="/materials" variant="secondary">
+                View Materials
               </ButtonLink>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -228,6 +256,18 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-graphite/10 bg-white py-8">
+        <div className="mx-auto grid max-w-7xl gap-4 px-6 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+          {buyerTrustBlocks.map((item) => (
+            <div key={item.title} className="rounded-md border border-graphite/10 bg-slate-50 p-4">
+              <item.icon className="size-5 text-amber" aria-hidden="true" />
+              <h2 className="mt-3 text-base font-semibold text-graphite">{item.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-steel">{item.text}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -311,12 +351,20 @@ export default function HomePage() {
                 <div className="p-5">
                   <h3 className="text-xl font-semibold text-graphite">{material.title}</h3>
                   <p className="mt-2 min-h-20 text-sm leading-6 text-steel">{material.text}</p>
-                  <Link
-                    href={material.href}
-                    className="mt-5 inline-flex min-h-10 items-center rounded-md bg-amber px-4 py-2 text-sm font-semibold text-white hover:bg-amber/90"
-                  >
-                    View Details
-                  </Link>
+                  <div className="mt-5 grid gap-2 sm:grid-cols-2">
+                    <Link
+                      href={material.href}
+                      className="inline-flex min-h-10 items-center justify-center rounded-md border border-graphite/15 bg-white px-4 py-2 text-sm font-semibold text-graphite hover:border-teal hover:text-teal"
+                    >
+                      View Details
+                    </Link>
+                    <Link
+                      href="/request-a-quote"
+                      className="inline-flex min-h-10 items-center justify-center rounded-md bg-amber px-4 py-2 text-sm font-semibold text-white hover:bg-amber/90"
+                    >
+                      RFQ
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
@@ -398,7 +446,7 @@ export default function HomePage() {
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-citrus">RFQ process</p>
             <h2 className="mt-4 text-4xl font-semibold leading-tight">Request a Quote</h2>
             <p className="mt-5 max-w-xl text-base leading-8 text-white/75">
-              Send drawings, dimensions, material, quantity, deadline, tolerance, and application notes. Complete RFQs are typically reviewed within 24 hours.
+              Send drawings, dimensions, material, quantity, deadline, tolerance, and application notes. Complete RFQs are typically reviewed within 12 hours.
             </p>
             <div className="mt-8">
               <ButtonLink href="/request-a-quote">Request a Quote</ButtonLink>

@@ -53,7 +53,7 @@ export default function TermsAndConditionsPage() {
         title="Terms and Conditions"
         text="These terms outline the general conditions for using this website and submitting RFQs for plastic materials and custom plastic parts."
         primaryCta="Request a Quote"
-        secondaryCta="Contact Sales"
+        secondaryCta="Request a Quote"
       />
       <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">

@@ -13,7 +13,7 @@ export function PageHero({
   title,
   text,
   primaryCta = "Request a Quote",
-  secondaryCta = "Contact Sales"
+  secondaryCta = "Request a Quote"
 }: PageHeroProps) {
   return (
     <section className="border-b border-graphite/10 bg-white">
@@ -28,14 +28,14 @@ export function PageHero({
           <p className="mt-5 max-w-3xl text-lg leading-8 text-steel">{text}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href="/request-a-quote">{primaryCta}</ButtonLink>
-            <ButtonLink href="/contact" variant="secondary">
+            <ButtonLink href="/request-a-quote" variant="secondary">
               {secondaryCta}
             </ButtonLink>
           </div>
         </div>
         <div className="grid gap-3 rounded-md border border-graphite/10 bg-slate-50 p-4">
           {[
-            ["RFQ review", "24-hour response for complete quote packages"],
+            ["RFQ review", "12-hour response for complete quote packages"],
             ["Order flexibility", "No MOQ on many custom and cut-size requests"],
             ["Material range", "50+ engineering plastics and specialty grades"]
           ].map(([titleItem, textItem]) => (

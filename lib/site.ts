@@ -778,7 +778,7 @@ export const products: DetailItem[] = [
       "CNC machining, routing, laser cutting, forming, welding, and finishing",
       "One-off repair parts through low-volume production",
       "Material selection support for function, cost, and availability",
-      "Quote response within 24 hours for complete RFQs"
+      "Quote response within 12 hours for complete RFQs"
     ],
     specs: [
       "Best quote inputs: drawing, 3D model, material, quantity, and use environment",
@@ -912,7 +912,7 @@ export const industries: DetailItem[] = [
       "Material selection based on load, speed, abrasion, temperature, and fluids",
       "No MOQ for many replacement part and prototype orders",
       "Finished assemblies, labels, and kitting available",
-      "24-hour quote response for complete RFQs"
+      "12-hour quote response for complete RFQs"
     ],
     applications: ["Machine guards", "Wear strips", "Rollers", "Liners", "Repair parts"],
     seoTitle: "Plastic Parts for Industrial Equipment and Machinery",
@@ -1018,7 +1018,7 @@ export const blogPosts: BlogPost[] = [
 ];
 
 export const trustBadges = [
-  "24-hour RFQ response",
+  "12-hour RFQ response",
   "No MOQ on many custom orders",
   "50+ engineering plastics",
   "Material certificates on request",
@@ -1034,7 +1034,7 @@ export const faq = [
   {
     question: "How fast can you respond to an RFQ?",
     answer:
-      "Complete RFQs are typically reviewed within 24 hours. Drawings, material, quantity, tolerance, finish, and use environment help us reply faster."
+      "Complete RFQs are typically reviewed within 12 hours. Drawings, material, quantity, tolerance, finish, and use environment help us reply faster."
   },
   {
     question: "Can you help choose the plastic material?",

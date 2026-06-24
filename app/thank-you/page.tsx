@@ -35,7 +35,7 @@ export default function ThankYouPage() {
           Thank you. Your quote request has been submitted.
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-steel">
-          Our team will review your project details and follow up within 24 hours. If drawings, material notes, or deadline details change, send an update to {siteConfig.email}.
+          Our team will review your project details and follow up within 12 hours. If drawings, material notes, or deadline details change, send an update to {siteConfig.email}.
         </p>
         <div className="mt-10 grid gap-4 text-left sm:grid-cols-2">
           <div className="rounded-md border border-graphite/10 bg-slate-50 p-5">
