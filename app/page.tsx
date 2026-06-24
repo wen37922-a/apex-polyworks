@@ -52,7 +52,7 @@ const images = {
   acrylic:
     "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310308684-acrylic-sheet-sample-board-1200x1200-QhwXrfWHnftFj4c4fIDey7HDf6ss6a.webp",
   homeHero:
-    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310242085-%E9%A6%96%E9%A1%B5%E5%9B%BE-SdCioi4FEcTobWU4vj0Q2yelZ7UUao.png"
+    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp"
 };
 
 const cncImages = [
