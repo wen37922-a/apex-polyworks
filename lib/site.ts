@@ -1097,7 +1097,6 @@ export const primaryNav = [
   { title: "Services", href: "/services", children: serviceLinks },
   { title: "Materials", href: "/materials", children: materialLinks },
   { title: "Products", href: "/products", children: productLinks },
-  { title: "Industries", href: "/industries", children: industryLinks },
   { title: "Knowledge Center", href: "/blog" },
   { title: "About", href: "/about" },
   { title: "Contact", href: "/contact" }

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import {
-  industryLinks,
   materialLinks,
   productLinks,
   serviceLinks,
@@ -12,8 +11,7 @@ export function Footer() {
   const groups = [
     ["Services", serviceLinks.slice(0, 5)],
     ["Materials", materialLinks.slice(0, 6)],
-    ["Products", productLinks],
-    ["Industries", industryLinks]
+    ["Products", productLinks]
   ] as const;
 
   return (
@@ -44,7 +42,7 @@ export function Footer() {
               </span>
             </div>
           </div>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {groups.map(([title, links]) => (
               <div key={title}>
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-citrus">

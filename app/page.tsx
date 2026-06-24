@@ -121,37 +121,6 @@ const materialCards = [
   }
 ];
 
-const industryCards = [
-  {
-    title: "Automotive",
-    href: "/industries/automotive",
-    image: cncImages[0].src,
-    alt: "CNC machined plastic components for automotive manufacturing fixtures",
-    text: "Fixtures, line guards, checking aids, EV insulators, and conveyor replacement parts."
-  },
-  {
-    title: "Aerospace",
-    href: "/industries/aerospace",
-    image: images.cncSecondary,
-    alt: "High performance plastic stock for aerospace engineering applications",
-    text: "Lightweight PEEK, PTFE, PC, nylon, and acetal components for demanding programs."
-  },
-  {
-    title: "Medical",
-    href: "/industries/medical-devices",
-    image: cncImages[3].src,
-    alt: "Precision machined plastic parts for medical device and lab equipment suppliers",
-    text: "Clean machined plastics, lab fixtures, insulators, housings, and prototype support."
-  },
-  {
-    title: "Electronics",
-    href: "/industries/electronics",
-    image: images.peekSheetDetail,
-    alt: "Engineering plastic sheet material for electronics insulation and protection",
-    text: "Insulators, trays, standoffs, enclosures, ESD options, and thin plastic materials."
-  }
-];
-
 const capabilityBlocks = [
   {
     icon: Wrench,
@@ -408,40 +377,6 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionHeader
-            eyebrow="Industry applications"
-            title="Industrial plastics for engineering, sourcing, and maintenance teams"
-            text="Each industry order starts with the function of the part, the operating environment, and the buyer's required documentation."
-            align="center"
-          />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {industryCards.map((industry) => (
-              <Link
-                key={industry.title}
-                href={industry.href}
-                className="overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft"
-              >
-                <div className="relative aspect-[4/3] bg-slate-50">
-                  <Image
-                    src={industry.image}
-                    alt={industry.alt}
-                    fill
-                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-5">
-                  <h3 className="text-xl font-semibold text-graphite">{industry.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-steel">{industry.text}</p>
-                </div>
-              </Link>
             ))}
           </div>
         </div>
