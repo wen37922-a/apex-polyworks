@@ -230,8 +230,18 @@ export default function HomePage() {
       <FaqJsonLd items={faq} />
 
       <section className="border-b border-graphite/10 bg-slate-50">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[0.82fr_1fr] lg:items-center lg:px-8 lg:py-20">
-          <div>
+        <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-10 lg:px-8 lg:py-14">
+          <div className="relative min-h-[20rem] overflow-hidden rounded-md border border-graphite/10 bg-white shadow-soft sm:min-h-[28rem] lg:min-h-[34rem]">
+            <Image
+              src={images.homeHero}
+              alt="Engineering plastic materials and custom CNC machined plastic parts for Apex PolyWorks"
+              fill
+              priority
+              sizes="(min-width: 1280px) 1216px, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="max-w-4xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal">
               US-focused plastic material and fabrication partner
             </p>
@@ -266,16 +276,6 @@ export default function HomePage() {
                 </span>
               ))}
             </div>
-          </div>
-          <div className="relative min-h-[20rem] overflow-hidden rounded-md border border-graphite/10 bg-white shadow-soft sm:min-h-[28rem]">
-            <Image
-              src={images.homeHero}
-              alt="Engineering plastic materials and custom CNC machined plastic parts for Apex PolyWorks"
-              fill
-              priority
-              sizes="(min-width: 1024px) 55vw, 100vw"
-              className="object-cover"
-            />
           </div>
         </div>
       </section>
