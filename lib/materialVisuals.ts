@@ -38,12 +38,12 @@ export const materialVisuals: Record<string, MaterialVisual> = {
     description: "Low-friction fluoropolymer for seals, gaskets, liners, bearings, and chemical service."
   },
   hdpe: {
-    title: "UHMWPE / HDPE",
+    title: "UHMWPE",
     slug: "hdpe",
     href: "/materials/uhmwpe-sheet",
     image: {
-      src: productImages.PEEK.cnc[3],
-      alt: "UHMWPE and HDPE wear resistant plastic part placeholder for guides and liners"
+      src: productImages.UHMWPE.hero,
+      alt: "UHMWPE sheet material for industrial wear parts and liners"
     },
     description: "Tough, moisture-resistant plastics for liners, guides, food equipment, and wear parts."
   },
@@ -138,7 +138,12 @@ export const serviceMaterialCarousel = [
   materialVisuals.pvc,
   {
     ...materialVisuals.hdpe,
-    title: "HDPE"
+    title: "HDPE",
+    href: "/materials/hdpe",
+    image: {
+      src: productImages.HDPE.hero,
+      alt: "HDPE sheet and rod material for industrial machining"
+    }
   },
   materialVisuals.pp,
   materialVisuals.abs

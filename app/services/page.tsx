@@ -32,6 +32,9 @@ export default async function ServicesPage() {
     } else if (material.slug === "peek") {
       image = { ...material.image, src: firstImage(images.PEEK.sheet, material.image.src) };
       galleryImages = [image.src];
+    } else if (material.title === "HDPE") {
+      image = { src: images.HDPE.hero, alt: "HDPE sheet and rod material for machining and fabrication" };
+      galleryImages = [image.src];
     } else if (material.slug === "hdpe" && images.UHMWPE.gallery.length) {
       image = { src: images.UHMWPE.hero || images.UHMWPE.gallery[0], alt: "UHMWPE sheet material for machining and fabrication" };
       galleryImages = [image.src];

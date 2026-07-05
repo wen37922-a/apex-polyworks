@@ -1019,7 +1019,7 @@ export const serviceLinks = services.map((item) => ({
 
 export const materialLinks = materials.map((item) => ({
   title: item.title,
-  href: item.slug === "hdpe" ? "/materials/uhmwpe-sheet" : `/materials/${item.slug}`
+  href: `/materials/${item.slug}`
 }));
 
 export const productLinks = products.map((item) => ({

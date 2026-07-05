@@ -7,6 +7,7 @@ export type ProductImageLibrary = {
   POLYCARBONATE: { hero: string; applications: string; properties: string; machining: string; forms: string; cta: string };
   POLYPROPYLENE: { hero: string; overview: string; sheet: string; rod: string; machining: string; applications: string; cta: string };
   NYLON: { hero: string; forms: string; machining: string; applications: string; properties: string; cta: string; gallery: string };
+  HDPE: { hero: string; properties: string; forms: string; applications: string; machining: string; services: string };
   PEEK: { hero: string; sheet: string[]; rod: string[]; cnc: string[] };
   ACRYLIC: { hero: string; sheet: string[]; display: string[] };
 };
@@ -60,6 +61,14 @@ export const productImages: ProductImageLibrary = {
     properties: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254759981-NL5-RP46E4fvkWuc1G5u5JzjOZOxSezicC.png",
     cta: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254781907-NL6-3RewOXVnYyvrvvvW2gG5RBTfkwJTPV.png",
     gallery: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254788710-NILONG3-Dnjy6GbnHiPkaIEI4yGfcQILKdhz0a.jpg"
+  },
+  HDPE: {
+    hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254946428-hdpe-01-IrLSS6hCFY4kPMFfb7ZwZqwNEPoHTP.webp",
+    properties: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254952130-hdpe-02-v6gOEZoKhdk6nyav2qKzHputuQLEva.webp",
+    forms: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254957685-hdpe-03-ZjcbuFb4649kDrqEMkALoA3mUZj7yR.webp",
+    applications: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254963378-hdpe-04-qrWM6aSSdNcV8oLQlou1jLri3oxZJK.webp",
+    machining: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254968440-hdpe-05-UeSGduHar0d6y2Enh6r8V8ClAalIEf.webp",
+    services: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254974604-cnc-6-onXiOm4qvytKwCdceKtf3qPJI598dr.webp"
   },
   PEEK: {
     hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
@@ -116,6 +125,7 @@ function cloneLibrary(): ProductImageLibrary {
     POLYCARBONATE: { ...productImages.POLYCARBONATE },
     POLYPROPYLENE: { ...productImages.POLYPROPYLENE },
     NYLON: { ...productImages.NYLON },
+    HDPE: { ...productImages.HDPE },
     PEEK: {
       hero: productImages.PEEK.hero,
       sheet: [...productImages.PEEK.sheet],

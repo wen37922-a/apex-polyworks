@@ -69,7 +69,7 @@ const materialCards = [
   },
   {
     title: "UHMWPE",
-    href: "/materials/hdpe",
+    href: "/materials/uhmwpe-sheet",
     image: images.warehouse,
     alt: "UHMWPE and industrial plastic stock inventory for wear parts",
     text: "Wear-resistant plastic option for guides, liners, conveyor parts, and plant maintenance."
