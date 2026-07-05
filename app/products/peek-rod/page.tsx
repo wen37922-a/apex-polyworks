@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BreadcrumbJsonLd } from "@/components/StructuredData";
 import { ProductPageTemplate } from "@/components/product/ProductPageTemplate";
-import { getProductImages } from "@/lib/images";
+import { getProductImages, siteImages } from "@/lib/product-images";
 import { siteConfig } from "@/lib/site";
 
 const title = "PEEK Rod";
@@ -37,7 +37,7 @@ export default async function PeekRodPage() {
         heroImage={heroImage}
         productImages={images.PEEK.rod}
         applicationImages={images.PEEK.cnc.slice(0, 4)}
-        warehouseImage={images.PEEK.warehouse[0]}
+        warehouseImage={siteImages.warehouse}
         productGalleryTitle="PEEK Rod Gallery"
         applicationsTitle="PEEK Rod CNC Machining Applications"
         warehouseTitle="PEEK Rod Stock Availability"

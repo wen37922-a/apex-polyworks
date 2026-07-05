@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DetailTemplate } from "@/components/DetailTemplate";
-import { getProductImages } from "@/lib/images";
+import { getProductImages } from "@/lib/product-images";
 import { findBySlug, materials, siteConfig } from "@/lib/site";
 
 type PageProps = {
@@ -42,11 +42,11 @@ export default async function MaterialDetailPage({ params }: PageProps) {
   }
 
   const images = await getProductImages();
-  const unifiedMaterial = slug === "abs" && images.ABS.sheet.length
+  const unifiedMaterial = slug === "abs" && images.ABS.gallery.length
     ? {
         ...material,
-        heroImage: { src: images.ABS.sheet[0], alt: "ABS plastic sheet material for industrial fabrication" },
-        galleryImages: [...images.ABS.sheet, ...images.ABS.rod, ...images.ABS.cnc].map((src, index) => ({
+        heroImage: { src: images.ABS.hero || images.ABS.gallery[0], alt: "ABS plastic sheet material for industrial fabrication" },
+        galleryImages: images.ABS.gallery.map((src, index) => ({
           src,
           alt: `ABS plastic material and manufactured part example ${index + 1}`
         }))

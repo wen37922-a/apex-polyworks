@@ -1,4 +1,4 @@
-import { productImages } from "@/lib/images";
+import { productImages, siteImages } from "@/lib/product-images";
 
 export type DetailItem = {
   title: string;
@@ -63,7 +63,7 @@ const peekSheetImages = {
     alt: `PEEK sheet stock and plate material example ${index + 1}`
   })),
   warehouse: {
-    src: productImages.PEEK.warehouse[0],
+    src: siteImages.warehouse,
     alt: "PEEK plastic warehouse inventory and stock material"
   }
 };
@@ -113,7 +113,7 @@ export const services: DetailItem[] = [
       "Conveyor change parts"
     ],
     heroImage: {
-      src: productImages.PEEK.hero[0],
+      src: productImages.PEEK.hero,
       alt: "PEEK plastic stock and CNC machining setup for custom parts"
     },
     galleryImages: peekCncImages,

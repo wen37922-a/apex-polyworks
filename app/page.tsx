@@ -17,7 +17,7 @@ import { ListingCard } from "@/components/ListingCard";
 import { QuoteForm } from "@/components/QuoteForm";
 import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/StructuredData";
-import { productImages } from "@/lib/images";
+import { productImages, siteImages } from "@/lib/product-images";
 import {
   faq,
   processSteps,
@@ -40,11 +40,11 @@ const images = {
   peekSheetDetail: productImages.PEEK.sheet[1],
   peekRodHero: productImages.PEEK.rod[0],
   peekRodDetail: productImages.PEEK.rod[2],
-  warehouse: productImages.PEEK.warehouse[0],
-  cncHero: productImages.PEEK.hero[0],
-  cncSecondary: productImages.PEEK.hero[1],
+  warehouse: siteImages.warehouse,
+  cncHero: productImages.PEEK.hero,
+  cncSecondary: siteImages.secondaryHero,
   acrylic: productImages.ACRYLIC.sheet[0],
-  homeHero: productImages.PEEK.hero[0]
+  homeHero: productImages.PEEK.hero
 };
 
 const cncImages = productImages.PEEK.cnc.map((src, index) => ({

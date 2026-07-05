@@ -3,7 +3,7 @@ import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
 import { BreadcrumbJsonLd } from "@/components/StructuredData";
-import { getProductImages } from "@/lib/images";
+import { getProductImages } from "@/lib/product-images";
 import { siteConfig } from "@/lib/site";
 
 const keyProperties = [
@@ -40,8 +40,8 @@ export const dynamic = "force-dynamic";
 
 export default async function AcrylicPmmaPage() {
   const images = await getProductImages();
-  const heroImage = images.ACRYLIC.display[0] || images.ACRYLIC.sheet[0];
-  const applicationImages = images.ACRYLIC.display.slice(1).map((src, index) => ({
+  const heroImage = images.ACRYLIC.hero || images.ACRYLIC.sheet[0];
+  const applicationImages = images.ACRYLIC.display.map((src, index) => ({
     src,
     alt: `Custom acrylic PMMA display and fabrication application ${index + 1}`
   }));

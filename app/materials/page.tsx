@@ -4,7 +4,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd } from "@/components/StructuredData";
-import { firstImage, getProductImages } from "@/lib/images";
+import { firstImage, getProductImages } from "@/lib/product-images";
 import { engineeringPlasticPlaceholder, materialVisuals } from "@/lib/materialVisuals";
 import { materials, siteConfig } from "@/lib/site";
 
@@ -45,7 +45,7 @@ export default async function MaterialsPage() {
             {materials.map((material) => {
               const baseVisual = materialVisuals[material.slug] || engineeringPlasticPlaceholder;
               const visual = material.slug === "abs"
-                ? { ...baseVisual, image: { src: firstImage(images.ABS.sheet, baseVisual.image.src), alt: "ABS plastic sheet and manufactured component samples" } }
+                ? { ...baseVisual, image: { src: images.ABS.hero || firstImage(images.ABS.gallery, baseVisual.image.src), alt: "ABS plastic sheet and manufactured component samples" } }
                 : material.slug === "peek"
                   ? { ...baseVisual, image: { ...baseVisual.image, src: firstImage(images.PEEK.sheet, baseVisual.image.src) } }
                   : material.slug === "acrylic-pmma"

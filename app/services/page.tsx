@@ -5,7 +5,7 @@ import { ListingCard } from "@/components/ListingCard";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd } from "@/components/StructuredData";
-import { firstImage, getProductImages } from "@/lib/images";
+import { firstImage, getProductImages } from "@/lib/product-images";
 import { serviceMaterialCarousel } from "@/lib/materialVisuals";
 import { services, siteConfig } from "@/lib/site";
 
@@ -24,7 +24,7 @@ export default async function ServicesPage() {
   const images = await getProductImages();
   const carouselMaterials = serviceMaterialCarousel.map((material) => {
     if (material.slug === "abs") {
-      return { ...material, image: { src: firstImage(images.ABS.sheet, material.image.src), alt: "ABS plastic sheet and custom manufactured parts" } };
+      return { ...material, image: { src: images.ABS.hero || firstImage(images.ABS.gallery, material.image.src), alt: "ABS plastic sheet and custom manufactured parts" } };
     }
     if (material.slug === "peek") {
       return { ...material, image: { ...material.image, src: firstImage(images.PEEK.sheet, material.image.src) } };

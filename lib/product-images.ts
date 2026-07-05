@@ -2,18 +2,18 @@ import { list } from "@vercel/blob";
 import { cache } from "react";
 
 export type ProductImageLibrary = {
-  ABS: { sheet: string[]; rod: string[]; cnc: string[] };
-  PEEK: { sheet: string[]; rod: string[]; cnc: string[]; warehouse: string[]; hero: string[] };
-  ACRYLIC: { sheet: string[]; display: string[] };
+  ABS: { hero: string; gallery: string[] };
+  PEEK: { hero: string; sheet: string[]; rod: string[]; cnc: string[] };
+  ACRYLIC: { hero: string; sheet: string[]; display: string[] };
 };
 
 export const productImages: ProductImageLibrary = {
   ABS: {
-    sheet: [],
-    rod: [],
-    cnc: []
+    hero: "",
+    gallery: []
   },
   PEEK: {
+    hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
     sheet: [
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134683304-peek-sheet-4-WqAf6XEcfIWq45uAg3Pg2DA9ffnojb.webp",
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134654887-peek-sheet-3-pcMOr4FbUGq6WQ6ZtFiCa5SKtMUktT.webp",
@@ -38,22 +38,15 @@ export const productImages: ProductImageLibrary = {
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134561731-peek-cnc%E5%9B%BE6-uJ9Ba3nQHSe9cMUYbppmWOHfaqGJSk.webp",
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134571749-peek-cnc%E5%9B%BE7-xR5UUCtJAT5PAh8FecTuBRp1MfrGmR.webp",
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134577091-peek-cnc%E5%9B%BE8-Oru9Qesn6iDzPGU9d3TFe5vl9rplfK.webp"
-    ],
-    warehouse: [
-      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134731423-peek-warehouse-inventory-main-1200-4a8D9c8UbXM3znrcKy6Ke1KD4ILxtq.webp"
-    ],
-    hero: [
-      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
-      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134591199-peek-hero2-9gA9kx8TxOtwLPvMivYEyGhFHOHAlD.webp"
     ]
   },
   ACRYLIC: {
+    hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310282530-acrylic-gradient-cube-display-1200x1200-95WjUTO2WWMBP7rYRQCpSUeuoKVk5i.webp",
     sheet: [
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783244622932-acrylic-ykl1-colored-sheet-fan-white-bg-3eYyLHKB0hc8p82YiycTOwnHhntFCL.webp",
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310308684-acrylic-sheet-sample-board-1200x1200-QhwXrfWHnftFj4c4fIDey7HDf6ss6a.webp"
     ],
     display: [
-      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310282530-acrylic-gradient-cube-display-1200x1200-95WjUTO2WWMBP7rYRQCpSUeuoKVk5i.webp",
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310298749-acrylic-red-lit-display-shelf-1200x1200-3ncBDSMqEYDJGuiDzqA6SBhHI9Qw8R.webp",
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310289323-acrylic-orange-display-stand-1200x1200-ob302bkRrEX9UAZe5WkXMnwZHyWfNJ.webp",
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310303685-acrylic-round-table-1200x1200-mGYtBSqF7CIrxL1C7e3ng1HGfYjG5O.webp",
@@ -62,17 +55,25 @@ export const productImages: ProductImageLibrary = {
   }
 };
 
+export const siteImages = {
+  warehouse: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134731423-peek-warehouse-inventory-main-1200-4a8D9c8UbXM3znrcKy6Ke1KD4ILxtq.webp",
+  secondaryHero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134591199-peek-hero2-9gA9kx8TxOtwLPvMivYEyGhFHOHAlD.webp"
+};
+
 function cloneLibrary(): ProductImageLibrary {
   return {
-    ABS: { sheet: [...productImages.ABS.sheet], rod: [...productImages.ABS.rod], cnc: [...productImages.ABS.cnc] },
+    ABS: { hero: productImages.ABS.hero, gallery: [...productImages.ABS.gallery] },
     PEEK: {
+      hero: productImages.PEEK.hero,
       sheet: [...productImages.PEEK.sheet],
       rod: [...productImages.PEEK.rod],
-      cnc: [...productImages.PEEK.cnc],
-      warehouse: [...productImages.PEEK.warehouse],
-      hero: [...productImages.PEEK.hero]
+      cnc: [...productImages.PEEK.cnc]
     },
-    ACRYLIC: { sheet: [...productImages.ACRYLIC.sheet], display: [...productImages.ACRYLIC.display] }
+    ACRYLIC: {
+      hero: productImages.ACRYLIC.hero,
+      sheet: [...productImages.ACRYLIC.sheet],
+      display: [...productImages.ACRYLIC.display]
+    }
   };
 }
 
@@ -84,23 +85,22 @@ function classifyBlob(library: ProductImageLibrary, pathname: string, url: strin
   const name = decodeURIComponent(pathname).toLowerCase();
 
   if (name.includes("abs-")) {
-    if (/abs-(7|8)(?:\D|$)/.test(name) || name.includes("cnc") || name.includes("machin")) addUnique(library.ABS.cnc, url);
-    else if (name.includes("rod")) addUnique(library.ABS.rod, url);
-    else addUnique(library.ABS.sheet, url);
+    addUnique(library.ABS.gallery, url);
+    if (!library.ABS.hero || /abs-1(?:\D|$)/.test(name)) library.ABS.hero = url;
     return;
   }
 
   if (name.includes("peek")) {
-    if (name.includes("warehouse") || name.includes("inventory")) addUnique(library.PEEK.warehouse, url);
-    else if (name.includes("cnc") || name.includes("图")) addUnique(library.PEEK.cnc, url);
+    if (name.includes("cnc") || name.includes("图")) addUnique(library.PEEK.cnc, url);
     else if (name.includes("rod")) addUnique(library.PEEK.rod, url);
-    else if (name.includes("hero")) addUnique(library.PEEK.hero, url);
+    else if (name.includes("hero1")) library.PEEK.hero = url;
     else if (name.includes("sheet")) addUnique(library.PEEK.sheet, url);
     return;
   }
 
   if (name.includes("acrylic") || name.includes("pmma")) {
-    if (name.includes("sheet") || name.includes("ykl")) addUnique(library.ACRYLIC.sheet, url);
+    if (name.includes("gradient") && name.includes("cube")) library.ACRYLIC.hero = url;
+    else if (name.includes("sheet") || name.includes("ykl")) addUnique(library.ACRYLIC.sheet, url);
     else addUnique(library.ACRYLIC.display, url);
   }
 }

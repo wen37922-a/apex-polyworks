@@ -1,3 +1,5 @@
+import { productImages } from "@/lib/product-images";
+
 export type MaterialVisual = {
   title: string;
   slug: string;
@@ -10,7 +12,7 @@ export type MaterialVisual = {
 };
 
 const placeholderImage = {
-  src: productImages.PEEK.hero[0],
+  src: productImages.PEEK.hero,
   alt: "Engineering plastic material stock and machined parts placeholder"
 };
 
@@ -110,7 +112,7 @@ export const materialVisuals: Record<string, MaterialVisual> = {
     slug: "abs",
     href: "/materials/abs",
     image: {
-      src: productImages.ABS.sheet[0] || productImages.PEEK.cnc[4],
+      src: productImages.ABS.hero || productImages.ABS.gallery[0] || productImages.PEEK.cnc[4],
       alt: "ABS plastic sheet and molded part placeholder for housings and panels"
     },
     description: "Cost-effective plastic for housings, panels, prototypes, and light-duty machined parts."
@@ -141,4 +143,3 @@ export const serviceMaterialCarousel = [
   materialVisuals.pp,
   materialVisuals.abs
 ];
-import { productImages } from "@/lib/images";
