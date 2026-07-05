@@ -22,8 +22,15 @@ export const productImages: ProductImageLibrary = {
     ]
   },
   UHMWPE: {
-    hero: "",
-    gallery: []
+    hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783249399417-uhmwpe1-QJ7hPPOH9XEV92B76y6rL6zfKIbDjF.jpg",
+    gallery: [
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783249399417-uhmwpe1-QJ7hPPOH9XEV92B76y6rL6zfKIbDjF.jpg",
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783249407999-uhmwpe2-96okOVg8ABbqOhApQdXXIiAsTqPw7y.jpg",
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783249419703-uhmwpe3-6rv2R3W4Rwqhu0MO1LluedxU9GkQ5g.jpg",
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783249426863-uhmwpe4-2nHvtyih7wkhsrnf90ZZoZxL21sCxC.jpg",
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783249435185-uhmwpe5-UIVVhRwMCX8fZFxD52fk3tWM6hqeI1.jpg",
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783249442118-uhmwpe6-voOfdV3t5Uf1zz3gCBRtpuCaN0dykU.jpg"
+    ]
   },
   PEEK: {
     hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
