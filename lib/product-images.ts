@@ -37,7 +37,7 @@ export const productImages: ProductImageLibrary = {
     hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253309811-pc-01-9M38WhxTQC9x7iPLqeI3BkHuiRZ9Ra.webp",
     applications: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253317317-pc-02-jGwSeX5kDEmKpUJfqxwy8NR79TbGJ6.webp",
     properties: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253322674-pc-03-bXniGeEy6ZtoyIXh8OgyrDuBW5W80y.webp",
-    machining: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253328473-pc-04-B87sBdTAUTUzJI10kHPX6MLEUa8Tar.webp",
+    machining: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253328473-pc-04-B87sBdTAUTUzJI10hKPX6MLEUa8Tar.webp",
     forms: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253334000-pc-05-lNx6LsJrM7EyGFqOF4vGYpNSNKqqtp.webp",
     cta: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253339642-pc-06-3ejmaMFWCy1iT16wdq0RSf55GWNVgq.webp"
   },
