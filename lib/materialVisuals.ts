@@ -32,8 +32,8 @@ export const materialVisuals: Record<string, MaterialVisual> = {
     slug: "ptfe",
     href: "/materials/ptfe",
     image: {
-      src: productImages.PEEK.rod[1],
-      alt: "PTFE sheet and rod material placeholder for low friction plastic applications"
+      src: productImages.PTFE.hero,
+      alt: "Industrial grade PTFE sheet and rod for chemical resistant applications"
     },
     description: "Low-friction fluoropolymer for seals, gaskets, liners, bearings, and chemical service."
   },

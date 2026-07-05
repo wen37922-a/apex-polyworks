@@ -8,6 +8,7 @@ export type ProductImageLibrary = {
   POLYPROPYLENE: { hero: string; overview: string; sheet: string; rod: string; machining: string; applications: string; cta: string };
   NYLON: { hero: string; forms: string; machining: string; applications: string; properties: string; cta: string; gallery: string };
   HDPE: { hero: string; properties: string; forms: string; applications: string; machining: string; services: string };
+  PTFE: { hero: string; rod: string; sheet: string; machining: string; inventory: string };
   PEEK: { hero: string; sheet: string[]; rod: string[]; cnc: string[] };
   ACRYLIC: { hero: string; sheet: string[]; display: string[] };
 };
@@ -70,6 +71,13 @@ export const productImages: ProductImageLibrary = {
     machining: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254968440-hdpe-05-UeSGduHar0d6y2Enh6r8V8ClAalIEf.webp",
     services: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254974604-cnc-6-onXiOm4qvytKwCdceKtf3qPJI598dr.webp"
   },
+  PTFE: {
+    hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783255139851-ptfe-1-I3JWVgdTgBk9boQZkbaZYu49WBjgen.webp",
+    rod: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783255145542-ptfe-rod-1-RBKYHF29wQh6pKPBVq5CR91th8Wf9k.webp",
+    sheet: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783255164452-ptfe-sheet-1-LfDi4FPXln7shG6PRe0QRVCkqQse5t.webp",
+    machining: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783255151987-ptfe-rod-i2-HJMsqYlNxlRKihv2nAsfxuCQbNof93.webp",
+    inventory: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783255157973-ptfe-rods3-D9QhlcFkZeZ96CEr3kxXkaaj8aGeha.webp"
+  },
   PEEK: {
     hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
     sheet: [
@@ -126,6 +134,7 @@ function cloneLibrary(): ProductImageLibrary {
     POLYPROPYLENE: { ...productImages.POLYPROPYLENE },
     NYLON: { ...productImages.NYLON },
     HDPE: { ...productImages.HDPE },
+    PTFE: { ...productImages.PTFE },
     PEEK: {
       hero: productImages.PEEK.hero,
       sheet: [...productImages.PEEK.sheet],
