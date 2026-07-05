@@ -9,8 +9,16 @@ export type ProductImageLibrary = {
 
 export const productImages: ProductImageLibrary = {
   ABS: {
-    hero: "",
-    gallery: []
+    hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783244798349-abs-1-05ctFZEyBvhPrs5GQD1Pr4aACwlHLZ.webp",
+    gallery: [
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783244798349-abs-1-05ctFZEyBvhPrs5GQD1Pr4aACwlHLZ.webp",
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783244803316-abs-2-ZoHIQyRj2VZeZH5JQcFFHudaD52Xcg.webp",
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783244810768-abs-3-W8SRS62Ol6zMKqx8Y5zQinIuvuKtUA.webp",
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783244819135-abs-4-MaDWjkW20lhCBXOy7FAc3IrKRIkl2C.webp",
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783244832110-abs-6-XrzzbN69YUHtWFTf3ixiotZonTMYfz.webp",
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783244841184-abs-7-QpPGUiAc7SnPTWXaM9rtk8vmwmaznt.webp",
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783244857687-abs-8-HTVlncWv4PS7DtQviNyso4aCSIMXu0.webp"
+    ]
   },
   PEEK: {
     hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
