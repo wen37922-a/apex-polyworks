@@ -102,8 +102,8 @@ export const materialVisuals: Record<string, MaterialVisual> = {
     slug: "pp",
     href: "/materials/pp",
     image: {
-      src: productImages.PEEK.cnc[6],
-      alt: "PP polypropylene sheet and rod material placeholder for lightweight chemical resistant parts"
+      src: productImages.POLYPROPYLENE.hero,
+      alt: "Polypropylene PP sheet and rod material for industrial fabrication"
     },
     description: "Lightweight chemical-resistant plastic for trays, tanks, lab parts, and fabricated components."
   },

@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return materials
-    .filter((material) => !["acrylic-pmma", "polycarbonate-pc"].includes(material.slug))
+    .filter((material) => !["acrylic-pmma", "polycarbonate-pc", "pp"].includes(material.slug))
     .map((material) => ({ slug: material.slug }));
 }
 

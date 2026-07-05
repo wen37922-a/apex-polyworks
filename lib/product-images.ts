@@ -5,6 +5,7 @@ export type ProductImageLibrary = {
   ABS: { hero: string; gallery: string[] };
   UHMWPE: { hero: string; gallery: string[] };
   POLYCARBONATE: { hero: string; applications: string; properties: string; machining: string; forms: string; cta: string };
+  POLYPROPYLENE: { hero: string; overview: string; sheet: string; rod: string; machining: string; applications: string; cta: string };
   PEEK: { hero: string; sheet: string[]; rod: string[]; cnc: string[] };
   ACRYLIC: { hero: string; sheet: string[]; display: string[] };
 };
@@ -40,6 +41,15 @@ export const productImages: ProductImageLibrary = {
     machining: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253328473-pc-04-B87sBdTAUTUzJI10hKPX6MLEUa8Tar.webp",
     forms: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253334000-pc-05-lNx6LsJrM7EyGFqOF4vGYpNSNKqqtp.webp",
     cta: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253339642-pc-06-3ejmaMFWCy1iT16wdq0RSf55GWNVgq.webp"
+  },
+  POLYPROPYLENE: {
+    hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253532077-pp-01-8mBxvRoQ9mfyQhIQESU62j7I9efs8P.webp",
+    overview: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253537261-pp-02-0p3XDuFgxvNS0hzmAIueXFLE5ICGzO.webp",
+    sheet: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253541816-pp-03-5mZUyHC9zX5ME75c68I60xPMaLh5US.webp",
+    rod: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253546621-pp-04-S7kcW0PU2sk6Y7kCnA8ZUUVRy1yqrN.webp",
+    machining: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253552046-pp-05-CutnhXVGhRgkcjldwpt0nlwVd5OwMs.webp",
+    applications: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253556037-pp-06-z2KhWu1BPWH20RO2QlGMqujEBIL63w.webp",
+    cta: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253560888-pp-07-kjYfaZSkLVIV2DJ3osLLNW7KqZBI4I.webp"
   },
   PEEK: {
     hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
@@ -94,6 +104,7 @@ function cloneLibrary(): ProductImageLibrary {
     ABS: { hero: productImages.ABS.hero, gallery: [...productImages.ABS.gallery] },
     UHMWPE: { hero: productImages.UHMWPE.hero, gallery: [...productImages.UHMWPE.gallery] },
     POLYCARBONATE: { ...productImages.POLYCARBONATE },
+    POLYPROPYLENE: { ...productImages.POLYPROPYLENE },
     PEEK: {
       hero: productImages.PEEK.hero,
       sheet: [...productImages.PEEK.sheet],
