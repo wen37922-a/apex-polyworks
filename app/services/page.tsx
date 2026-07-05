@@ -5,7 +5,7 @@ import { ListingCard } from "@/components/ListingCard";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd } from "@/components/StructuredData";
-import { firstImage, getProductImages } from "@/lib/product-images";
+import { firstImage, getProductImages, selectProductImages } from "@/lib/product-images";
 import { serviceMaterialCarousel } from "@/lib/materialVisuals";
 import { services, siteConfig } from "@/lib/site";
 
@@ -23,16 +23,21 @@ export const dynamic = "force-dynamic";
 export default async function ServicesPage() {
   const images = await getProductImages();
   const carouselMaterials = serviceMaterialCarousel.map((material) => {
+    let image = material.image;
+    let galleryImages = [material.image.src];
+
     if (material.slug === "abs") {
-      return { ...material, image: { src: images.ABS.hero || firstImage(images.ABS.gallery, material.image.src), alt: "ABS plastic sheet and custom manufactured parts" } };
+      galleryImages = selectProductImages(images.ABS.gallery, ["abs-3", "abs-4", "abs-6"]);
+      image = { src: firstImage(galleryImages, images.ABS.hero || material.image.src), alt: "ABS plastic sheet and custom manufactured parts" };
+    } else if (material.slug === "peek") {
+      image = { ...material.image, src: firstImage(images.PEEK.sheet, material.image.src) };
+      galleryImages = [image.src];
+    } else if (material.slug === "acrylic-pmma") {
+      image = { src: firstImage(images.ACRYLIC.sheet, material.image.src), alt: "Acrylic PMMA colored sheet samples" };
+      galleryImages = [image.src];
     }
-    if (material.slug === "peek") {
-      return { ...material, image: { ...material.image, src: firstImage(images.PEEK.sheet, material.image.src) } };
-    }
-    if (material.slug === "acrylic-pmma") {
-      return { ...material, image: { src: firstImage(images.ACRYLIC.sheet, material.image.src), alt: "Acrylic PMMA colored sheet samples" } };
-    }
-    return material;
+
+    return { ...material, image, galleryImages };
   });
   return (
     <main>
@@ -81,14 +86,18 @@ export default async function ServicesPage() {
                 key={`${material.slug}-${material.title}`}
                 className="group flex w-[17rem] shrink-0 snap-start flex-col overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft"
               >
-                <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-                  <Image
-                    src={material.image.src}
-                    alt={material.image.alt}
-                    fill
-                    sizes="272px"
-                    className="object-cover transition duration-300 group-hover:scale-[1.04]"
-                  />
+                <div className={`grid aspect-[4/3] overflow-hidden bg-slate-100 ${material.galleryImages.length > 1 ? "grid-cols-2 gap-px" : "grid-cols-1"}`}>
+                  {material.galleryImages.map((src, index) => (
+                    <div key={src} className={`relative overflow-hidden ${material.galleryImages.length === 3 && index === 0 ? "row-span-2" : ""}`}>
+                      <Image
+                        src={src}
+                        alt={material.slug === "abs" ? `ABS engineering plastic material example ${index + 1}` : material.image.alt}
+                        fill
+                        sizes="272px"
+                        className="object-cover transition duration-300 group-hover:scale-[1.04]"
+                      />
+                    </div>
+                  ))}
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <h2 className="text-xl font-semibold text-graphite">{material.title}</h2>

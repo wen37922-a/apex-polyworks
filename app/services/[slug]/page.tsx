@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DetailTemplate } from "@/components/DetailTemplate";
-import { getProductImages } from "@/lib/product-images";
+import { getProductImages, selectProductImages } from "@/lib/product-images";
 import { findBySlug, services, siteConfig } from "@/lib/site";
 
 type PageProps = {
@@ -40,10 +40,11 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   }
 
   const images = await getProductImages();
+  const absCncImages = selectProductImages(images.ABS.gallery, ["abs-7", "abs-8"]);
   const unifiedService = slug === "cnc-plastic-machining"
     ? {
         ...service,
-        galleryImages: [...images.PEEK.cnc, ...images.ABS.gallery].map((src, index) => ({
+        galleryImages: [...images.PEEK.cnc, ...absCncImages].map((src, index) => ({
           src,
           alt: `Precision CNC machined engineering plastic part example ${index + 1}`
         }))

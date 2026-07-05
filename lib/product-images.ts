@@ -132,3 +132,9 @@ export const getProductImages = cache(async (): Promise<ProductImageLibrary> => 
 export function firstImage(images: string[], fallback: string) {
   return images[0] || fallback;
 }
+
+export function selectProductImages(images: string[], fileStems: string[]) {
+  return fileStems
+    .map((stem) => images.find((url) => decodeURIComponent(url).toLowerCase().includes(`-${stem.toLowerCase()}-`)))
+    .filter((url): url is string => Boolean(url));
+}

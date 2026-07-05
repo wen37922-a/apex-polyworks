@@ -4,7 +4,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd } from "@/components/StructuredData";
-import { firstImage, getProductImages } from "@/lib/product-images";
+import { firstImage, getProductImages, selectProductImages } from "@/lib/product-images";
 import { engineeringPlasticPlaceholder, materialVisuals } from "@/lib/materialVisuals";
 import { materials, siteConfig } from "@/lib/site";
 
@@ -51,20 +51,27 @@ export default async function MaterialsPage() {
                   : material.slug === "acrylic-pmma"
                     ? { ...baseVisual, image: { src: firstImage(images.ACRYLIC.sheet, baseVisual.image.src), alt: "Acrylic PMMA colored sheet samples" } }
                     : baseVisual;
+              const cardImages = material.slug === "abs"
+                ? selectProductImages(images.ABS.gallery, ["abs-1", "abs-2"])
+                : [visual.image.src];
 
               return (
                 <div
                   key={material.slug}
                   className="group flex h-full flex-col overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-50">
-                    <Image
-                      src={visual.image.src}
-                      alt={visual.image.alt}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover transition duration-300 group-hover:scale-[1.04]"
-                    />
+                  <div className={`grid aspect-[4/3] overflow-hidden bg-slate-50 ${cardImages.length > 1 ? "grid-cols-2 gap-px" : "grid-cols-1"}`}>
+                    {cardImages.map((src, index) => (
+                      <div key={src} className="relative overflow-hidden">
+                        <Image
+                          src={src}
+                          alt={material.slug === "abs" ? `ABS plastic sheet sample ${index + 1}` : visual.image.alt}
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                          className="object-cover transition duration-300 group-hover:scale-[1.04]"
+                        />
+                      </div>
+                    ))}
                   </div>
                   <div className="flex flex-1 flex-col p-5">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-teal">{material.eyebrow}</p>
