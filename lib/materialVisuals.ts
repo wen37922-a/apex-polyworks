@@ -52,8 +52,8 @@ export const materialVisuals: Record<string, MaterialVisual> = {
     slug: "nylon-pa",
     href: "/materials/nylon-pa",
     image: {
-      src: productImages.PEEK.rod[2],
-      alt: "Nylon PA rod and plate material placeholder for machined plastic parts"
+      src: productImages.NYLON.hero,
+      alt: "Nylon PA polyamide sheet and rod material for machined parts"
     },
     description: "Wear-resistant engineering plastic for bushings, rollers, gears, and load-bearing components."
   },

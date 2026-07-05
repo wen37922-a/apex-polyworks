@@ -6,6 +6,7 @@ export type ProductImageLibrary = {
   UHMWPE: { hero: string; gallery: string[] };
   POLYCARBONATE: { hero: string; applications: string; properties: string; machining: string; forms: string; cta: string };
   POLYPROPYLENE: { hero: string; overview: string; sheet: string; rod: string; machining: string; applications: string; cta: string };
+  NYLON: { hero: string; forms: string; machining: string; applications: string; properties: string; cta: string; gallery: string };
   PEEK: { hero: string; sheet: string[]; rod: string[]; cnc: string[] };
   ACRYLIC: { hero: string; sheet: string[]; display: string[] };
 };
@@ -50,6 +51,15 @@ export const productImages: ProductImageLibrary = {
     machining: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253552046-pp-05-CutnhXVGhRgkcjldwpt0nlwVd5OwMs.webp",
     applications: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253556037-pp-06-z2KhWu1BPWH20RO2QlGMqujEBIL63w.webp",
     cta: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253560888-pp-07-kjYfaZSkLVIV2DJ3osLLNW7KqZBI4I.webp"
+  },
+  NYLON: {
+    hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254604865-NL1-43sQ2bROsjcOufyrDBGazBYAoW6CMA.png",
+    forms: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254734088-NL2-HWf3sGnCOaDZUrA6lMpDSfK8RDhRZi.png",
+    machining: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254636340-NL3-ziKgRMWIUIDNW3M4nlfU6rOTpQWu3j.png",
+    applications: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254749962-NL4-qaPEDCI3CgVq4qaZKSkKaClwEcmske.png",
+    properties: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254759981-NL5-RP46E4fvkWuc1G5u5JzjOZOxSezicC.png",
+    cta: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254781907-NL6-3RewOXVnYyvrvvvW2gG5RBTfkwJTPV.png",
+    gallery: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783254788710-NILONG3-Dnjy6GbnHiPkaIEI4yGfcQILKdhz0a.jpg"
   },
   PEEK: {
     hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
@@ -105,6 +115,7 @@ function cloneLibrary(): ProductImageLibrary {
     UHMWPE: { hero: productImages.UHMWPE.hero, gallery: [...productImages.UHMWPE.gallery] },
     POLYCARBONATE: { ...productImages.POLYCARBONATE },
     POLYPROPYLENE: { ...productImages.POLYPROPYLENE },
+    NYLON: { ...productImages.NYLON },
     PEEK: {
       hero: productImages.PEEK.hero,
       sheet: [...productImages.PEEK.sheet],
