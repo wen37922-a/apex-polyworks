@@ -3,6 +3,7 @@ import { cache } from "react";
 
 export type ProductImageLibrary = {
   ABS: { hero: string; gallery: string[] };
+  UHMWPE: { hero: string; gallery: string[] };
   PEEK: { hero: string; sheet: string[]; rod: string[]; cnc: string[] };
   ACRYLIC: { hero: string; sheet: string[]; display: string[] };
 };
@@ -19,6 +20,10 @@ export const productImages: ProductImageLibrary = {
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783244841184-abs-7-QpPGUiAc7SnPTWXaM9rtk8vmwmaznt.webp",
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783244857687-abs-8-HTVlncWv4PS7DtQviNyso4aCSIMXu0.webp"
     ]
+  },
+  UHMWPE: {
+    hero: "",
+    gallery: []
   },
   PEEK: {
     hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
@@ -71,6 +76,7 @@ export const siteImages = {
 function cloneLibrary(): ProductImageLibrary {
   return {
     ABS: { hero: productImages.ABS.hero, gallery: [...productImages.ABS.gallery] },
+    UHMWPE: { hero: productImages.UHMWPE.hero, gallery: [...productImages.UHMWPE.gallery] },
     PEEK: {
       hero: productImages.PEEK.hero,
       sheet: [...productImages.PEEK.sheet],
@@ -95,6 +101,12 @@ function classifyBlob(library: ProductImageLibrary, pathname: string, url: strin
   if (name.includes("abs-")) {
     addUnique(library.ABS.gallery, url);
     if (!library.ABS.hero || /abs-1(?:\D|$)/.test(name)) library.ABS.hero = url;
+    return;
+  }
+
+  if (name.includes("uhmwpe")) {
+    addUnique(library.UHMWPE.gallery, url);
+    if (!library.UHMWPE.hero || /uhmwpe-?1(?:\D|$)/.test(name)) library.UHMWPE.hero = url;
     return;
   }
 

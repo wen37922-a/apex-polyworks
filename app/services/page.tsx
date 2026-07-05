@@ -32,6 +32,9 @@ export default async function ServicesPage() {
     } else if (material.slug === "peek") {
       image = { ...material.image, src: firstImage(images.PEEK.sheet, material.image.src) };
       galleryImages = [image.src];
+    } else if (material.slug === "hdpe" && images.UHMWPE.gallery.length) {
+      image = { src: images.UHMWPE.hero || images.UHMWPE.gallery[0], alt: "UHMWPE sheet material for machining and fabrication" };
+      galleryImages = [image.src];
     } else if (material.slug === "acrylic-pmma") {
       image = { src: firstImage(images.ACRYLIC.sheet, material.image.src), alt: "Acrylic PMMA colored sheet samples" };
       galleryImages = [image.src];

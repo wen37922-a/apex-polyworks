@@ -1019,7 +1019,7 @@ export const serviceLinks = services.map((item) => ({
 
 export const materialLinks = materials.map((item) => ({
   title: item.title,
-  href: `/materials/${item.slug}`
+  href: item.slug === "hdpe" ? "/materials/uhmwpe-sheet" : `/materials/${item.slug}`
 }));
 
 export const productLinks = products.map((item) => ({
@@ -1046,6 +1046,7 @@ export const allStaticRoutes = [
   "/",
   "/services",
   "/materials",
+  "/materials/uhmwpe-sheet",
   "/products",
   "/industries",
   "/blog",

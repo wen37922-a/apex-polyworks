@@ -48,6 +48,8 @@ export default async function MaterialsPage() {
                 ? { ...baseVisual, image: { src: images.ABS.hero || firstImage(images.ABS.gallery, baseVisual.image.src), alt: "ABS plastic sheet and manufactured component samples" } }
                 : material.slug === "peek"
                   ? { ...baseVisual, image: { ...baseVisual.image, src: firstImage(images.PEEK.sheet, baseVisual.image.src) } }
+                  : material.slug === "hdpe" && images.UHMWPE.gallery.length
+                    ? { ...baseVisual, image: { src: images.UHMWPE.hero || images.UHMWPE.gallery[0], alt: "UHMWPE sheet material for industrial wear applications" } }
                   : material.slug === "acrylic-pmma"
                     ? { ...baseVisual, image: { src: firstImage(images.ACRYLIC.sheet, baseVisual.image.src), alt: "Acrylic PMMA colored sheet samples" } }
                     : baseVisual;
@@ -79,7 +81,7 @@ export default async function MaterialsPage() {
                     <p className="mt-3 flex-1 text-sm leading-6 text-steel">{material.summary}</p>
                     <div className="mt-6 grid gap-2 sm:grid-cols-2">
                       <Link
-                        href={`/materials/${material.slug}`}
+                        href={material.slug === "hdpe" ? "/materials/uhmwpe-sheet" : `/materials/${material.slug}`}
                         className="inline-flex min-h-10 items-center justify-center rounded-md border border-graphite/15 bg-white px-4 py-2 text-sm font-semibold text-graphite hover:border-teal hover:text-teal"
                       >
                         View Details

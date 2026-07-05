@@ -40,7 +40,7 @@ export const materialVisuals: Record<string, MaterialVisual> = {
   hdpe: {
     title: "UHMWPE / HDPE",
     slug: "hdpe",
-    href: "/materials/hdpe",
+    href: "/materials/uhmwpe-sheet",
     image: {
       src: productImages.PEEK.cnc[3],
       alt: "UHMWPE and HDPE wear resistant plastic part placeholder for guides and liners"
