@@ -82,8 +82,8 @@ export const materialVisuals: Record<string, MaterialVisual> = {
     slug: "polycarbonate-pc",
     href: "/materials/polycarbonate-pc",
     image: {
-      src: productImages.PEEK.sheet[1],
-      alt: "Polycarbonate PC transparent sheet placeholder for guards and windows"
+      src: productImages.POLYCARBONATE.hero,
+      alt: "Clear polycarbonate PC sheet for industrial guards and windows"
     },
     description: "Clear, impact-resistant plastic for machine guards, windows, shields, and covers."
   },

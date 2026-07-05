@@ -4,6 +4,7 @@ import { cache } from "react";
 export type ProductImageLibrary = {
   ABS: { hero: string; gallery: string[] };
   UHMWPE: { hero: string; gallery: string[] };
+  POLYCARBONATE: { hero: string; applications: string; properties: string; machining: string; forms: string; cta: string };
   PEEK: { hero: string; sheet: string[]; rod: string[]; cnc: string[] };
   ACRYLIC: { hero: string; sheet: string[]; display: string[] };
 };
@@ -31,6 +32,14 @@ export const productImages: ProductImageLibrary = {
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783249435185-uhmwpe5-UIVVhRwMCX8fZFxD52fk3tWM6hqeI1.jpg",
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783249442118-uhmwpe6-voOfdV3t5Uf1zz3gCBRtpuCaN0dykU.jpg"
     ]
+  },
+  POLYCARBONATE: {
+    hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253309811-pc-01-9M38WhxTQC9x7iPLqeI3BkHuiRZ9Ra.webp",
+    applications: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253317317-pc-02-jGwSeX5kDEmKpUJfqxwy8NR79TbGJ6.webp",
+    properties: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253322674-pc-03-bXniGeEy6ZtoyIXh8OgyrDuBW5W80y.webp",
+    machining: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253328473-pc-04-B87sBdTAUTUzJI10kHPX6MLEUa8Tar.webp",
+    forms: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253334000-pc-05-lNx6LsJrM7EyGFqOF4vGYpNSNKqqtp.webp",
+    cta: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783253339642-pc-06-3ejmaMFWCy1iT16wdq0RSf55GWNVgq.webp"
   },
   PEEK: {
     hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
@@ -84,6 +93,7 @@ function cloneLibrary(): ProductImageLibrary {
   return {
     ABS: { hero: productImages.ABS.hero, gallery: [...productImages.ABS.gallery] },
     UHMWPE: { hero: productImages.UHMWPE.hero, gallery: [...productImages.UHMWPE.gallery] },
+    POLYCARBONATE: { ...productImages.POLYCARBONATE },
     PEEK: {
       hero: productImages.PEEK.hero,
       sheet: [...productImages.PEEK.sheet],
@@ -114,6 +124,16 @@ function classifyBlob(library: ProductImageLibrary, pathname: string, url: strin
   if (name.includes("uhmwpe")) {
     addUnique(library.UHMWPE.gallery, url);
     if (!library.UHMWPE.hero || /uhmwpe-?1(?:\D|$)/.test(name)) library.UHMWPE.hero = url;
+    return;
+  }
+
+  if (/\/[^/]*pc-0[1-6](?:\D|$)/.test(name)) {
+    if (name.includes("pc-01")) library.POLYCARBONATE.hero = url;
+    else if (name.includes("pc-02")) library.POLYCARBONATE.applications = url;
+    else if (name.includes("pc-03")) library.POLYCARBONATE.properties = url;
+    else if (name.includes("pc-04")) library.POLYCARBONATE.machining = url;
+    else if (name.includes("pc-05")) library.POLYCARBONATE.forms = url;
+    else if (name.includes("pc-06")) library.POLYCARBONATE.cta = url;
     return;
   }
 
