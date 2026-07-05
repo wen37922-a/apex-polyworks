@@ -4,6 +4,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd } from "@/components/StructuredData";
+import { firstImage, getProductImages } from "@/lib/images";
 import { engineeringPlasticPlaceholder, materialVisuals } from "@/lib/materialVisuals";
 import { materials, siteConfig } from "@/lib/site";
 
@@ -16,7 +17,10 @@ export const metadata: Metadata = {
   }
 };
 
-export default function MaterialsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function MaterialsPage() {
+  const images = await getProductImages();
   return (
     <main>
       <BreadcrumbJsonLd
@@ -39,7 +43,14 @@ export default function MaterialsPage() {
           />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {materials.map((material) => {
-              const visual = materialVisuals[material.slug] || engineeringPlasticPlaceholder;
+              const baseVisual = materialVisuals[material.slug] || engineeringPlasticPlaceholder;
+              const visual = material.slug === "abs"
+                ? { ...baseVisual, image: { src: firstImage(images.ABS.sheet, baseVisual.image.src), alt: "ABS plastic sheet and manufactured component samples" } }
+                : material.slug === "peek"
+                  ? { ...baseVisual, image: { ...baseVisual.image, src: firstImage(images.PEEK.sheet, baseVisual.image.src) } }
+                  : material.slug === "acrylic-pmma"
+                    ? { ...baseVisual, image: { src: firstImage(images.ACRYLIC.sheet, baseVisual.image.src), alt: "Acrylic PMMA colored sheet samples" } }
+                    : baseVisual;
 
               return (
                 <div

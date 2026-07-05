@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DetailTemplate } from "@/components/DetailTemplate";
+import { getProductImages } from "@/lib/images";
 import { findBySlug, materials, siteConfig } from "@/lib/site";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
+
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return materials
@@ -38,5 +41,26 @@ export default async function MaterialDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  return <DetailTemplate item={material} parentLabel="Materials" />;
+  const images = await getProductImages();
+  const unifiedMaterial = slug === "abs" && images.ABS.sheet.length
+    ? {
+        ...material,
+        heroImage: { src: images.ABS.sheet[0], alt: "ABS plastic sheet material for industrial fabrication" },
+        galleryImages: [...images.ABS.sheet, ...images.ABS.rod, ...images.ABS.cnc].map((src, index) => ({
+          src,
+          alt: `ABS plastic material and manufactured part example ${index + 1}`
+        }))
+      }
+    : slug === "peek"
+      ? {
+          ...material,
+          heroImage: { src: images.PEEK.sheet[0], alt: "PEEK engineering plastic sheet material" },
+          galleryImages: [...images.PEEK.sheet, ...images.PEEK.rod].map((src, index) => ({
+            src,
+            alt: `PEEK sheet and rod stock example ${index + 1}`
+          }))
+        }
+      : material;
+
+  return <DetailTemplate item={unifiedMaterial} parentLabel="Materials" />;
 }

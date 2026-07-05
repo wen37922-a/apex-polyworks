@@ -3,29 +3,8 @@ import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
 import { BreadcrumbJsonLd } from "@/components/StructuredData";
+import { getProductImages } from "@/lib/images";
 import { siteConfig } from "@/lib/site";
-
-const heroImage =
-  "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310282530-acrylic-gradient-cube-display-1200x1200-95WjUTO2WWMBP7rYRQCpSUeuoKVk5i.webp";
-
-const applicationImages = [
-  {
-    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310298749-acrylic-red-lit-display-shelf-1200x1200-3ncBDSMqEYDJGuiDzqA6SBhHI9Qw8R.webp",
-    alt: "Red illuminated acrylic display shelf for retail and presentation applications"
-  },
-  {
-    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310289323-acrylic-orange-display-stand-1200x1200-ob302bkRrEX9UAZe5WkXMnwZHyWfNJ.webp",
-    alt: "Orange acrylic display stand made from colored PMMA sheet"
-  },
-  {
-    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310303685-acrylic-round-table-1200x1200-mGYtBSqF7CIrxL1C7e3ng1HGfYjG5O.webp",
-    alt: "Round acrylic table using clear PMMA material for furniture applications"
-  },
-  {
-    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310269764-acrylic-curved-counter-panel-1600x1200-S3YwFdHl1WYWtq6p558BS1eOfYp0i0.webp",
-    alt: "Curved acrylic counter panel for custom fabricated PMMA display projects"
-  }
-];
 
 const keyProperties = [
   "Excellent optical clarity for transparent guards, covers, windows, and displays",
@@ -57,7 +36,15 @@ export const metadata: Metadata = {
   }
 };
 
-export default function AcrylicPmmaPage() {
+export const dynamic = "force-dynamic";
+
+export default async function AcrylicPmmaPage() {
+  const images = await getProductImages();
+  const heroImage = images.ACRYLIC.display[0] || images.ACRYLIC.sheet[0];
+  const applicationImages = images.ACRYLIC.display.slice(1).map((src, index) => ({
+    src,
+    alt: `Custom acrylic PMMA display and fabrication application ${index + 1}`
+  }));
   return (
     <main>
       <BreadcrumbJsonLd

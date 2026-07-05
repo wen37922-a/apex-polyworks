@@ -5,6 +5,7 @@ import { ListingCard } from "@/components/ListingCard";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd } from "@/components/StructuredData";
+import { firstImage, getProductImages } from "@/lib/images";
 import { serviceMaterialCarousel } from "@/lib/materialVisuals";
 import { services, siteConfig } from "@/lib/site";
 
@@ -17,7 +18,22 @@ export const metadata: Metadata = {
   }
 };
 
-export default function ServicesPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ServicesPage() {
+  const images = await getProductImages();
+  const carouselMaterials = serviceMaterialCarousel.map((material) => {
+    if (material.slug === "abs") {
+      return { ...material, image: { src: firstImage(images.ABS.sheet, material.image.src), alt: "ABS plastic sheet and custom manufactured parts" } };
+    }
+    if (material.slug === "peek") {
+      return { ...material, image: { ...material.image, src: firstImage(images.PEEK.sheet, material.image.src) } };
+    }
+    if (material.slug === "acrylic-pmma") {
+      return { ...material, image: { src: firstImage(images.ACRYLIC.sheet, material.image.src), alt: "Acrylic PMMA colored sheet samples" } };
+    }
+    return material;
+  });
   return (
     <main>
       <BreadcrumbJsonLd
@@ -60,7 +76,7 @@ export default function ServicesPage() {
             text="PEEK, PTFE, UHMWPE, Nylon, Acetal, Acrylic, PVC, HDPE and more materials for machining, cutting, welding, and fabrication."
           />
           <div className="mt-10 flex snap-x gap-5 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {serviceMaterialCarousel.map((material) => (
+            {carouselMaterials.map((material) => (
               <div
                 key={`${material.slug}-${material.title}`}
                 className="group flex w-[17rem] shrink-0 snap-start flex-col overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft"

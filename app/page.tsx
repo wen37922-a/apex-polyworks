@@ -17,6 +17,7 @@ import { ListingCard } from "@/components/ListingCard";
 import { QuoteForm } from "@/components/QuoteForm";
 import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/StructuredData";
+import { productImages } from "@/lib/images";
 import {
   faq,
   processSteps,
@@ -35,60 +36,21 @@ export const metadata: Metadata = {
 };
 
 const images = {
-  peekSheetHero:
-    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134683304-peek-sheet-4-WqAf6XEcfIWq45uAg3Pg2DA9ffnojb.webp",
-  peekSheetDetail:
-    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134654887-peek-sheet-3-pcMOr4FbUGq6WQ6ZtFiCa5SKtMUktT.webp",
-  peekRodHero:
-    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134600318-peek-rod-1-0UJzW7RMBl7XOlyKOm3tEO6TgwGzrU.webp",
-  peekRodDetail:
-    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134612579-peek-rod-3-OM1NQs4ciiZfLIROtEkqifGcZ68EIU.webp",
-  warehouse:
-    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134731423-peek-warehouse-inventory-main-1200-4a8D9c8UbXM3znrcKy6Ke1KD4ILxtq.webp",
-  cncHero:
-    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
-  cncSecondary:
-    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134591199-peek-hero2-9gA9kx8TxOtwLPvMivYEyGhFHOHAlD.webp",
-  acrylic:
-    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310308684-acrylic-sheet-sample-board-1200x1200-QhwXrfWHnftFj4c4fIDey7HDf6ss6a.webp",
-  homeHero:
-    "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp"
+  peekSheetHero: productImages.PEEK.sheet[0],
+  peekSheetDetail: productImages.PEEK.sheet[1],
+  peekRodHero: productImages.PEEK.rod[0],
+  peekRodDetail: productImages.PEEK.rod[2],
+  warehouse: productImages.PEEK.warehouse[0],
+  cncHero: productImages.PEEK.hero[0],
+  cncSecondary: productImages.PEEK.hero[1],
+  acrylic: productImages.ACRYLIC.sheet[0],
+  homeHero: productImages.PEEK.hero[0]
 };
 
-const cncImages = [
-  {
-    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134507708-peek-cnc%E5%9B%BE1-Pyau8a8ctGrTZGK56cMHYPmmNUcZkK.webp",
-    alt: "CNC machined PEEK plastic component with milled precision features"
-  },
-  {
-    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134520033-peek-cnc%E5%9B%BE2-pOGRYOEvQjuysSzVXbwUCb4nja5wKA.webp",
-    alt: "Precision machined PEEK part for high performance engineering use"
-  },
-  {
-    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134533843-peek-cnc%E5%9B%BE3-xKzrkB27J9mnmwy46lW2jaKrC8JS60.webp",
-    alt: "Custom CNC milled PEEK plastic part with clean geometry"
-  },
-  {
-    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134539239-peek-cnc%E5%9B%BE4-KgyoVQeDflchuKrcKsmOsx1YSiC59f.webp",
-    alt: "PEEK machined plastic component for demanding industrial assemblies"
-  },
-  {
-    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134544516-peek-cnc%E5%9B%BE5-r0FcLiF4dfAdiV3DAuBZGmejsq72Lx.webp",
-    alt: "Finished PEEK CNC machining sample with smooth surface finish"
-  },
-  {
-    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134561731-peek-cnc%E5%9B%BE6-uJ9Ba3nQHSe9cMUYbppmWOHfaqGJSk.webp",
-    alt: "Custom machined PEEK part made from engineering plastic stock"
-  },
-  {
-    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134571749-peek-cnc%E5%9B%BE7-xR5UUCtJAT5PAh8FecTuBRp1MfrGmR.webp",
-    alt: "PEEK CNC machined component ready for industrial inspection"
-  },
-  {
-    src: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134577091-peek-cnc%E5%9B%BE8-Oru9Qesn6iDzPGU9d3TFe5vl9rplfK.webp",
-    alt: "Finished CNC machined PEEK plastic part for precision applications"
-  }
-];
+const cncImages = productImages.PEEK.cnc.map((src, index) => ({
+  src,
+  alt: `CNC machined PEEK plastic component example ${index + 1}`
+}));
 
 const materialCards = [
   {
