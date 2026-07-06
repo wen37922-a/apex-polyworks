@@ -1,4 +1,5 @@
 import { productImages, siteImages } from "@/lib/product-images";
+import { getCatalogMaterials, materialsData } from "@/lib/materials-data";
 
 export type DetailItem = {
   title: string;
@@ -312,258 +313,21 @@ export const services: DetailItem[] = [
   }
 ];
 
-export const materials: DetailItem[] = [
-  {
-    title: "ABS",
-    slug: "abs",
-    eyebrow: "General purpose",
-    summary:
-      "Cost-effective plastic for housings, panels, prototypes, thermoformed parts, and light-duty machined components.",
-    description:
-      "ABS offers a useful balance of impact strength, machinability, and cost. It is often selected for prototypes, interior equipment panels, guards, covers, and parts that need a clean appearance without premium resin pricing.",
-    highlights: [
-      "Good impact resistance for general industrial use",
-      "Machines, drills, bonds, and thermoforms well",
-      "Available in natural, black, and selected colors",
-      "Practical choice for prototypes and production panels"
-    ],
-    specs: [
-      "Common forms: sheet, rod, custom machined part",
-      "Not ideal for high heat or outdoor UV exposure without review",
-      "Good balance of stiffness and toughness",
-      "Often chosen when price and machinability matter"
-    ],
-    applications: ["Covers", "Housings", "Prototype parts", "Panels", "Jigs"],
-    seoTitle: "ABS Plastic Sheets and CNC Machined ABS Parts",
-    seoDescription:
-      "Source ABS plastic sheet, rod, and custom machined ABS parts for housings, covers, panels, prototypes, and industrial use."
-  },
-  {
-    title: "Polycarbonate PC",
-    slug: "polycarbonate-pc",
-    eyebrow: "Impact resistant",
-    summary:
-      "Clear, tough plastic for machine guards, windows, shields, covers, and impact-resistant fabricated parts.",
-    description:
-      "Polycarbonate is valued for high impact strength and clear visibility. It is a common choice for safety windows, equipment guards, formed covers, and parts where acrylic may be too brittle.",
-    highlights: [
-      "Excellent impact resistance compared with many clear plastics",
-      "Clear, tinted, and selected specialty grades available",
-      "Can be cut, machined, drilled, bent, and formed",
-      "Good fit for guards and protective panels"
-    ],
-    specs: [
-      "Common forms: sheet, film, machined component",
-      "Scratch resistance varies by grade and coating",
-      "UV stable grades available for outdoor use",
-      "Bend and forming details should be reviewed before production"
-    ],
-    applications: ["Machine guards", "Sight windows", "Shields", "Covers", "Panels"],
-    seoTitle: "Polycarbonate Sheet and Custom PC Plastic Parts",
-    seoDescription:
-      "Buy polycarbonate sheets, film, guards, windows, and CNC machined PC parts for impact-resistant industrial applications."
-  },
-  {
-    title: "Nylon PA",
-    slug: "nylon-pa",
-    eyebrow: "Wear resistant",
-    summary:
-      "Durable engineering plastic for bushings, rollers, gears, wear pads, spacers, and load-bearing components.",
-    description:
-      "Nylon is widely used where toughness, wear resistance, and bearing performance are needed. Moisture absorption and dimensional movement should be considered during design and machining.",
-    highlights: [
-      "Good wear resistance and mechanical toughness",
-      "Useful for bearing and sliding applications",
-      "Available as cast nylon, extruded nylon, sheet, rod, and tube",
-      "Machined into rollers, gears, bushings, pads, and guides"
-    ],
-    specs: [
-      "Moisture absorption can affect dimensions",
-      "Oil-filled and moly-filled grades available by request",
-      "Good impact and fatigue resistance",
-      "Material choice depends on load, speed, and environment"
-    ],
-    applications: ["Bushings", "Gears", "Rollers", "Wear strips", "Guide rails"],
-    seoTitle: "Nylon PA Sheets, Rods, and Machined Nylon Parts",
-    seoDescription:
-      "Source nylon PA sheet, rod, tube, and CNC machined nylon parts for wear pads, rollers, bushings, gears, and guides."
-  },
-  {
-    title: "POM / Acetal",
-    slug: "pom-acetal",
-    eyebrow: "Dimensionally stable",
-    summary:
-      "Low-friction, stable engineering plastic for precision machined parts, gears, fixtures, and conveyor components.",
-    description:
-      "POM, commonly called acetal, is a strong choice for precision plastic machining. It offers low moisture absorption, low friction, good dimensional stability, and clean machining behavior.",
-    highlights: [
-      "Excellent machinability for tight-feature parts",
-      "Low friction and good dimensional stability",
-      "Available in homopolymer and copolymer grades",
-      "Common in mechanical, automation, and food equipment components"
-    ],
-    specs: [
-      "Common forms: sheet, rod, tube, and machined components",
-      "Natural and black are standard colors",
-      "FDA-compliant grades available by request",
-      "Good choice for repeat CNC production"
-    ],
-    applications: ["Gears", "Spacers", "Fixtures", "Wear parts", "Valve parts"],
-    seoTitle: "POM Acetal Sheets, Rods, and CNC Machined Parts",
-    seoDescription:
-      "Buy POM acetal sheet, rod, tube, and machined acetal parts for low-friction, dimensionally stable industrial uses."
-  },
-  {
-    title: "PEEK",
-    slug: "peek",
-    eyebrow: "High performance",
-    summary:
-      "Premium engineering plastic for high-temperature, high-strength, chemical-resistant, and precision applications.",
-    description:
-      "PEEK is selected when standard plastics cannot meet the temperature, strength, chemical, or dimensional demands of an application. It is commonly used for aerospace, medical, semiconductor, oil and gas, and demanding industrial parts.",
-    highlights: [
-      "High temperature resistance and strong mechanical properties",
-      "Excellent chemical resistance across many environments",
-      "Good machinability for critical components",
-      "Unfilled, glass-filled, carbon-filled, and bearing grades available"
-    ],
-    specs: [
-      "Common forms: rod, sheet, tube, and custom machined part",
-      "Premium resin pricing makes material yield planning important",
-      "Grade selection depends on load, temperature, and compliance needs",
-      "Material certificates available on request"
-    ],
-    applications: ["Aerospace parts", "Medical fixtures", "Insulators", "Valve seats", "Pump components"],
-    seoTitle: "PEEK Plastic Rod, Sheet, and Precision Machined Parts",
-    seoDescription:
-      "Source PEEK sheet, rod, tube, and CNC machined PEEK parts for high-temperature, chemical-resistant applications."
-  },
-  {
-    title: "PTFE",
-    slug: "ptfe",
-    eyebrow: "Low friction",
-    summary:
-      "Chemically resistant fluoropolymer for seals, gaskets, insulators, bearings, liners, and low-friction parts.",
-    description:
-      "PTFE is known for very low friction and broad chemical resistance. It performs well in seals, gaskets, liners, insulators, and components exposed to aggressive fluids, though creep and tolerance behavior should be reviewed.",
-    highlights: [
-      "Very low coefficient of friction",
-      "Broad chemical resistance",
-      "Good electrical insulating properties",
-      "Available in virgin and filled grades"
-    ],
-    specs: [
-      "Common forms: sheet, rod, tube, film, skived tape, and machined part",
-      "Filled grades can improve wear or dimensional performance",
-      "Creep behavior should be considered under load",
-      "Useful in chemical, electrical, and food equipment applications"
-    ],
-    applications: ["Seals", "Gaskets", "Bearings", "Insulators", "Liners"],
-    seoTitle: "PTFE Sheet, Rod, Film, and Machined PTFE Parts",
-    seoDescription:
-      "Buy PTFE sheet, rod, tube, film, and machined PTFE parts for seals, gaskets, liners, insulators, and bearings."
-  },
-  {
-    title: "PVC",
-    slug: "pvc",
-    eyebrow: "Chemical resistant",
-    summary:
-      "Rigid plastic sheet and rod for tanks, guards, ducts, electrical parts, and chemical handling applications.",
-    description:
-      "PVC is a practical material for chemical-resistant fabricated parts, welded assemblies, covers, and industrial panels. It offers good rigidity and can be cut, machined, formed, and welded for many applications.",
-    highlights: [
-      "Good chemical resistance for many industrial environments",
-      "Rigid, easy to machine, form, and weld",
-      "Available in gray, white, clear, and specialty grades",
-      "Common choice for tanks, ducts, guards, and panels"
-    ],
-    specs: [
-      "Common forms: sheet, rod, film, and fabricated assembly",
-      "Temperature and chemical exposure should be reviewed",
-      "Welding and bending are available for fabricated components",
-      "Type I and clear PVC options available by project"
-    ],
-    applications: ["Tanks", "Ducts", "Electrical panels", "Chemical guards", "Trays"],
-    seoTitle: "PVC Plastic Sheet, Rod, and Fabricated PVC Parts",
-    seoDescription:
-      "Source rigid PVC sheet, rod, clear PVC, and welded or machined PVC parts for chemical and industrial applications."
-  },
-  {
-    title: "HDPE",
-    slug: "hdpe",
-    eyebrow: "Tough polyolefin",
-    summary:
-      "Durable, impact-resistant plastic for cutting boards, liners, wear strips, tanks, guides, and food equipment parts.",
-    description:
-      "HDPE combines toughness, moisture resistance, and good chemical resistance at an economical price point. It is widely used in food processing, material handling, marine, and industrial maintenance applications.",
-    highlights: [
-      "High impact strength and moisture resistance",
-      "Good chemical resistance and low surface energy",
-      "FDA-compliant grades available",
-      "Machined, cut, welded, and fabricated into durable parts"
-    ],
-    specs: [
-      "Common forms: sheet, rod, and custom fabricated part",
-      "Natural, white, black, and color options available",
-      "Not ideal for tight tolerance parts with high temperature exposure",
-      "UHMW-PE may be recommended for higher wear resistance"
-    ],
-    applications: ["Cutting boards", "Liners", "Wear strips", "Tank parts", "Guides"],
-    seoTitle: "HDPE Sheet, Rod, and Custom HDPE Parts",
-    seoDescription:
-      "Buy HDPE plastic sheets, rods, liners, cutting boards, and fabricated parts for food processing and industrial use."
-  },
-  {
-    title: "PP",
-    slug: "pp",
-    eyebrow: "Lightweight chemical resistance",
-    summary:
-      "Polypropylene sheet and rod for chemical tanks, laboratory parts, packaging equipment, and fabricated assemblies.",
-    description:
-      "Polypropylene is lightweight, weldable, and resistant to many chemicals. It is often selected for tanks, trays, laboratory fixtures, wet processing parts, and industrial components where chemical resistance and cost matter.",
-    highlights: [
-      "Good chemical resistance and low density",
-      "Weldable for tanks, trays, and ducting",
-      "Natural, black, and selected colors available",
-      "Useful for laboratory and wet processing environments"
-    ],
-    specs: [
-      "Common forms: sheet, rod, film, and welded assembly",
-      "Homopolymer and copolymer grades available",
-      "Temperature, stress, and chemical exposure should be reviewed",
-      "Good material for economical fabricated parts"
-    ],
-    applications: ["Chemical tanks", "Lab trays", "Packaging parts", "Ducting", "Wet benches"],
-    seoTitle: "Polypropylene PP Sheet, Rod, and Fabricated Parts",
-    seoDescription:
-      "Source PP sheet, rod, film, and welded polypropylene parts for chemical tanks, lab trays, ducts, and wet process use."
-  },
-  {
-    title: "Acrylic / PMMA",
-    slug: "acrylic-pmma",
-    eyebrow: "Optical clarity",
-    summary:
-      "Clear and colored acrylic for displays, windows, guards, signs, covers, and polished fabricated components.",
-    description:
-      "Acrylic provides excellent clarity, polishability, and a refined visual finish. It is commonly used where appearance matters, including displays, covers, guards, lighting parts, and presentation components.",
-    highlights: [
-      "Excellent optical clarity and light transmission",
-      "Laser cutting, CNC routing, polishing, and bending options",
-      "Clear, frosted, mirrored, tinted, and colored sheets available",
-      "Good fit for cosmetic and display-grade projects"
-    ],
-    specs: [
-      "Common forms: sheet, rod, tube, and custom fabricated part",
-      "Cast and extruded grades available",
-      "More brittle than polycarbonate under impact",
-      "Edge polishing and flame polishing available"
-    ],
-    applications: ["Displays", "Windows", "Light guides", "Covers", "Signage"],
-    seoTitle: "Acrylic PMMA Sheet, Rod, and Custom Parts",
-    seoDescription:
-      "Buy acrylic PMMA sheet, rod, tube, display parts, polished panels, guards, covers, and custom fabricated acrylic."
-  }
-];
+export const materials: DetailItem[] = materialsData.map((material) => ({
+  title: material.name,
+  slug: material.slug,
+  eyebrow: material.eyebrow,
+  summary: material.cardDescription,
+  description: material.description,
+  highlights: material.keyProperties,
+  specs: material.forms.map(
+    (form) => `${form.title}: ${form.description}`
+  ),
+  applications: material.applications,
+  seoTitle: material.seoTitle,
+  seoDescription: material.seoDescription
+}));
+
 
 export const products: DetailItem[] = [
   {
@@ -1017,8 +781,8 @@ export const serviceLinks = services.map((item) => ({
   href: `/services/${item.slug}`
 }));
 
-export const materialLinks = materials.map((item) => ({
-  title: item.title,
+export const materialLinks = getCatalogMaterials(materialsData).map((item) => ({
+  title: item.shortName,
   href: `/materials/${item.slug}`
 }));
 
@@ -1046,7 +810,6 @@ export const allStaticRoutes = [
   "/",
   "/services",
   "/materials",
-  "/materials/uhmwpe-sheet",
   "/products",
   "/industries",
   "/blog",
@@ -1056,7 +819,7 @@ export const allStaticRoutes = [
   "/privacy-policy",
   "/terms-and-conditions",
   ...services.map((item) => `/services/${item.slug}`),
-  ...materials.map((item) => `/materials/${item.slug}`),
+  ...materialsData.map((item) => `/materials/${item.slug}`),
   ...products.map((item) => `/products/${item.slug}`),
   ...industries.map((item) => `/industries/${item.slug}`),
   ...blogPosts.map((item) => `/blog/${item.slug}`)

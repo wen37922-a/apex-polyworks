@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import {
   BadgeCheck,
   CheckCircle2,
@@ -14,10 +13,12 @@ import {
 } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
 import { ListingCard } from "@/components/ListingCard";
+import { MaterialCard } from "@/components/MaterialCard";
 import { QuoteForm } from "@/components/QuoteForm";
 import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/StructuredData";
 import { productImages, siteImages } from "@/lib/product-images";
+import { getCatalogMaterials, getMaterialPrimaryImage, getMaterialsData } from "@/lib/materials-data";
 import {
   faq,
   processSteps,
@@ -51,37 +52,6 @@ const cncImages = productImages.PEEK.cnc.map((src, index) => ({
   src,
   alt: `CNC machined PEEK plastic component example ${index + 1}`
 }));
-
-const materialCards = [
-  {
-    title: "PEEK",
-    href: "/materials/peek",
-    image: images.peekSheetHero,
-    alt: "PEEK engineering plastic sheet stock for high temperature applications",
-    text: "High-performance plastic for heat, strength, chemical resistance, and precision machining."
-  },
-  {
-    title: "PTFE",
-    href: "/materials/ptfe",
-    image: cncImages[1].src,
-    alt: "PTFE and fluoropolymer machined plastic part application reference",
-    text: "Low-friction fluoropolymer for seals, gaskets, liners, bearings, and chemical service."
-  },
-  {
-    title: "UHMWPE",
-    href: "/materials/uhmwpe-sheet",
-    image: images.warehouse,
-    alt: "UHMWPE and industrial plastic stock inventory for wear parts",
-    text: "Wear-resistant plastic option for guides, liners, conveyor parts, and plant maintenance."
-  },
-  {
-    title: "Acrylic",
-    href: "/materials/acrylic-pmma",
-    image: images.acrylic,
-    alt: "Acrylic PMMA sheet sample board for display and fabrication projects",
-    text: "Clear and colored PMMA for displays, guards, covers, polished panels, and custom fabrication."
-  }
-];
 
 const capabilityBlocks = [
   {
@@ -154,7 +124,8 @@ const whyChooseBlocks = [
   }
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const materialCards = getCatalogMaterials(await getMaterialsData()).slice(0, 6);
   return (
     <main>
       <BreadcrumbJsonLd items={[{ name: "Home", path: "/" }]} />
@@ -305,41 +276,25 @@ export default function HomePage() {
           <SectionHeader
             eyebrow="Featured materials"
             title="Featured Materials for fast RFQ review"
-            text="Start with PEEK, PTFE, UHMWPE, or Acrylic, then send dimensions, quantity, drawings, and application notes for a practical quote."
+            text="Start with a core industrial material, then send dimensions, quantity, drawings, and application notes for a practical quote."
             align="center"
           />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {materialCards.map((material) => (
-              <div key={material.title} className="overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft">
-                <div className="relative aspect-[4/3] bg-slate-50">
-                  <Image
-                    src={material.image}
-                    alt={material.alt}
-                    fill
-                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-5">
-                  <h3 className="text-xl font-semibold text-graphite">{material.title}</h3>
-                  <p className="mt-2 min-h-20 text-sm leading-6 text-steel">{material.text}</p>
-                  <div className="mt-5 grid gap-2 sm:grid-cols-2">
-                    <Link
-                      href={material.href}
-                      className="inline-flex min-h-10 items-center justify-center rounded-md border border-graphite/15 bg-white px-4 py-2 text-sm font-semibold text-graphite hover:border-teal hover:text-teal"
-                    >
-                      View Details
-                    </Link>
-                    <Link
-                      href="/request-a-quote"
-                      className="inline-flex min-h-10 items-center justify-center rounded-md bg-amber px-4 py-2 text-sm font-semibold text-white hover:bg-amber/90"
-                    >
-                      RFQ
-                    </Link>
-                  </div>
-                </div>
-              </div>
+              <MaterialCard
+                key={material.slug}
+                title={material.shortName}
+                href={`/materials/${material.slug}`}
+                image={getMaterialPrimaryImage(material)}
+                alt={`${material.name} material for industrial machining and fabrication`}
+                description={material.cardDescription}
+                applications={material.cardApplications}
+                tags={material.tags}
+              />
             ))}
+          </div>
+          <div className="mt-10 flex justify-center">
+            <ButtonLink href="/materials" variant="secondary">View All Materials</ButtonLink>
           </div>
         </div>
       </section>

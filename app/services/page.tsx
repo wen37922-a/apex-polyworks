@@ -5,8 +5,7 @@ import { ListingCard } from "@/components/ListingCard";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd } from "@/components/StructuredData";
-import { firstImage, getProductImages, selectProductImages } from "@/lib/product-images";
-import { serviceMaterialCarousel } from "@/lib/materialVisuals";
+import { getCatalogMaterials, getMaterialPrimaryImage, getMaterialsData } from "@/lib/materials-data";
 import { services, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -21,29 +20,16 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function ServicesPage() {
-  const images = await getProductImages();
-  const carouselMaterials = serviceMaterialCarousel.map((material) => {
-    let image = material.image;
-    let galleryImages = [material.image.src];
-
-    if (material.slug === "abs") {
-      galleryImages = selectProductImages(images.ABS.gallery, ["abs-3", "abs-4", "abs-6"]);
-      image = { src: firstImage(galleryImages, images.ABS.hero || material.image.src), alt: "ABS plastic sheet and custom manufactured parts" };
-    } else if (material.slug === "peek") {
-      image = { ...material.image, src: firstImage(images.PEEK.sheet, material.image.src) };
-      galleryImages = [image.src];
-    } else if (material.title === "HDPE") {
-      image = { src: images.HDPE.hero, alt: "HDPE sheet and rod material for machining and fabrication" };
-      galleryImages = [image.src];
-    } else if (material.slug === "hdpe" && images.UHMWPE.gallery.length) {
-      image = { src: images.UHMWPE.hero || images.UHMWPE.gallery[0], alt: "UHMWPE sheet material for machining and fabrication" };
-      galleryImages = [image.src];
-    } else if (material.slug === "acrylic-pmma") {
-      image = { src: firstImage(images.ACRYLIC.sheet, material.image.src), alt: "Acrylic PMMA colored sheet samples" };
-      galleryImages = [image.src];
-    }
-
-    return { ...material, image, galleryImages };
+  const carouselMaterials = getCatalogMaterials(await getMaterialsData()).map((material) => {
+    const src = getMaterialPrimaryImage(material);
+    return {
+      slug: material.slug,
+      title: material.shortName,
+      href: `/materials/${material.slug}`,
+      description: material.cardDescription,
+      image: { src, alt: `${material.name} material for machining and fabrication` },
+      galleryImages: [src]
+    };
   });
   return (
     <main>
