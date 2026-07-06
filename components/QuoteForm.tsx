@@ -9,14 +9,18 @@ const fieldClass =
 
 type QuoteFormProps = {
   compact?: boolean;
+  defaultMaterial?: string;
   showQuantity?: boolean;
+  showSize?: boolean;
   title?: string;
   description?: string;
 };
 
 export function QuoteForm({
   compact = false,
+  defaultMaterial = "",
   showQuantity = false,
+  showSize = false,
   title = "Request pricing and lead time",
   description = "Share material, drawings, and end-use details. We respond within 12 hours."
 }: QuoteFormProps) {
@@ -35,6 +39,11 @@ export function QuoteForm({
     const formData = new FormData(form);
     formData.set("formStartedAt", String(formStartedAt));
     formData.set("drawingFileName", fileName);
+    const size = String(formData.get("size") || "").trim();
+    const projectDescription = String(formData.get("projectDescription") || "").trim();
+    if (size) {
+      formData.set("projectDescription", `Size / Dimensions: ${size}${projectDescription ? `\n\n${projectDescription}` : ""}`);
+    }
 
     try {
       const response = await fetch("/api/request-quote", {
@@ -106,12 +115,17 @@ export function QuoteForm({
           <input className={fieldClass} name="email" placeholder="name@company.com" type="email" required />
         </label>
       </div>
-      <div className={`grid gap-4 ${showQuantity ? "sm:grid-cols-2" : ""}`}>
+      <div className={`grid gap-4 ${showQuantity || showSize ? "sm:grid-cols-2" : ""}`}>
         <label className="grid gap-2 text-sm font-medium text-graphite">
           Material
-          <input className={fieldClass} name="material" placeholder="PEEK, PTFE, UHMWPE, Nylon..." required={!compact} />
+          <input className={fieldClass} name="material" defaultValue={defaultMaterial} placeholder="PEEK, PTFE, UHMWPE, Nylon..." required={!compact || Boolean(defaultMaterial)} />
         </label>
-        {showQuantity ? (
+        {showSize ? (
+          <label className="grid gap-2 text-sm font-medium text-graphite">
+            Size / Dimensions
+            <input className={fieldClass} name="size" placeholder="12 x 24 x 0.5 in or drawing dimensions" />
+          </label>
+        ) : showQuantity ? (
           <label className="grid gap-2 text-sm font-medium text-graphite">
             Quantity
             <input className={fieldClass} name="quantity" placeholder="10 pcs, 2 sheets, 1 prototype..." />
@@ -120,6 +134,12 @@ export function QuoteForm({
           <input type="hidden" name="quantity" value="" readOnly />
         )}
       </div>
+      {showSize && showQuantity ? (
+        <label className="grid gap-2 text-sm font-medium text-graphite">
+          Quantity
+          <input className={fieldClass} name="quantity" placeholder="10 pcs, 2 sheets, 1 prototype..." />
+        </label>
+      ) : null}
       <label className="grid gap-2 text-sm font-medium text-graphite">
         Drawing Upload
         <span className="flex min-h-12 cursor-pointer items-center justify-between gap-3 rounded-md border border-dashed border-graphite/25 bg-slate-50 px-4 py-3 text-sm font-medium text-steel transition hover:border-teal/50 hover:bg-mint/40">

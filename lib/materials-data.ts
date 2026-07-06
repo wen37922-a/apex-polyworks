@@ -39,7 +39,7 @@ export const materialsData: Material[] = [
     seoTitle: "PTFE Sheet, Rod, and Precision Machined Parts", seoDescription: "Buy industrial-grade PTFE sheet, rod, and precision machined parts with ready-stock support."
   },
   {
-    slug: "uhmwpe-sheet", name: "UHMWPE Sheet", shortName: "UHMWPE", aliases: ["uhmwpe", "uhmw-pe"], catalogOrder: 8, showInCatalog: true,
+    slug: "uhmwpe", name: "UHMWPE Sheet", shortName: "UHMWPE", aliases: ["uhmwpe", "uhmw-pe", "uhmwpe-sheet"], catalogOrder: 8, showInCatalog: true,
     eyebrow: "Wear-resistant polyethylene",
     description: "Low-friction, impact-resistant sheet material for demanding wear, sliding, and material-handling applications.",
     cardDescription: "Highly wear-resistant material for sliding and impact applications.",

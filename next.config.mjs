@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/materials/uhmwpe-sheet",
+        destination: "/materials/uhmwpe",
+        permanent: true
+      }
+    ];
+  },
   images: {
     remotePatterns: [
       {
