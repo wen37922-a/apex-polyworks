@@ -35,11 +35,11 @@ export const materialsData: Material[] = [
     forms: [{ title: "PTFE Sheet", description: "Sheet and plate for liners, gaskets, insulation, and machined profiles.", imageRole: "sheet" }, { title: "PTFE Rod", description: "Round stock for seals, bushings, valve parts, and turned components.", imageRole: "rod" }],
     cncDescription: "Precision PTFE turning and milling with careful review of creep, deformation, thin walls, fixturing, and inspection methods.",
     applications: ["Chemical seals", "Valve seats", "Electrical insulators", "Low-friction bearings", "Process equipment liners"],
-    images: images({ hero: [productImages.PTFE.hero], sheet: [productImages.PTFE.sheet], rod: [productImages.PTFE.rod], cnc: [productImages.PTFE.machining], warehouse: [productImages.PTFE.inventory], applications: [productImages.PTFE.inventory], gallery: [productImages.PTFE.sheet, productImages.PTFE.rod] }),
+    images: images({ hero: [productImages.PTFE.hero], sheet: [productImages.PTFE.sheet], rod: [productImages.PTFE.rod], cnc: [productImages.PTFE.machining], warehouse: [productImages.PTFE.inventory], applications: [productImages.PTFE.machining], gallery: [productImages.PTFE.sheet, productImages.PTFE.rod] }),
     seoTitle: "PTFE Sheet, Rod, and Precision Machined Parts", seoDescription: "Buy industrial-grade PTFE sheet, rod, and precision machined parts with ready-stock support."
   },
   {
-    slug: "uhmwpe-sheet", name: "UHMWPE Sheet", shortName: "UHMWPE", aliases: ["uhmwpe", "uhmw-pe"], catalogOrder: 3, showInCatalog: false,
+    slug: "uhmwpe-sheet", name: "UHMWPE Sheet", shortName: "UHMWPE", aliases: ["uhmwpe", "uhmw-pe"], catalogOrder: 8, showInCatalog: true,
     eyebrow: "Wear-resistant polyethylene",
     description: "Low-friction, impact-resistant sheet material for demanding wear, sliding, and material-handling applications.",
     cardDescription: "Highly wear-resistant material for sliding and impact applications.",
@@ -48,11 +48,11 @@ export const materialsData: Material[] = [
     forms: [{ title: "UHMWPE Sheet", description: "Sheet, plate, liners, wear strips, and cut blanks for industrial equipment.", imageRole: "sheet" }, { title: "Machining Blanks", description: "Cut blocks and profiles prepared for routing, drilling, and CNC machining.", imageRole: "rod" }],
     cncDescription: "Cutting, routing, drilling, and CNC machining for liners, guides, rails, wear strips, and replacement equipment parts.",
     applications: ["Chute liners", "Conveyor guides", "Wear strips", "Dock components", "Food equipment parts"],
-    images: images({ hero: [productImages.UHMWPE.hero], sheet: [productImages.UHMWPE.gallery[2]], rod: [productImages.UHMWPE.gallery[1]], cnc: [productImages.UHMWPE.gallery[4]], warehouse: [productImages.UHMWPE.gallery[3]], applications: [productImages.UHMWPE.gallery[3]], gallery: [productImages.UHMWPE.gallery[1], productImages.UHMWPE.gallery[5]] }),
+    images: images({ hero: [productImages.UHMWPE.hero], sheet: [productImages.UHMWPE.gallery[2]], rod: [productImages.UHMWPE.gallery[1]], cnc: [productImages.UHMWPE.gallery[4]], warehouse: [productImages.UHMWPE.gallery[3]], applications: [productImages.UHMWPE.gallery[1]], gallery: [productImages.UHMWPE.gallery[1], productImages.UHMWPE.gallery[5]] }),
     seoTitle: "UHMWPE Sheet, Wear Plate, and Machined Parts", seoDescription: "Source UHMWPE sheet, liners, wear strips, and CNC fabricated parts for industrial material handling."
   },
   {
-    slug: "nylon-pa", name: "Nylon PA / Polyamide", shortName: "Nylon PA", aliases: ["nylon", "polyamide", "nylon-pa", "nl-"], catalogOrder: 4, showInCatalog: true,
+    slug: "nylon-pa", name: "Nylon PA / Polyamide", shortName: "Nylon PA", aliases: ["nylon", "polyamide", "nylon-pa", "nl-"], catalogOrder: 5, showInCatalog: true,
     eyebrow: "Wear-resistant polyamide",
     description: "Strong, wear-resistant engineering plastic for moving, rotating, and load-bearing industrial components.",
     cardDescription: "Strong polyamide with good wear and bearing performance.",
@@ -65,7 +65,7 @@ export const materialsData: Material[] = [
     seoTitle: "Nylon PA Sheet, Rod, and CNC Machined Parts", seoDescription: "Source Nylon PA sheet, rod, and CNC machined polyamide parts for gears, rollers, bushings, and wear components."
   },
   {
-    slug: "hdpe", name: "HDPE / High Density Polyethylene", shortName: "HDPE", aliases: ["hdpe"], catalogOrder: 5, showInCatalog: true,
+    slug: "hdpe", name: "HDPE / High Density Polyethylene", shortName: "HDPE", aliases: ["hdpe"], catalogOrder: 6, showInCatalog: true,
     eyebrow: "Tough industrial polyethylene",
     description: "Durable, moisture-resistant polyethylene for wet, chemical, food, marine, and impact-prone industrial environments.",
     cardDescription: "Tough, moisture-resistant polyethylene for plant environments.",
@@ -78,7 +78,7 @@ export const materialsData: Material[] = [
     seoTitle: "HDPE Sheet, Rod, and CNC Machined Parts", seoDescription: "Buy HDPE sheets, rods, liners, and CNC machined parts for food processing and industrial applications."
   },
   {
-    slug: "pp", name: "Polypropylene PP", shortName: "PP", aliases: ["polypropylene", "pp-"], catalogOrder: 6, showInCatalog: true,
+    slug: "pp", name: "Polypropylene PP", shortName: "PP", aliases: ["polypropylene", "pp-"], catalogOrder: 7, showInCatalog: true,
     eyebrow: "Chemical-resistant polyolefin",
     description: "Lightweight, weldable plastic for chemical handling, wet processing, laboratory, and industrial equipment components.",
     cardDescription: "Lightweight, weldable plastic with useful chemical resistance.",
@@ -91,7 +91,7 @@ export const materialsData: Material[] = [
     seoTitle: "Polypropylene PP Sheet, Rod, and Machined Parts", seoDescription: "Source PP sheet, rod, fabricated assemblies, and CNC machined polypropylene parts for industrial use."
   },
   {
-    slug: "polycarbonate-pc", name: "Polycarbonate PC", shortName: "PC", aliases: ["polycarbonate", "pc-"], catalogOrder: 7, showInCatalog: true,
+    slug: "polycarbonate-pc", name: "Polycarbonate PC", shortName: "PC", aliases: ["polycarbonate", "pc-"], catalogOrder: 4, showInCatalog: true,
     eyebrow: "Impact-resistant transparent plastic",
     description: "Clear, tough engineering plastic for protective glazing, machine guards, windows, shields, covers, and machined components.",
     cardDescription: "Transparent, impact-resistant plastic for protective components.",
@@ -193,4 +193,26 @@ export function getCatalogMaterials(materials: Material[] = materialsData) {
 
 export function getMaterialPrimaryImage(material: Material) {
   return material.images.hero[0] || material.images.sheet[0] || material.images.rod[0] || material.images.gallery[0] || siteImages.warehouse;
+}
+
+export function getMaterialCardImages(material: Material) {
+  const product = material.slug === "abs"
+    ? material.images.cnc[0]
+    : material.slug === "ptfe"
+      ? material.images.rod[0] || material.images.sheet[0]
+      : material.images.sheet[0] || material.images.rod[0];
+  const application = material.images.applications[0]
+    || material.images.cnc[0]
+    || material.images.gallery[1]
+    || getMaterialPrimaryImage(material);
+  const capability = material.images.warehouse[0]
+    || material.images.cnc[1]
+    || material.images.cnc[0]
+    || material.images.gallery[2];
+
+  return {
+    product: product || getMaterialPrimaryImage(material),
+    application,
+    capability
+  };
 }

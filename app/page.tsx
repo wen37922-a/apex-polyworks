@@ -18,7 +18,7 @@ import { QuoteForm } from "@/components/QuoteForm";
 import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/StructuredData";
 import { productImages, siteImages } from "@/lib/product-images";
-import { getCatalogMaterials, getMaterialPrimaryImage, getMaterialsData } from "@/lib/materials-data";
+import { getCatalogMaterials, getMaterialCardImages, getMaterialsData } from "@/lib/materials-data";
 import {
   faq,
   processSteps,
@@ -262,11 +262,16 @@ export default async function HomePage() {
                 className="object-cover"
               />
             </div>
-            <SectionHeader
-              eyebrow="Engineering Plastics in Stock"
-              title="Large Inventory Available"
-              text="PEEK, PTFE, Acetal, Nylon, PC, HDPE and other engineering plastics available for rapid delivery."
-            />
+            <div>
+              <SectionHeader
+                eyebrow="Warehouse & logistics"
+                title="Global Supply Capability"
+                text="Stock support, cut-to-size preparation, export packing, and coordinated global delivery for recurring industrial material requirements."
+              />
+              <div className="mt-7">
+                <ButtonLink href="/request-a-quote">Request Supply Pricing</ButtonLink>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -285,8 +290,7 @@ export default async function HomePage() {
                 key={material.slug}
                 title={material.shortName}
                 href={`/materials/${material.slug}`}
-                image={getMaterialPrimaryImage(material)}
-                alt={`${material.name} material for industrial machining and fabrication`}
+                images={getMaterialCardImages(material)}
                 description={material.cardDescription}
                 applications={material.cardApplications}
                 tags={material.tags}
