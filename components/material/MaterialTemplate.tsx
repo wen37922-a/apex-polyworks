@@ -66,9 +66,10 @@ export function MaterialTemplate({ material }: { material: Material }) {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <RfqLink>Get {material.shortName} Pricing</RfqLink>
               <Link href="#product-types" className="inline-flex min-h-11 items-center justify-center rounded-md bg-slate-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">View Product Types</Link>
+              <a href={siteConfig.whatsappUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center justify-center rounded-md border border-emerald-600 bg-white px-5 py-3 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50">WhatsApp</a>
             </div>
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-steel">
-              <span>12-hour RFQ response</span><span>No MOQ</span><span>Global delivery</span>
+              <span>Fast quote within 24h</span><span>OEM custom machining</span><span>Global shipping</span><span>Factory-direct support</span>
             </div>
           </div>
           <ResponsiveImage src={heroImage} alt={`${material.name} industrial material supplied for machining and fabrication`} priority />
@@ -148,7 +149,7 @@ export function MaterialTemplate({ material }: { material: Material }) {
             <p className="mt-4 text-base leading-8 text-steel">Send size, quantity, grade, and drawing files. Our team will review material availability, manufacturing scope, lead time, and shipping requirements.</p>
             <a href={siteConfig.whatsappUrl} target="_blank" rel="noreferrer" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-md border border-emerald-600 bg-white px-5 py-3 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50">WhatsApp {siteConfig.whatsapp}</a>
           </div>
-          <QuoteForm compact showQuantity showSize defaultMaterial={material.shortName} title={`Request a ${material.shortName} quote`} description="Add dimensions, quantity, and a drawing for the fastest technical review." />
+          <QuoteForm compact showQuantity showSize responseTime="24 hours" defaultMaterial={material.shortName} title={`Request a ${material.shortName} quote`} description="Add dimensions, quantity, and a drawing for the fastest technical review." />
         </div>
       </section>
 

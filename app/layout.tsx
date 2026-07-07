@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { FloatingRfqButton } from "@/components/FloatingRfqButton";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { OrganizationJsonLd } from "@/components/StructuredData";
 import { siteConfig } from "@/lib/site";
+
+const googleAdsId = "AW-18303746283";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -52,6 +55,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-global-tag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+            window.gtag('js', new Date());
+            window.gtag('config', '${googleAdsId}');
+          `}
+        </Script>
         <OrganizationJsonLd />
         <Header />
         {children}
