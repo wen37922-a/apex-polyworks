@@ -5,9 +5,8 @@ import { FloatingRfqButton } from "@/components/FloatingRfqButton";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { OrganizationJsonLd } from "@/components/StructuredData";
+import { googleAdsIds } from "@/lib/google-ads";
 import { siteConfig } from "@/lib/site";
-
-const googleAdsId = "AW-18303746283";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -56,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsIds[0]}`}
           strategy="afterInteractive"
         />
         <Script id="google-ads-global-tag" strategy="afterInteractive">
@@ -64,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             window.dataLayer = window.dataLayer || [];
             window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
             window.gtag('js', new Date());
-            window.gtag('config', '${googleAdsId}');
+            ${googleAdsIds.map((id) => `window.gtag('config', '${id}');`).join("\n            ")}
           `}
         </Script>
         <OrganizationJsonLd />

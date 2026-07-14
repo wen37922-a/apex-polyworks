@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Clock3, Send, Upload } from "lucide-react";
+import { rfqConversion } from "@/lib/google-ads";
 
 const fieldClass =
   "min-h-11 rounded-md border border-graphite/15 bg-white px-3 text-sm text-graphite outline-none transition placeholder:text-steel/60 focus:border-teal focus:ring-4 focus:ring-teal/10";
@@ -62,6 +63,12 @@ export function QuoteForm({
 
       if (data?.ok !== true) {
         throw new Error("Unable to submit the RFQ. Please email sales@apexpolyworks.com directly.");
+      }
+
+      try {
+        sessionStorage.setItem(rfqConversion.storageKey, "1");
+      } catch {
+        // Conversion tracking should not block a successful RFQ submission.
       }
 
       router.push("/thank-you");

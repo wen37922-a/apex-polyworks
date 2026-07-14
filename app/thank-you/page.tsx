@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CheckCircle2, FileCheck2, Mail } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
+import { GoogleAdsRfqConversion } from "@/components/GoogleAdsRfqConversion";
 import { BreadcrumbJsonLd } from "@/components/StructuredData";
 import { siteConfig } from "@/lib/site";
 
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
 export default function ThankYouPage() {
   return (
     <main className="bg-white">
+      <GoogleAdsRfqConversion />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", path: "/" },
