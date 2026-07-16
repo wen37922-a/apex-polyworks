@@ -781,10 +781,15 @@ export const serviceLinks = services.map((item) => ({
   href: `/services/${item.slug}`
 }));
 
-export const materialLinks = getCatalogMaterials(materialsData).map((item) => ({
-  title: item.shortName,
-  href: `/materials/${item.slug}`
-}));
+export const materialLinks = getCatalogMaterials(materialsData).flatMap((item) => [
+  {
+    title: item.shortName,
+    href: `/materials/${item.slug}`
+  },
+  ...(item.slug === "ptfe"
+    ? [{ title: "POM / Acetal", href: "/materials/pom-acetal" }]
+    : [])
+]);
 
 export const productLinks = products.map((item) => ({
   title: item.title,
@@ -800,7 +805,6 @@ export const primaryNav = [
   { title: "Home", href: "/" },
   { title: "Services", href: "/services", children: serviceLinks },
   { title: "Materials", href: "/materials", children: materialLinks },
-  { title: "Products", href: "/products", children: productLinks },
   { title: "Knowledge Center", href: "/blog" },
   { title: "About", href: "/about" },
   { title: "Contact", href: "/contact" }
