@@ -12,10 +12,6 @@ function imageForRole(material: Material, role: keyof Material["images"]) {
   return material.images[role][0] || getMaterialPrimaryImage(material);
 }
 
-function bypassOptimization(src: string) {
-  return src.toLowerCase().endsWith(".png");
-}
-
 function ResponsiveImage({ src, alt, priority = false }: { src: string; alt: string; priority?: boolean }) {
   return (
     <div className="relative min-h-[18rem] min-w-0 overflow-hidden rounded-md border border-graphite/10 bg-slate-50 shadow-sm sm:min-h-[24rem]">
@@ -24,7 +20,6 @@ function ResponsiveImage({ src, alt, priority = false }: { src: string; alt: str
         alt={alt}
         fill
         priority={priority}
-        unoptimized={bypassOptimization(src)}
         sizes="(min-width: 1024px) 48vw, 100vw"
         className="object-cover"
       />
@@ -113,7 +108,7 @@ export function MaterialTemplate({ material }: { material: Material }) {
             {productTypes.map((product) => (
               <article key={product.title} className="flex h-full flex-col overflow-hidden rounded-md border border-graphite/10 bg-slate-50 shadow-sm">
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image src={product.image} alt={`${material.name} ${product.title.toLowerCase()} for industrial buyers`} fill unoptimized={bypassOptimization(product.image)} sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-300 hover:scale-105" />
+                  <Image src={product.image} alt={`${material.name} ${product.title.toLowerCase()} for industrial buyers`} fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-300 hover:scale-105" />
                 </div>
                 <div className="flex flex-1 flex-col p-5"><h3 className="text-lg font-semibold text-graphite">{product.title}</h3><p className="mt-2 text-sm leading-6 text-steel">{product.text}</p></div>
               </article>
@@ -122,10 +117,32 @@ export function MaterialTemplate({ material }: { material: Material }) {
         </div>
       </section>
 
+      {material.slug === "peek" ? (
+        <section className="border-y border-graphite/10 bg-slate-50 py-12">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber">
+              Related PEEK sourcing pages
+            </p>
+            <div className="mt-5 grid gap-4 md:grid-cols-3">
+              {[
+                { href: "/products/peek-sheet", label: "PEEK Sheet", text: "Sheet, plate, and cut-to-size PEEK blanks for CNC milled parts." },
+                { href: "/products/peek-rod", label: "PEEK Rod", text: "Round stock and cut blanks for turned seals, bushings, spacers, and sleeves." },
+                { href: "/services/cnc-plastic-machining", label: "PEEK CNC Machining", text: "Made-to-print PEEK components from drawings, STEP files, or samples." }
+              ].map((link) => (
+                <Link key={link.href} href={link.href} className="rounded-md border border-graphite/10 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft">
+                  <span className="text-base font-semibold text-graphite">{link.label}</span>
+                  <span className="mt-2 block text-sm leading-6 text-steel">{link.text}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section className="border-y border-graphite/10 bg-slate-50 py-14 lg:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-8">
           <div className="relative min-h-[22rem] overflow-hidden rounded-md border border-graphite/10 shadow-sm">
-            <Image src={stockImage} alt={`${material.name} warehouse inventory for bulk industrial supply`} fill unoptimized={bypassOptimization(stockImage)} sizes="(min-width: 1024px) 52vw, 100vw" className="object-cover" />
+            <Image src={stockImage} alt={`${material.name} warehouse inventory for bulk industrial supply`} fill sizes="(min-width: 1024px) 52vw, 100vw" className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-graphite/80 via-graphite/15 to-transparent" aria-hidden="true" />
             <p className="absolute bottom-5 left-5 right-5 text-lg font-semibold text-white">Stock planning and production capacity for bulk orders</p>
           </div>
@@ -165,7 +182,7 @@ export function MaterialTemplate({ material }: { material: Material }) {
             ].map((item) => <article key={item.title} className="rounded-md border border-graphite/10 bg-white p-6 shadow-sm"><item.icon className="size-6 text-teal" aria-hidden="true" /><h3 className="mt-4 text-lg font-semibold text-graphite">{item.title}</h3><p className="mt-3 text-sm leading-7 text-steel">{item.text}</p></article>)}
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {cncImages.map((src, index) => <div key={src} className="relative aspect-[16/9] overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm"><Image src={src} alt={`CNC machined ${material.name} production capability ${index + 1}`} fill unoptimized={bypassOptimization(src)} sizes="(min-width: 640px) 50vw, 100vw" className="object-cover" /></div>)}
+            {cncImages.map((src, index) => <div key={src} className="relative aspect-[16/9] overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm"><Image src={src} alt={`CNC machined ${material.name} production capability ${index + 1}`} fill sizes="(min-width: 640px) 50vw, 100vw" className="object-cover" /></div>)}
           </div>
           <div className="mt-8 flex flex-wrap items-center gap-4 text-sm font-semibold text-steel"><Truck className="size-5 text-amber" aria-hidden="true" /><span>Fast delivery planning</span><span>Drawing review</span><span>US buyer support</span></div>
         </div>

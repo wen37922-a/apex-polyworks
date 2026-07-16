@@ -1,7 +1,7 @@
 import { list } from "@vercel/blob";
 import { cache } from "react";
 import type { Material, MaterialImageRole, MaterialImages } from "@/lib/material-schema";
-import { productImages, siteImages } from "@/lib/product-images";
+import { findNamedHero, productImages, selectNamedSeries, siteImages } from "@/lib/product-images";
 
 const emptyImages = (): MaterialImages => ({
   hero: [], sheet: [], rod: [], cnc: [], warehouse: [], applications: [], cta: [], gallery: []
@@ -134,7 +134,7 @@ export const materialsData: Material[] = [
     eyebrow: "Dimensionally stable engineering plastic", description: "Low-friction, stable engineering plastic for gears, spacers, fixtures, valve parts, and precision machining.", cardDescription: "Dimensionally stable plastic for precision parts.", cardApplications: "gears, spacers, fixtures, valve parts", tags: ["CNC", "Sheet", "Rod"],
     keyProperties: ["Excellent machinability", "Low friction", "Low moisture absorption", "Homopolymer and copolymer grades"],
     forms: [{ title: "Acetal Sheet", description: "Plate and blanks for fixtures, wear parts, and milled components.", imageRole: "sheet" }, { title: "Acetal Rod", description: "Round stock for gears, spacers, bushings, and turned parts.", imageRole: "rod" }], cncDescription: "Clean, stable CNC machining for repeat production and tight-feature mechanical parts.", applications: ["Gears", "Spacers", "Fixtures", "Valve parts", "Conveyor components"],
-    images: images({ hero: [siteImages.warehouse], sheet: [siteImages.warehouse], rod: [siteImages.warehouse], cnc: productImages.PEEK.cnc.slice(0, 2) }), seoTitle: "POM Acetal Sheet, Rod, and Machined Parts", seoDescription: "Source POM acetal sheet, rod, and CNC machined parts for precision industrial applications."
+    images: images({ hero: [productImages.POM.hero], sheet: [productImages.POM.hero], rod: [productImages.POM.hero], cnc: productImages.PEEK.cnc.slice(0, 2), gallery: productImages.POM.gallery }), seoTitle: "POM Acetal Sheet, Rod, and Machined Parts", seoDescription: "Source POM acetal sheet, rod, and CNC machined parts for precision industrial applications."
   },
   {
     slug: "pvc", name: "PVC", shortName: "PVC", aliases: ["pvc"], catalogOrder: 11, showInCatalog: false,
@@ -154,9 +154,16 @@ function cloneMaterial(material: Material): Material {
   return { ...material, images: Object.fromEntries(Object.entries(material.images).map(([role, urls]) => [role, [...urls]])) as MaterialImages };
 }
 
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function findMaterialForPath(pathname: string, materials: Material[]) {
   const name = decodeURIComponent(pathname).toLowerCase();
-  return materials.find((material) => material.aliases.some((alias) => name.includes(alias)));
+  return materials.find((material) => material.aliases.some((alias) => {
+    const pattern = new RegExp(`(?:^|[-_/ ])${escapeRegExp(alias)}(?=[-_ /\\d]|首页|home|hero|$)`, "i");
+    return pattern.test(name);
+  }));
 }
 
 function classifyImage(pathname: string): MaterialImageRole {
@@ -164,10 +171,44 @@ function classifyImage(pathname: string): MaterialImageRole {
   return roleRules.find(([, token]) => name.includes(token))?.[0] || "gallery";
 }
 
+function applyPhase15ImageMapping(materials: Material[]) {
+  const mappings = [
+    { slug: "pom-acetal", token: "pom", order: [7, 1, 2, 3, 4, 5] },
+    { slug: "ptfe", token: "ptfe", order: [3, 4, 1, 2, 5, 7] },
+    { slug: "uhmwpe", token: "uhmwpe", order: [7, 3, 4, 2, 5, 6] }
+  ];
+
+  mappings.forEach(({ slug, token, order }) => {
+    const material = materials.find((item) => item.slug === slug);
+    if (!material) return;
+
+    const allImages = [...new Set(Object.values(material.images).flat())];
+    const fallbacks = [
+      material.images.applications[0] || material.images.gallery[0] || material.images.hero[0],
+      material.images.sheet[0] || material.images.hero[0],
+      material.images.rod[0] || material.images.hero[0],
+      material.images.cnc[0] || material.images.hero[0],
+      material.images.cnc[1] || material.images.cnc[0] || material.images.hero[0],
+      material.images.warehouse[0] || siteImages.warehouse
+    ];
+    const gallery = selectNamedSeries(allImages, token, order, fallbacks);
+
+    material.images.hero = [findNamedHero(allImages, token, material.images.hero[0] || siteImages.warehouse)];
+    material.images.applications = gallery[0] ? [gallery[0]] : material.images.applications;
+    material.images.sheet = gallery[1] ? [gallery[1]] : material.images.sheet;
+    material.images.rod = gallery[2] ? [gallery[2]] : material.images.rod;
+    material.images.cnc = gallery.slice(3, 5).length ? gallery.slice(3, 5) : material.images.cnc;
+    material.images.warehouse = gallery[5] ? [gallery[5]] : material.images.warehouse;
+    material.images.gallery = gallery;
+  });
+
+  return materials;
+}
+
 export const getMaterialsData = cache(async (): Promise<Material[]> => {
   const materials = materialsData.map(cloneMaterial);
   const token = process.env.BLOB_READ_WRITE_TOKEN;
-  if (!token) return materials;
+  if (!token) return applyPhase15ImageMapping(materials);
 
   try {
     const result = await list({ prefix: "admin-images/", limit: 1000, token });
@@ -180,7 +221,7 @@ export const getMaterialsData = cache(async (): Promise<Material[]> => {
   } catch (error) {
     console.error("Unable to classify material images from Vercel Blob.", error);
   }
-  return materials;
+  return applyPhase15ImageMapping(materials);
 });
 
 export function getMaterialBySlug(slug: string, materials: Material[] = materialsData) {

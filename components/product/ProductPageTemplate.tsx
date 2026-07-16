@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ButtonLink } from "@/components/ButtonLink";
 import { QuoteForm } from "@/components/QuoteForm";
 
@@ -9,6 +10,19 @@ export type ProductPageProps = {
   productImages: string[];
   applicationImages?: string[];
   warehouseImage?: string;
+  quoteCtaLabel?: string;
+  defaultMaterial?: string;
+  availableForms?: string[];
+  typicalGrades?: string[];
+  machiningCapabilities?: string[];
+  buyerApplications?: string[];
+  quoteChecklist?: string[];
+  certificateNote?: string;
+  relatedLinks?: {
+    href: string;
+    label: string;
+    text: string;
+  }[];
   productGalleryTitle?: string;
   applicationsTitle?: string;
   warehouseTitle?: string;
@@ -31,6 +45,15 @@ export function ProductPageTemplate({
   productImages,
   applicationImages = [],
   warehouseImage,
+  quoteCtaLabel = "Request a Quote",
+  defaultMaterial = title,
+  availableForms = [],
+  typicalGrades = [],
+  machiningCapabilities = [],
+  buyerApplications = [],
+  quoteChecklist = [],
+  certificateNote,
+  relatedLinks = [],
   productGalleryTitle,
   applicationsTitle,
   warehouseTitle,
@@ -53,7 +76,7 @@ export function ProductPageTemplate({
             </p>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-steel">{description}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/request-a-quote">Request a Quote</ButtonLink>
+              <ButtonLink href="/request-a-quote">{quoteCtaLabel}</ButtonLink>
               <ButtonLink href="/request-a-quote" variant="secondary">Send Drawing</ButtonLink>
             </div>
           </div>
@@ -82,9 +105,71 @@ export function ProductPageTemplate({
               Use the quick form to send material type, quantity, and drawing files. Apex PolyWorks reviews complete RFQs within 12 hours.
             </p>
           </div>
-          <QuoteForm compact showQuantity title={`Quick RFQ for ${title}`} description="Name, email, material type, quantity, and drawing upload are enough to start." />
+          <QuoteForm compact showQuantity showSize defaultMaterial={defaultMaterial} title={`Quick RFQ for ${title}`} description="Name, email, material type, size, quantity, and drawing upload are enough to start." />
         </div>
       </section>
+
+      {availableForms.length || typicalGrades.length || machiningCapabilities.length || buyerApplications.length || quoteChecklist.length || certificateNote ? (
+        <section className="border-b border-graphite/10 bg-white py-16 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal">
+                Engineering buyer details
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold text-graphite">
+                Details procurement and engineering teams need before quoting
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-steel">
+                Review forms, grade options, machining fit, applications, and quote inputs before sending drawings or a material list.
+              </p>
+            </div>
+            <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {[
+                ["Available forms", availableForms],
+                ["Typical grades", typicalGrades],
+                ["Machining capability", machiningCapabilities],
+                ["Applications", buyerApplications],
+                ["Quote checklist", quoteChecklist]
+              ].filter(([, items]) => (items as string[]).length > 0).map(([heading, items]) => (
+                <article key={heading as string} className="rounded-md border border-graphite/10 bg-slate-50 p-5 shadow-sm">
+                  <h3 className="text-lg font-semibold text-graphite">{heading as string}</h3>
+                  <ul className="mt-4 grid gap-2 text-sm leading-6 text-steel">
+                    {(items as string[]).map((item) => (
+                      <li key={item} className="border-l-2 border-amber pl-3">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+              {certificateNote ? (
+                <article className="rounded-md border border-graphite/10 bg-graphite p-5 text-white shadow-sm">
+                  <h3 className="text-lg font-semibold">Certificate and traceability note</h3>
+                  <p className="mt-4 text-sm leading-7 text-white/75">{certificateNote}</p>
+                </article>
+              ) : null}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {relatedLinks.length ? (
+        <section className="border-b border-graphite/10 bg-slate-50 py-12">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber">
+              Related sourcing pages
+            </p>
+            <div className="mt-5 grid gap-4 md:grid-cols-3">
+              {relatedLinks.map((link) => (
+                <Link key={link.href} href={link.href} className="rounded-md border border-graphite/10 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft">
+                  <span className="text-base font-semibold text-graphite">{link.label}</span>
+                  <span className="mt-2 block text-sm leading-6 text-steel">{link.text}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -199,7 +284,7 @@ export function ProductPageTemplate({
                   Send material, size, quantity, drawing files, tolerances, and application notes for a clear purchasing-ready quote.
                 </p>
               </div>
-              <ButtonLink href="/request-a-quote" variant="primary">Start RFQ</ButtonLink>
+              <ButtonLink href="/request-a-quote" variant="primary">{quoteCtaLabel}</ButtonLink>
             </div>
           </div>
         </div>

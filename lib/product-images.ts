@@ -4,13 +4,15 @@ import { cache } from "react";
 export type ProductImageLibrary = {
   ABS: { hero: string; gallery: string[] };
   UHMWPE: { hero: string; gallery: string[] };
+  POM: { hero: string; gallery: string[] };
   POLYCARBONATE: { hero: string; applications: string; properties: string; machining: string; forms: string; cta: string };
   POLYPROPYLENE: { hero: string; overview: string; sheet: string; rod: string; machining: string; applications: string; cta: string };
   NYLON: { hero: string; forms: string; machining: string; applications: string; properties: string; cta: string; gallery: string };
   HDPE: { hero: string; properties: string; forms: string; applications: string; machining: string; services: string };
-  PTFE: { hero: string; rod: string; sheet: string; machining: string; inventory: string };
+  PTFE: { hero: string; rod: string; sheet: string; machining: string; inventory: string; gallery: string[] };
   PEEK: { hero: string; sheet: string[]; rod: string[]; cnc: string[] };
   ACRYLIC: { hero: string; sheet: string[]; display: string[] };
+  HOMEPAGE: { hero: string; cnc: string };
 };
 
 export const productImages: ProductImageLibrary = {
@@ -35,6 +37,12 @@ export const productImages: ProductImageLibrary = {
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783249426863-uhmwpe4-2nHvtyih7wkhsrnf90ZZoZxL21sCxC.jpg",
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783249435185-uhmwpe5-UIVVhRwMCX8fZFxD52fk3tWM6hqeI1.jpg",
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783249442118-uhmwpe6-voOfdV3t5Uf1zz3gCBRtpuCaN0dykU.jpg"
+    ]
+  },
+  POM: {
+    hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1784215691488-Pom07-2sZWHzQMVHg9tfcRGT4f2nZzptEQyw.jpg",
+    gallery: [
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1784215691488-Pom07-2sZWHzQMVHg9tfcRGT4f2nZzptEQyw.jpg"
     ]
   },
   POLYCARBONATE: {
@@ -76,7 +84,13 @@ export const productImages: ProductImageLibrary = {
     rod: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783255145542-ptfe-rod-1-RBKYHF29wQh6pKPBVq5CR91th8Wf9k.webp",
     sheet: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783255164452-ptfe-sheet-1-LfDi4FPXln7shG6PRe0QRVCkqQse5t.webp",
     machining: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783255151987-ptfe-rod-i2-HJMsqYlNxlRKihv2nAsfxuCQbNof93.webp",
-    inventory: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783255157973-ptfe-rods3-D9QhlcFkZeZ96CEr3kxXkaaj8aGeha.webp"
+    inventory: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783255157973-ptfe-rods3-D9QhlcFkZeZ96CEr3kxXkaaj8aGeha.webp",
+    gallery: [
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783255164452-ptfe-sheet-1-LfDi4FPXln7shG6PRe0QRVCkqQse5t.webp",
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783255145542-ptfe-rod-1-RBKYHF29wQh6pKPBVq5CR91th8Wf9k.webp",
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783255151987-ptfe-rod-i2-HJMsqYlNxlRKihv2nAsfxuCQbNof93.webp",
+      "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1783255157973-ptfe-rods3-D9QhlcFkZeZ96CEr3kxXkaaj8aGeha.webp"
+    ]
   },
   PEEK: {
     hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
@@ -118,6 +132,10 @@ export const productImages: ProductImageLibrary = {
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310303685-acrylic-round-table-1200x1200-mGYtBSqF7CIrxL1C7e3ng1HGfYjG5O.webp",
       "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782310269764-acrylic-curved-counter-panel-1600x1200-S3YwFdHl1WYWtq6p558BS1eOfYp0i0.webp"
     ]
+  },
+  HOMEPAGE: {
+    hero: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134584794-peek-hero1-bAHaI9sBsvIbVEUrE3AnDA9YeM3bPP.webp",
+    cnc: "https://gzsev9bufcsq0twb.public.blob.vercel-storage.com/admin-images/1782134533843-peek-cnc%E5%9B%BE3-xKzrkB27J9mnmwy46lW2jaKrC8JS60.webp"
   }
 };
 
@@ -130,11 +148,12 @@ function cloneLibrary(): ProductImageLibrary {
   return {
     ABS: { hero: productImages.ABS.hero, gallery: [...productImages.ABS.gallery] },
     UHMWPE: { hero: productImages.UHMWPE.hero, gallery: [...productImages.UHMWPE.gallery] },
+    POM: { hero: productImages.POM.hero, gallery: [...productImages.POM.gallery] },
     POLYCARBONATE: { ...productImages.POLYCARBONATE },
     POLYPROPYLENE: { ...productImages.POLYPROPYLENE },
     NYLON: { ...productImages.NYLON },
     HDPE: { ...productImages.HDPE },
-    PTFE: { ...productImages.PTFE },
+    PTFE: { ...productImages.PTFE, gallery: [...productImages.PTFE.gallery] },
     PEEK: {
       hero: productImages.PEEK.hero,
       sheet: [...productImages.PEEK.sheet],
@@ -145,7 +164,8 @@ function cloneLibrary(): ProductImageLibrary {
       hero: productImages.ACRYLIC.hero,
       sheet: [...productImages.ACRYLIC.sheet],
       display: [...productImages.ACRYLIC.display]
-    }
+    },
+    HOMEPAGE: { ...productImages.HOMEPAGE }
   };
 }
 
@@ -153,8 +173,23 @@ function addUnique(target: string[], url: string) {
   if (!target.includes(url)) target.unshift(url);
 }
 
+function hasMaterialToken(name: string, token: string) {
+  return new RegExp(`(?:^|[-_/ ])${token}(?=[-_ /\\d]|首页|home|hero|$)`, "i").test(name);
+}
+
 function classifyBlob(library: ProductImageLibrary, pathname: string, url: string) {
   const name = decodeURIComponent(pathname).toLowerCase();
+  const isMappedMaterial = ["peek", "pom", "ptfe", "uhmwpe"].some((token) => hasMaterialToken(name, token));
+
+  if (name.includes("hero") && name.includes("首页图") && !isMappedMaterial) {
+    library.HOMEPAGE.hero = url;
+    return;
+  }
+
+  if (name.includes("cnc") && name.includes("machining") && name.includes("capability") && !isMappedMaterial) {
+    library.HOMEPAGE.cnc = url;
+    return;
+  }
 
   if (name.includes("abs-")) {
     addUnique(library.ABS.gallery, url);
@@ -162,9 +197,15 @@ function classifyBlob(library: ProductImageLibrary, pathname: string, url: strin
     return;
   }
 
-  if (name.includes("uhmwpe")) {
+  if (hasMaterialToken(name, "uhmwpe")) {
     addUnique(library.UHMWPE.gallery, url);
-    if (!library.UHMWPE.hero || /uhmwpe-?1(?:\D|$)/.test(name)) library.UHMWPE.hero = url;
+    if (name.includes("首页") || name.includes("home") || /uhmwpe-?1(?:\D|$)/.test(name)) library.UHMWPE.hero = url;
+    return;
+  }
+
+  if (hasMaterialToken(name, "pom") || hasMaterialToken(name, "acetal")) {
+    addUnique(library.POM.gallery, url);
+    if (name.includes("首页") || name.includes("home")) library.POM.hero = url;
     return;
   }
 
@@ -178,11 +219,22 @@ function classifyBlob(library: ProductImageLibrary, pathname: string, url: strin
     return;
   }
 
-  if (name.includes("peek")) {
+  if (hasMaterialToken(name, "ptfe")) {
+    addUnique(library.PTFE.gallery, url);
+    if (name.includes("首页") || name.includes("home") || /ptfe-1(?:\D|$)/.test(name)) library.PTFE.hero = url;
+    if (name.includes("inventory") || name.includes("warehouse")) library.PTFE.inventory = url;
+    else if (name.includes("cnc") || name.includes("machining")) library.PTFE.machining = url;
+    else if (name.includes("sheet")) library.PTFE.sheet = url;
+    else if (name.includes("rod")) library.PTFE.rod = url;
+    return;
+  }
+
+  if (hasMaterialToken(name, "peek")) {
     if (name.includes("cnc") || name.includes("图")) addUnique(library.PEEK.cnc, url);
     else if (name.includes("rod")) addUnique(library.PEEK.rod, url);
-    else if (name.includes("hero1")) library.PEEK.hero = url;
+    else if (name.includes("hero")) library.PEEK.hero = url;
     else if (name.includes("sheet")) addUnique(library.PEEK.sheet, url);
+    else if (/(?:^|[-_/ ])peek[-_ ]*\d{2}(?:[-_. /]|$)/.test(name)) addUnique(library.PEEK.sheet, url);
     return;
   }
 
@@ -216,5 +268,34 @@ export function firstImage(images: string[], fallback: string) {
 export function selectProductImages(images: string[], fileStems: string[]) {
   return fileStems
     .map((stem) => images.find((url) => decodeURIComponent(url).toLowerCase().includes(`-${stem.toLowerCase()}-`)))
+    .filter((url): url is string => Boolean(url));
+}
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+export function findNamedHero(images: string[], materialName: string, fallback: string) {
+  const token = materialName.toLowerCase();
+  return images.find((url) => {
+    const name = decodeURIComponent(url).toLowerCase();
+    return hasMaterialToken(name, token) && (name.includes("首页") || name.includes("hero") || name.includes("home"));
+  }) || fallback;
+}
+
+export function selectNamedSeries(
+  images: string[],
+  materialName: string,
+  order: number[],
+  fallbacks: string[] = []
+) {
+  const token = escapeRegExp(materialName.toLowerCase());
+
+  return order
+    .map((number, index) => {
+      const padded = String(number).padStart(2, "0");
+      const pattern = new RegExp(`(?:^|[-_/ ])${token}[-_ ]*${padded}(?:[-_. /]|$)`, "i");
+      return images.find((url) => pattern.test(decodeURIComponent(url).toLowerCase())) || fallbacks[index];
+    })
     .filter((url): url is string => Boolean(url));
 }
