@@ -35,6 +35,10 @@ export function GoogleAdsRfqConversion() {
     window.gtag("event", "conversion", {
       send_to: rfqConversion.sendTo
     });
+
+    if (process.env.NODE_ENV === "development") {
+      console.info("Google Ads RFQ conversion fired");
+    }
   }, []);
 
   return null;

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { CheckCircle2, Gauge, Ruler, Send, Settings2 } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
 import { QuoteForm } from "@/components/QuoteForm";
@@ -236,6 +237,28 @@ export function DetailTemplate({ item, parentLabel }: DetailTemplateProps) {
           </div>
         </div>
       </section>
+
+      {isCncPage ? (
+        <section className="border-y border-graphite/10 bg-slate-50 py-12">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber">
+              PEEK machining resources
+            </p>
+            <div className="mt-5 grid gap-4 md:grid-cols-3">
+              {[
+                { href: "/materials/peek", label: "PEEK Material Overview", text: "Review PEEK properties, forms, applications, and RFQ guidance." },
+                { href: "/products/peek-sheet", label: "PEEK Sheet", text: "Cut-to-size PEEK sheet and plate for CNC milled components." },
+                { href: "/products/peek-rod", label: "PEEK Rod", text: "PEEK round stock and turned parts for bushings, seals, sleeves, and spacers." }
+              ].map((link) => (
+                <Link key={link.href} href={link.href} className="rounded-md border border-graphite/10 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft">
+                  <span className="text-base font-semibold text-graphite">{link.label}</span>
+                  <span className="mt-2 block text-sm leading-6 text-steel">{link.text}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {isCncPage ? (
         <ButtonLink
