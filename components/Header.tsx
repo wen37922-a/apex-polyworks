@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronDown, Menu, Quote } from "lucide-react";
+import { ChevronDown, Menu, MessageCircle, Quote } from "lucide-react";
 import { primaryNav, siteConfig } from "@/lib/site";
 
 export function Header() {
@@ -20,7 +20,7 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-1 xl:flex" aria-label="Primary navigation">
           {primaryNav.map((item) =>
             item.children ? (
               <div key={item.title} className="group relative">
@@ -55,10 +55,21 @@ export function Header() {
           )}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <Link href={`mailto:${siteConfig.email}`} className="text-sm font-semibold text-steel hover:text-teal">
-            {siteConfig.email}
-          </Link>
+        <div className="hidden items-center gap-3 xl:flex">
+          <div className="grid gap-1 text-right">
+            <Link href={`mailto:${siteConfig.email}`} className="text-xs font-semibold text-steel hover:text-teal">
+              {siteConfig.email}
+            </Link>
+            <Link
+              href={siteConfig.whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-end gap-1.5 text-xs font-semibold text-teal hover:text-graphite"
+            >
+              <MessageCircle className="size-3.5" aria-hidden="true" />
+              WhatsApp Inquiry
+            </Link>
+          </div>
           <Link
             href="/request-a-quote"
             className="inline-flex min-h-10 items-center rounded-md bg-amber px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber/90"
@@ -67,7 +78,7 @@ export function Header() {
           </Link>
         </div>
 
-        <details className="group relative lg:hidden">
+        <details className="group relative xl:hidden">
           <summary className="flex size-11 cursor-pointer list-none items-center justify-center rounded-md border border-graphite/15 text-graphite">
             <Menu className="size-5" aria-hidden="true" />
             <span className="sr-only">Open menu</span>
@@ -105,6 +116,20 @@ export function Header() {
                 </Link>
               )
             )}
+            <div className="mt-3 grid gap-1 border-t border-graphite/10 pt-3">
+              <Link className="rounded-md px-3 py-2 text-sm font-semibold text-steel hover:bg-slate-100 hover:text-teal" href={`mailto:${siteConfig.email}`}>
+                {siteConfig.email}
+              </Link>
+              <Link
+                href={siteConfig.whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-teal hover:bg-slate-100"
+              >
+                <MessageCircle className="size-4" aria-hidden="true" />
+                WhatsApp Inquiry
+              </Link>
+            </div>
             <Link
               href="/request-a-quote"
               className="mt-3 flex min-h-11 items-center justify-center rounded-md bg-amber px-4 py-2 text-sm font-semibold text-white"

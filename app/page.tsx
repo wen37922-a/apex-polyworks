@@ -9,6 +9,7 @@ import {
   FileCheck2,
   Globe2,
   Layers3,
+  MessageCircle,
   PackageCheck,
   Settings2,
   ShieldCheck,
@@ -265,29 +266,57 @@ export default async function HomePage() {
       </section>
 
       <section className="border-y border-graphite/10 bg-slate-50 py-16 lg:py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:px-8">
-          <div>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
             <SectionHeader
-              eyebrow="High-value materials"
-              title="PEEK, PTFE, and UHMWPE for demanding industrial applications"
-              text="Use the material pages when you need stock forms, cut-to-size supply, machining review, or a purchasing-ready quote request."
+              eyebrow="Engineering materials"
+              title="Engineering Plastics for Demanding Industrial Applications"
+              text="Apex PolyWorks supplies a broad range of engineering plastics, including PEEK, PTFE, POM, UHMWPE, Nylon, Acrylic and other high-performance materials. The materials shown below represent commonly requested products. Additional materials, grades, sizes and custom solutions are available upon request."
             />
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/materials">View Materials</ButtonLink>
-              <ButtonLink href="/services/cnc-plastic-machining" variant="secondary">CNC Plastic Machining</ButtonLink>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {materialHighlights.map((item) => (
+                <Link key={item.href} href={item.href} className="group overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image src={item.image} alt={item.alt} fill sizes="(min-width: 1024px) 14vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-300 group-hover:scale-[1.04]" />
+                  </div>
+                  <div className="p-4">
+                    <p className="text-sm font-semibold text-graphite">{item.title}</p>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {materialHighlights.map((item) => (
-              <Link key={item.href} href={item.href} className="group overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image src={item.image} alt={item.alt} fill sizes="(min-width: 1024px) 14vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-300 group-hover:scale-[1.04]" />
-                </div>
-                <div className="p-4">
-                  <p className="text-sm font-semibold text-graphite">{item.title}</p>
-                </div>
-              </Link>
-            ))}
+
+          <div className="mt-8 flex flex-col gap-5 border-t border-graphite/10 pt-7 lg:flex-row lg:items-center lg:justify-between">
+            <p className="max-w-xl text-sm leading-7 text-steel">
+              <span className="block font-semibold text-graphite">Need a specific grade, size or material?</span>
+              Send your requirements - our engineering team will help identify the right solution.
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/request-a-quote">Request Material Availability</ButtonLink>
+              <ButtonLink href="/contact" variant="secondary">Contact Engineering Team</ButtonLink>
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-6 rounded-md border border-graphite/10 bg-white p-6 shadow-sm lg:grid-cols-[1fr_auto] lg:items-center lg:p-8">
+            <div>
+              <h3 className="text-2xl font-semibold text-graphite">Need a Material Not Listed Here?</h3>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-steel">
+                Our engineering team can help identify the right material solution based on your application requirements. Contact us for special grades, custom sizes, and engineering plastic solutions.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+              <ButtonLink href="/request-a-quote">Ask About a Material</ButtonLink>
+              <a
+                href={siteConfig.whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-graphite/15 bg-white px-5 py-3 text-sm font-semibold text-graphite transition hover:border-teal hover:text-teal focus-visible:outline focus-visible:outline-4 focus-visible:outline-teal/30"
+              >
+                <MessageCircle className="size-4" aria-hidden="true" />
+                WhatsApp Quick Inquiry
+              </a>
+            </div>
           </div>
         </div>
       </section>
