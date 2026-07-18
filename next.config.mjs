@@ -3,6 +3,17 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "www.apexpolyworks.com"
+          }
+        ],
+        destination: "https://apexpolyworks.com/:path*",
+        statusCode: 301
+      },
+      {
         source: "/materials/uhmwpe-sheet",
         destination: "/materials/uhmwpe",
         permanent: true

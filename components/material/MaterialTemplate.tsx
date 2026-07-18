@@ -64,7 +64,7 @@ export function MaterialTemplate({ material }: { material: Material }) {
               <a href={siteConfig.whatsappUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center justify-center rounded-md border border-emerald-600 bg-white px-5 py-3 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50">WhatsApp</a>
             </div>
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-steel">
-              <span>Fast quote within 24h</span><span>OEM custom machining</span><span>Global shipping</span><span>Factory-direct support</span>
+              <span>Typical RFQ review within 24 business hours</span><span>OEM custom machining</span><span>Global shipping</span><span>Factory-direct support</span>
             </div>
           </div>
           <ResponsiveImage src={heroImage} alt={`${material.name} industrial material supplied for machining and fabrication`} priority />
@@ -166,7 +166,7 @@ export function MaterialTemplate({ material }: { material: Material }) {
             <p className="mt-4 text-base leading-8 text-steel">Send size, quantity, grade, and drawing files. Our team will review material availability, manufacturing scope, lead time, and shipping requirements.</p>
             <a href={siteConfig.whatsappUrl} target="_blank" rel="noreferrer" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-md border border-emerald-600 bg-white px-5 py-3 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50">WhatsApp {siteConfig.whatsapp}</a>
           </div>
-          <QuoteForm compact showQuantity showSize responseTime="24 hours" defaultMaterial={material.shortName} title={`Request a ${material.shortName} quote`} description="Add dimensions, quantity, and a drawing for the fastest technical review." />
+          <QuoteForm compact showQuantity showSize defaultMaterial={material.shortName} title={`Request a ${material.shortName} quote`} description="Add dimensions, quantity, and a drawing for an efficient technical review." />
         </div>
       </section>
 
@@ -177,7 +177,7 @@ export function MaterialTemplate({ material }: { material: Material }) {
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
             {[
               { icon: Settings2, title: "CNC machining capability", text: material.cncDescription },
-              { icon: Factory, title: "Factory-scale coordination", text: "Prototype, low-volume, and repeat production planning with inspection and material traceability support." },
+              { icon: Factory, title: "Production coordination", text: "Prototype, low-volume, and repeat production planning with inspection and material traceability support." },
               { icon: Globe2, title: "Export experience", text: "Commercial documentation, protective packing, and coordinated delivery for US and international industrial buyers." }
             ].map((item) => <article key={item.title} className="rounded-md border border-graphite/10 bg-white p-6 shadow-sm"><item.icon className="size-6 text-teal" aria-hidden="true" /><h3 className="mt-4 text-lg font-semibold text-graphite">{item.title}</h3><p className="mt-3 text-sm leading-7 text-steel">{item.text}</p></article>)}
           </div>

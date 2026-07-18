@@ -44,7 +44,7 @@ export type BlogPost = {
 export const siteConfig = {
   name: "Apex PolyWorks",
   url: "https://apexpolyworks.com",
-  lastModified: "2026-06-01",
+  lastModified: "2026-07-18",
   description:
     "US-focused supplier for engineering plastics, cut-to-size plastic sheets, plastic rods, films, CNC machined plastic parts, and custom fabrication.",
   email: "sales@apexpolyworks.com",
@@ -95,7 +95,7 @@ export const services: DetailItem[] = [
     description:
       "Apex PolyWorks machines engineering plastics for fixtures, wear parts, housings, insulators, fluid handling components, guards, and replacement parts. Our team reviews material behavior, tolerance needs, edge finish, and production volume before quoting so buyers get a practical manufacturing path instead of a generic price.",
     highlights: [
-      "3-axis and 4-axis CNC milling for plates, blocks, and complex profiles",
+      "CNC milling for plates, blocks, pockets, and complex profiles",
       "CNC turning for bushings, rollers, spacers, sleeves, and threaded parts",
       "Prototype, bridge, repair, and low-volume production orders",
       "Material-aware machining for PEEK, PTFE, acetal, nylon, PC, HDPE, PVC, and acrylic"
@@ -104,7 +104,7 @@ export const services: DetailItem[] = [
       "Typical tolerances reviewed by geometry and material",
       "Deburring, chamfering, countersinking, tapping, and engraving available",
       "Buyer drawings accepted as PDF, STEP, DXF, DWG, or sample reference",
-      "Inspection notes and material certificates available on request"
+      "Material documentation and inspection reports may be available depending on the material and project requirements"
     ],
     applications: [
       "Machine guards",
@@ -123,7 +123,7 @@ export const services: DetailItem[] = [
       "Examples of machined PEEK components, milled features, clean edges, and finished plastic parts for high-performance applications.",
     seoTitle: "CNC Plastic Machining Services for US Buyers",
     seoDescription:
-      "Get CNC machined plastic parts in PEEK, PTFE, acetal, nylon, PC, HDPE, PVC, and more with no MOQ and fast quote support."
+      "Request CNC machined plastic parts in PEEK, PTFE, acetal, nylon, PC, HDPE, PVC, and more for prototype and production requirements."
   },
   {
     title: "Laser Cutting",
@@ -154,7 +154,7 @@ export const services: DetailItem[] = [
     ],
     seoTitle: "Plastic Laser Cutting Services for Sheet Parts",
     seoDescription:
-      "Laser-cut acrylic and plastic sheet parts for industrial panels, guards, displays, tags, and fixtures with quick quote response."
+      "Request laser-cut acrylic and plastic sheet parts for industrial panels, guards, displays, tags, and fixtures."
   },
   {
     title: "Cut-to-Size Plastic Sheets",
@@ -165,7 +165,7 @@ export const services: DetailItem[] = [
     description:
       "Order engineering plastic sheets in practical cut sizes instead of overbuying full sheets. We support single pieces, mixed-material kits, recurring blanks, and production-ready sheet packs for CNC shops and industrial maintenance teams.",
     highlights: [
-      "No MOQ for standard cut-to-size requests",
+      "Prototype and low-volume cut-to-size orders are welcome",
       "ABS, acrylic, polycarbonate, PVC, HDPE, PP, nylon, acetal, PTFE, and PEEK",
       "Saw-cut, routed, polished, drilled, or masked options",
       "Mixed material orders consolidated for simpler procurement"
@@ -183,7 +183,7 @@ export const services: DetailItem[] = [
       "Workholding plates",
       "Electrical insulation"
     ],
-    seoTitle: "Cut-to-Size Plastic Sheets With No MOQ",
+    seoTitle: "Cut-to-Size Engineering Plastic Sheets",
     seoDescription:
       "Buy cut-to-size ABS, acrylic, PC, PVC, HDPE, PP, nylon, acetal, PTFE, and PEEK sheets for US industrial projects."
   },
@@ -342,7 +342,7 @@ export const products: DetailItem[] = [
       "Natural PEEK sheets, plates, and CNC-ready cut blanks",
       "Suitable for high-temperature, chemical, wear, and insulation applications",
       "Cut-to-size support for prototypes, replacement parts, and production blanks",
-      "Material certificates and grade details available on request"
+      "Material documentation may be available depending on the grade and project requirements"
     ],
     specs: [
       "Confirm thickness, sheet size, grade, tolerance, and quantity before quote",
@@ -412,7 +412,7 @@ export const products: DetailItem[] = [
     specs: [
       "Thickness, grade, color, and finish confirmed before quote",
       "Tolerance depends on cutting method and material behavior",
-      "Material certificates available for selected grades",
+      "Material documentation may be available depending on the grade and project requirements",
       "Recurring production blank programs available"
     ],
     applications: ["Machine guards", "Panels", "Fixtures", "Liners", "Displays"],
@@ -482,18 +482,18 @@ export const products: DetailItem[] = [
       "CNC machining, routing, laser cutting, forming, welding, and finishing",
       "One-off repair parts through low-volume production",
       "Material selection support for function, cost, and availability",
-      "Quote response within 12 hours for complete RFQs"
+      "RFQs are typically reviewed within 24 hours on business days"
     ],
     specs: [
       "Best quote inputs: drawing, 3D model, material, quantity, and use environment",
-      "Material certificates, inspection notes, and packing requirements available",
+      "Material documentation and inspection reports may be available depending on the material and project requirements",
       "Assemblies can include fasteners, inserts, labels, and kitting",
-      "No MOQ for many prototype and custom orders"
+      "Minimum order requirements depend on material, size and manufacturing process"
     ],
     applications: ["Fixtures", "Guards", "Wear parts", "Insulators", "Production assemblies"],
     seoTitle: "Custom Plastic Parts for Industrial Buyers",
     seoDescription:
-      "Request custom plastic parts made by CNC machining, cutting, bending, welding, finishing, and assembly with no MOQ."
+      "Request custom plastic parts made by CNC machining, cutting, bending, welding, finishing, and assembly for prototype or production needs."
   }
 ];
 
@@ -566,7 +566,7 @@ export const industries: DetailItem[] = [
       "Share dielectric, ESD, heat, and flammability requirements early",
       "Thin films and rigid sheets can be converted to drawing",
       "Marking and kitting support available",
-      "Material certificates available for selected grades"
+      "Material documentation may be available depending on the grade and project requirements"
     ],
     applications: ["Insulators", "Trays", "Standoffs", "Enclosures", "Assembly fixtures"],
     seoTitle: "Plastic Materials and CNC Parts for Electronics",
@@ -614,9 +614,9 @@ export const industries: DetailItem[] = [
     ],
     specs: [
       "Material selection based on load, speed, abrasion, temperature, and fluids",
-      "No MOQ for many replacement part and prototype orders",
+      "Prototype and low-volume replacement part orders are welcome",
       "Finished assemblies, labels, and kitting available",
-      "12-hour quote response for complete RFQs"
+      "RFQs are typically reviewed within 24 hours on business days"
     ],
     applications: ["Machine guards", "Wear strips", "Rollers", "Liners", "Repair parts"],
     seoTitle: "Plastic Parts for Industrial Equipment and Machinery",
@@ -722,10 +722,10 @@ export const blogPosts: BlogPost[] = [
 ];
 
 export const trustBadges = [
-  "12-hour RFQ response",
-  "No MOQ on many custom orders",
-  "50+ engineering plastics",
-  "Material certificates on request",
+  "Typical RFQ review within 24 business hours",
+  "Prototype and low-volume orders are welcome",
+  "Engineering plastics and specialty grades",
+  "Inspection and material traceability",
   "US-focused buyer support"
 ];
 
@@ -733,12 +733,12 @@ export const faq = [
   {
     question: "Do you have a minimum order quantity?",
     answer:
-      "Many cut-to-size, prototype, and custom machined orders have no MOQ. For molded or highly specialized production parts, the quote will show any practical quantity requirement."
+      "Minimum order requirements depend on material, size and manufacturing process. Prototype and low-volume orders are welcome."
   },
   {
     question: "How fast can you respond to an RFQ?",
     answer:
-      "Complete RFQs are typically reviewed within 12 hours. Drawings, material, quantity, tolerance, finish, and use environment help us reply faster."
+      "RFQs are typically reviewed within 24 hours on business days. Drawings, material, quantity, tolerance, finish, and use environment help us review the request efficiently."
   },
   {
     question: "Can you help choose the plastic material?",
@@ -781,15 +781,29 @@ export const serviceLinks = services.map((item) => ({
   href: `/services/${item.slug}`
 }));
 
-export const materialLinks = getCatalogMaterials(materialsData).flatMap((item) => [
-  {
-    title: item.shortName,
-    href: `/materials/${item.slug}`
-  },
-  ...(item.slug === "ptfe"
-    ? [{ title: "POM / Acetal", href: "/materials/pom-acetal" }]
-    : [])
-]);
+const materialNavOrder = [
+  "peek",
+  "ptfe",
+  "pom-acetal",
+  "nylon-pa",
+  "uhmwpe",
+  "polycarbonate-pc",
+  "hdpe",
+  "pp",
+  "abs",
+  "acrylic-pmma"
+] as const;
+
+export const materialLinks = materialNavOrder.flatMap((slug) => {
+  const item = materialsData.find((material) => material.slug === slug);
+
+  return item
+    ? [{
+        title: slug === "pom-acetal" ? "POM / Acetal" : item.shortName,
+        href: `/materials/${slug}`
+      }]
+    : [];
+});
 
 export const productLinks = products.map((item) => ({
   title: item.title,
@@ -805,6 +819,7 @@ export const primaryNav = [
   { title: "Home", href: "/" },
   { title: "Services", href: "/services", children: serviceLinks },
   { title: "Materials", href: "/materials", children: materialLinks },
+  { title: "Industries", href: "/industries" },
   { title: "Knowledge Center", href: "/blog" },
   { title: "About", href: "/about" },
   { title: "Contact", href: "/contact" }

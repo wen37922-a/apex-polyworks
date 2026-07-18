@@ -15,8 +15,8 @@ export function DetailTemplate({ item, parentLabel }: DetailTemplateProps) {
   const isCncPage = item.slug === "cnc-plastic-machining";
   const showQuickRfq = parentLabel === "Materials" || parentLabel === "Products";
   const cncCapabilities = [
-    [Settings2, "5-axis machining", "Complex plastic parts, fixtures, pockets, profiles, and multi-sided features."],
-    [Ruler, "Tight tolerance +/-0.01mm", "Tolerance is reviewed by material, geometry, wall thickness, and application."],
+    [Settings2, "CNC milling and turning", "Plastic parts, fixtures, pockets, profiles, and turned features are reviewed by drawing."],
+    [Ruler, "Tolerance engineering review", "Tolerances are reviewed according to material, geometry, part size and inspection requirements."],
     [Gauge, "Prototype + mass production", "One-off repair parts, samples, bridge orders, and repeat production batches."]
   ] as const;
 
@@ -74,7 +74,7 @@ export function DetailTemplate({ item, parentLabel }: DetailTemplateProps) {
                 Request price, lead time, and stock availability
               </h2>
               <p className="mt-4 text-base leading-8 text-steel">
-                Send material type, quantity, drawing, or application notes. Our team responds within 12 hours when the RFQ is complete.
+                Send material type, quantity, drawing, or application notes. RFQs are typically reviewed within 24 hours on business days.
               </p>
             </div>
             <QuoteForm compact showQuantity title={`Quick RFQ for ${item.title}`} description="Start with name, email, material type, quantity, and drawing upload." />

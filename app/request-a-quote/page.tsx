@@ -27,7 +27,7 @@ export default function RequestQuotePage() {
       <PageHero
         eyebrow="Request a quote"
         title="Send drawings, material lists, or custom plastic part requirements"
-        text="A complete RFQ is usually reviewed within 12 hours. If your material is not fixed, describe the environment and we will suggest practical options."
+        text="RFQs are typically reviewed within 24 hours on business days. If your material is not fixed, describe the environment and we will suggest practical options."
         primaryCta="Complete RFQ"
         secondaryCta="Upload Drawing"
       />

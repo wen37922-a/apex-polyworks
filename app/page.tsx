@@ -25,22 +25,22 @@ export const metadata: Metadata = {
   description:
     "Apex PolyWorks is an engineering plastics supplier for US industrial buyers sourcing PEEK sheet, PTFE rod, UHMWPE sheet, and CNC plastic machining support.",
   alternates: {
-    canonical: siteConfig.url
+    canonical: `${siteConfig.url}/`
   }
 };
 
 const trustTags = [
   "Engineering Plastic Specialists",
   "CNC Machining Capability",
-  "Material Certificates Available",
+  "Inspection and Material Traceability",
   "Serving US Industrial Buyers"
 ];
 
 const buyerQuestions = [
   ["Materials?", "PEEK, PTFE, UHMWPE, PC, Nylon, Acetal, HDPE, PP, ABS, Acrylic"],
   ["Machining?", "CNC milled and turned plastic components from drawings"],
-  ["Lead Time?", "Fast engineering RFQ review for complete quote requests"],
-  ["Quality?", "Material certificates and inspection reports available on request"]
+  ["Lead Time?", "RFQs are typically reviewed within 24 hours on business days"],
+  ["Quality?", "Documentation and inspection requirements are reviewed by material and project"]
 ];
 
 const supplyCards = [
@@ -89,7 +89,7 @@ const whyChoose = [
   },
   {
     title: "Fast Engineering Response",
-    text: "Quick review of drawings and RFQ requirements.",
+    text: "RFQs are typically reviewed within 24 hours on business days.",
     icon: Clock3
   },
   {
@@ -133,6 +133,7 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const images = await getProductImages();
+  const qualityImage = images.HOMEPAGE.quality;
   const materialHighlights = [
     {
       title: "PEEK Sheet Supplier",
@@ -178,7 +179,7 @@ export default async function HomePage() {
               Apex PolyWorks supplies high-performance engineering plastics including PEEK, PTFE, UHMWPE and custom CNC machined plastic parts for industrial manufacturers in the United States.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/request-a-quote">Get a Fast Quote</ButtonLink>
+              <ButtonLink href="/request-a-quote">Submit an RFQ</ButtonLink>
               <ButtonLink href="/request-a-quote" variant="secondary">Upload Your Drawing</ButtonLink>
             </div>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -269,7 +270,7 @@ export default async function HomePage() {
             <SectionHeader
               eyebrow="High-value materials"
               title="PEEK, PTFE, and UHMWPE for demanding industrial applications"
-              text="Use the material pages when you need stock forms, cut-to-size supply, machining review, or a fast quote for engineering plastic parts."
+              text="Use the material pages when you need stock forms, cut-to-size supply, machining review, or a purchasing-ready quote request."
             />
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/materials">View Materials</ButtonLink>
@@ -374,9 +375,9 @@ export default async function HomePage() {
             </h2>
             <div className="mt-6 grid gap-4">
               {[
-                "Material certificates available upon request.",
-                "Inspection reports available for qualified projects.",
-                "Support engineering documentation requirements."
+                "Material documentation and inspection reports may be available depending on the material and project requirements.",
+                "Inspection requirements are reviewed against the drawing and selected material.",
+                "Documentation needs should be included with the RFQ."
               ].map((item) => (
                 <div key={item} className="flex gap-3 rounded-md border border-graphite/10 bg-white p-4 text-sm font-semibold text-ink shadow-sm">
                   <FileCheck2 className="size-5 shrink-0 text-teal" aria-hidden="true" />
@@ -386,17 +387,33 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="relative min-h-[18rem] overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm sm:min-h-[24rem]">
-            <Image
-              src={siteImages.warehouse}
-              alt="Engineering plastic warehouse inventory for documented industrial supply"
-              fill
-              sizes="(min-width: 1024px) 48vw, 100vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-graphite/75 via-transparent to-transparent" aria-hidden="true" />
-            <p className="absolute bottom-5 left-5 right-5 text-lg font-semibold text-white">
-              Stock, cutting, packing, and documentation support for industrial RFQs.
-            </p>
+            {qualityImage ? (
+              <>
+                <Image
+                  src={qualityImage}
+                  alt="CMM dimensional inspection of a CNC-machined PEEK precision component"
+                  width={1600}
+                  height={1000}
+                  loading="lazy"
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  className="h-[18rem] w-full object-cover sm:h-[24rem]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-graphite/75 via-transparent to-transparent" aria-hidden="true" />
+                <p className="absolute bottom-5 left-5 right-5 text-lg font-semibold text-white">
+                  Inspection requirements are reviewed against the drawing and project needs.
+                </p>
+              </>
+            ) : (
+              <div className="grid min-h-[18rem] place-items-center bg-graphite p-8 text-center text-white sm:min-h-[24rem]">
+                <div>
+                  <FileCheck2 className="mx-auto size-10 text-citrus" aria-hidden="true" />
+                  <p className="mt-5 text-lg font-semibold">Inspection and Material Traceability</p>
+                  <p className="mx-auto mt-3 max-w-md text-sm leading-7 text-white/70">
+                    Project-specific inspection and documentation requirements are reviewed before quote release.
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

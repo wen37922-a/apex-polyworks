@@ -90,7 +90,7 @@ export default async function PeekSheetPage() {
           "Tolerance, finish, holes, countersinks, threads, or edge breaks",
           "Operating temperature, chemical exposure, load, and delivery deadline"
         ]}
-        certificateNote="Material certificates, grade confirmation, and traceability details can be quoted on request. Share any certificate, compliance, or packing requirement before release so it is included in the quote assumptions."
+        certificateNote="Material documentation and inspection reports may be available depending on the material and project requirements. Share compliance, traceability, or packing requirements before quote release."
         relatedLinks={relatedLinks}
         productGalleryTitle="PEEK Sheet Gallery"
         applicationsTitle="PEEK Sheet Machining Applications"

@@ -36,7 +36,7 @@ export default async function MaterialsPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionHeader
             eyebrow="Material library"
-            title="50+ plastic options, with the core industrial grades organized here"
+            title="Core industrial plastic materials organized for sourcing"
             text="If a drawing lists a trade name or an unclear material, send it with your RFQ and we will help match a practical equivalent."
           />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

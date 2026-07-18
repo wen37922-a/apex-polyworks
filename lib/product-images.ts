@@ -12,7 +12,7 @@ export type ProductImageLibrary = {
   PTFE: { hero: string; rod: string; sheet: string; machining: string; inventory: string; gallery: string[] };
   PEEK: { hero: string; sheet: string[]; rod: string[]; cnc: string[] };
   ACRYLIC: { hero: string; sheet: string[]; display: string[] };
-  HOMEPAGE: { hero: string; cnc: string };
+  HOMEPAGE: { hero: string; cnc: string; quality?: string };
 };
 
 export const productImages: ProductImageLibrary = {
@@ -180,6 +180,17 @@ function hasMaterialToken(name: string, token: string) {
 function classifyBlob(library: ProductImageLibrary, pathname: string, url: string) {
   const name = decodeURIComponent(pathname).toLowerCase();
   const isMappedMaterial = ["peek", "pom", "ptfe", "uhmwpe"].some((token) => hasMaterialToken(name, token));
+
+  if (
+    name.includes("cmm")
+    || name.includes("coordinate-measuring")
+    || name.includes("coordinate measuring")
+    || name.includes("三坐标")
+    || (name.includes("quality") && name.includes("inspection"))
+  ) {
+    library.HOMEPAGE.quality = url;
+    return;
+  }
 
   if (name.includes("hero") && name.includes("首页图") && !isMappedMaterial) {
     library.HOMEPAGE.hero = url;

@@ -6,49 +6,63 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { OrganizationJsonLd } from "@/components/StructuredData";
 import { googleAdsIds } from "@/lib/google-ads";
+import { getProductImages } from "@/lib/product-images";
 import { siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
-  title: {
-    default: "Apex PolyWorks | Engineering Plastics and CNC Plastic Machining",
-    template: "%s | Apex PolyWorks"
-  },
-  description: siteConfig.description,
-  keywords: [
-    "engineering plastics",
-    "plastic CNC machining",
-    "cut to size plastic sheets",
-    "plastic rods",
-    "custom plastic parts",
-    "PEEK machining",
-    "PTFE parts",
-    "polycarbonate sheets"
-  ],
-  openGraph: {
-    title: "Apex PolyWorks | Engineering Plastics and CNC Plastic Machining",
+const defaultTitle = "Apex PolyWorks | Engineering Plastics and CNC Plastic Machining";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const images = await getProductImages();
+  const socialImage = images.HOMEPAGE.hero;
+
+  return {
+    metadataBase: new URL(siteConfig.url),
+    title: {
+      default: defaultTitle,
+      template: "%s | Apex PolyWorks"
+    },
     description: siteConfig.description,
-    url: siteConfig.url,
-    siteName: siteConfig.name,
-    images: [
-      {
-        url: "/images/plastic-machining-hero.png",
-        width: 1680,
-        height: 945,
-        alt: "Engineering plastic sheets, rods, and CNC machined plastic parts"
-      }
+    keywords: [
+      "engineering plastics",
+      "plastic CNC machining",
+      "cut to size plastic sheets",
+      "plastic rods",
+      "custom plastic parts",
+      "PEEK machining",
+      "PTFE parts",
+      "polycarbonate sheets"
     ],
-    locale: "en_US",
-    type: "website"
-  },
-  alternates: {
-    canonical: siteConfig.url
-  },
-  robots: {
-    index: true,
-    follow: true
-  }
-};
+    openGraph: {
+      title: defaultTitle,
+      description: siteConfig.description,
+      url: `${siteConfig.url}/`,
+      siteName: siteConfig.name,
+      images: [
+        {
+          url: socialImage,
+          width: 1600,
+          height: 900,
+          alt: "Engineering plastic sheets, rods, and CNC machined plastic parts"
+        }
+      ],
+      locale: "en_US",
+      type: "website"
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: defaultTitle,
+      description: siteConfig.description,
+      images: [socialImage]
+    },
+    alternates: {
+      canonical: `${siteConfig.url}/`
+    },
+    robots: {
+      index: true,
+      follow: true
+    }
+  };
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

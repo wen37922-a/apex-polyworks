@@ -69,7 +69,7 @@ export default function AboutPage() {
             {[
               [FileSearch, "Quote discipline", "We document assumptions so price, lead time, material, finish, and inspection expectations are visible."],
               [Factory, "Manufacturing range", "CNC machining, sheet cutting, forming, welding, finishing, assembly, and stock supply can be quoted together."],
-              [ShieldCheck, "Buyer confidence", "Material certificates, packing requirements, and project notes can be added when the order requires them."]
+              [ShieldCheck, "Buyer confidence", "Material documentation and inspection reports may be available depending on the material and project requirements."]
             ].map(([Icon, title, text]) => (
               <div key={String(title)} className="rounded-md bg-white p-6 shadow-sm">
                 <Icon className="size-6 text-amber" aria-hidden="true" />

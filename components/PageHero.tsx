@@ -35,9 +35,9 @@ export function PageHero({
         </div>
         <div className="grid gap-3 rounded-md border border-graphite/10 bg-slate-50 p-4">
           {[
-            ["RFQ review", "12-hour response for complete quote packages"],
-            ["Order flexibility", "No MOQ on many custom and cut-size requests"],
-            ["Material range", "50+ engineering plastics and specialty grades"]
+            ["RFQ review", "Typical RFQ review within 24 business hours"],
+            ["Order flexibility", "Prototype and low-volume orders are welcome"],
+            ["Material range", "Engineering plastics and specialty grades"]
           ].map(([titleItem, textItem]) => (
             <div key={titleItem} className="rounded-md bg-white p-5 shadow-sm">
               <p className="text-sm font-semibold text-graphite">{titleItem}</p>

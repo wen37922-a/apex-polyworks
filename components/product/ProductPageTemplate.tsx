@@ -102,7 +102,7 @@ export function ProductPageTemplate({
               Send a drawing or material request
             </h2>
             <p className="mt-4 text-base leading-8 text-steel">
-              Use the quick form to send material type, quantity, and drawing files. Apex PolyWorks reviews complete RFQs within 12 hours.
+              Use the quick form to send material type, quantity, and drawing files. RFQs are typically reviewed within 24 hours on business days.
             </p>
           </div>
           <QuoteForm compact showQuantity showSize defaultMaterial={defaultMaterial} title={`Quick RFQ for ${title}`} description="Name, email, material type, size, quantity, and drawing upload are enough to start." />
@@ -144,7 +144,7 @@ export function ProductPageTemplate({
               ))}
               {certificateNote ? (
                 <article className="rounded-md border border-graphite/10 bg-graphite p-5 text-white shadow-sm">
-                  <h3 className="text-lg font-semibold">Certificate and traceability note</h3>
+                  <h3 className="text-lg font-semibold">Documentation and traceability note</h3>
                   <p className="mt-4 text-sm leading-7 text-white/75">{certificateNote}</p>
                 </article>
               ) : null}

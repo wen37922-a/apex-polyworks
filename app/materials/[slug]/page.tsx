@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${material.shortName} Supplier & CNC Parts Manufacturer`,
-    description: `Source ${material.shortName} sheet, rod, tube, and CNC machined parts from an engineering plastics supplier. Send drawings for a fast material and machining quote.`,
+    description: `Source ${material.shortName} sheet, rod, tube, and CNC machined parts from an engineering plastics supplier. Send drawings for material and machining review.`,
     alternates: { canonical: `${siteConfig.url}/materials/${material.slug}` }
   };
 }

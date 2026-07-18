@@ -13,7 +13,6 @@ type QuoteFormProps = {
   defaultMaterial?: string;
   showQuantity?: boolean;
   showSize?: boolean;
-  responseTime?: string;
   title?: string;
   description?: string;
 };
@@ -23,9 +22,8 @@ export function QuoteForm({
   defaultMaterial = "",
   showQuantity = false,
   showSize = false,
-  responseTime = "12 hours",
   title = "Request pricing and lead time",
-  description = "Share material, drawings, and end-use details. We respond within 12 hours."
+  description = "Share material, drawings, and end-use details. RFQs are typically reviewed within 24 hours on business days."
 }: QuoteFormProps) {
   const router = useRouter();
   const [formStartedAt] = useState(() => Date.now());
@@ -94,7 +92,7 @@ export function QuoteForm({
         </p>
         <p className="mt-3 inline-flex items-center gap-2 rounded-md bg-mint px-3 py-2 text-sm font-semibold text-teal">
           <Clock3 className="size-4" aria-hidden="true" />
-          We respond within {responseTime}
+          Typical RFQ review within 24 business hours
         </p>
       </div>
 

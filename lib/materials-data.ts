@@ -57,7 +57,7 @@ export const materialsData: Material[] = [
     description: "Strong, wear-resistant engineering plastic for moving, rotating, and load-bearing industrial components.",
     cardDescription: "Strong polyamide with good wear and bearing performance.",
     cardApplications: "gears, rollers, bushings, wheels, wear pads", tags: ["CNC", "Sheet", "Rod"],
-    keyProperties: ["High mechanical strength", "Good wear and bearing performance", "Useful fatigue resistance", "Moisture movement reviewed for tight tolerances"],
+    keyProperties: ["High mechanical strength", "Good wear and bearing performance", "Useful fatigue resistance", "Moisture movement reviewed for dimension-critical features"],
     forms: [{ title: "Nylon Sheet", description: "Cast or extruded plate for wear pads, guides, and milled parts.", imageRole: "sheet" }, { title: "Nylon Rod", description: "Round bar for rollers, bushings, gears, spacers, and turned parts.", imageRole: "rod" }],
     cncDescription: "Material-aware milling, turning, drilling, threading, and finishing with moisture, stress, wall thickness, and heat buildup considered.",
     applications: ["Gears", "Rollers", "Bushings", "Wheels", "Conveyor wear parts"],
