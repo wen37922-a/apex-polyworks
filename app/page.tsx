@@ -19,22 +19,24 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/StructuredData";
 import { getProductImages, productImages, siteImages } from "@/lib/product-images";
-import { faq, siteConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Engineering Plastics & CNC Machined Plastic Parts Supplier",
+  title: {
+    absolute: "Engineering Plastics Supplier & CNC Machined Plastic Parts | Apex PolyWorks"
+  },
   description:
-    "Apex PolyWorks is an engineering plastics supplier for US industrial buyers sourcing PEEK sheet, PTFE rod, UHMWPE sheet, and CNC plastic machining support.",
+    "Apex PolyWorks supplies high-performance engineering plastics including PEEK, PTFE, POM and UHMWPE, with custom CNC machining services for industrial customers worldwide.",
   alternates: {
     canonical: `${siteConfig.url}/`
   }
 };
 
 const trustTags = [
-  "Engineering Plastic Specialists",
+  "Engineering Plastic Expertise",
   "CNC Machining Capability",
-  "Inspection and Material Traceability",
-  "Serving US Industrial Buyers"
+  "Material Traceability",
+  "Serving Global Industrial Customers"
 ];
 
 const buyerQuestions = [
@@ -128,7 +130,48 @@ const industries = [
   }
 ];
 
-const homeFaq = faq.slice(0, 3);
+const homeFaq = [
+  {
+    question: "What engineering plastics can you supply?",
+    answer:
+      "Apex PolyWorks supplies a wide range of engineering plastics including PEEK, PTFE, POM (Acetal), UHMWPE, Nylon, PPS, PVDF and other high-performance materials. Contact us for material availability and technical support."
+  },
+  {
+    question: "Do you provide CNC machining services?",
+    answer:
+      "Yes. We provide custom CNC machining services for engineering plastic components based on customer drawings, specifications and application requirements."
+  },
+  {
+    question: "Can you manufacture custom plastic parts from drawings?",
+    answer:
+      "Yes. Customers can provide 2D drawings, 3D CAD files or samples. Our team can review requirements and provide manufacturing suggestions and quotation support."
+  },
+  {
+    question: "Can you provide samples before production?",
+    answer:
+      "Yes. Prototype and sample production are available for design verification before larger production orders."
+  },
+  {
+    question: "What industries do you serve?",
+    answer:
+      "Our engineering plastics are used in semiconductor equipment, medical devices, automation systems, electronics, food processing and other industrial applications."
+  },
+  {
+    question: "Do you ship internationally?",
+    answer:
+      "Yes. Apex PolyWorks supports international shipments and works with customers worldwide. We provide export packaging and logistics coordination for global industrial customers."
+  },
+  {
+    question: "How do you ensure product quality?",
+    answer:
+      "We perform material verification, dimensional inspection and production checks according to customer requirements and specifications."
+  },
+  {
+    question: "How can I request a quotation?",
+    answer:
+      "Send us your drawings, material requirements, dimensions and quantity. Our team will review your request and provide quotation support."
+  }
+];
 
 export const dynamic = "force-dynamic";
 
@@ -171,16 +214,16 @@ export default async function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-8 lg:py-20">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal">
-              US-focused engineering plastics supplier
+              Global engineering plastics and machining partner
             </p>
             <h1 className="mt-5 text-4xl font-semibold leading-tight text-graphite sm:text-6xl">
-              Engineering Plastics & CNC Machined Parts Supplier
+              Engineering Plastics Supplier & Custom CNC Machined Parts Manufacturer
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-steel">
-              Apex PolyWorks supplies high-performance engineering plastics including PEEK, PTFE, UHMWPE and custom CNC machined plastic parts for industrial manufacturers in the United States.
+              Apex PolyWorks supplies high-performance engineering plastics including PEEK, PTFE, POM, UHMWPE and custom CNC machined plastic components for industrial customers worldwide.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/request-a-quote">Submit an RFQ</ButtonLink>
+              <ButtonLink href="/request-a-quote">Request a Quote</ButtonLink>
               <ButtonLink href="/request-a-quote" variant="secondary">Upload Your Drawing</ButtonLink>
             </div>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -311,6 +354,7 @@ export default async function HomePage() {
                 href={siteConfig.whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
+                data-whatsapp-location="homepage_material_inquiry"
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-graphite/15 bg-white px-5 py-3 text-sm font-semibold text-graphite transition hover:border-teal hover:text-teal focus-visible:outline focus-visible:outline-4 focus-visible:outline-teal/30"
               >
                 <MessageCircle className="size-4" aria-hidden="true" />
@@ -451,7 +495,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <SectionHeader
             eyebrow="Buyer FAQ"
-            title="Common RFQ questions"
+            title="Frequently Asked Questions"
             text="Short answers for engineers and purchasing teams planning material or machined plastic part requests."
             align="center"
           />
