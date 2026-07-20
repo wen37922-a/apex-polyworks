@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MaterialTemplate } from "@/components/material/MaterialTemplate";
+import { MaterialSEOPageTemplate } from "@/components/seo/MaterialSEOPageTemplate";
 import { getMaterialBySlug, getMaterialsData, materialsData } from "@/lib/materials-data";
+import { createPeekSEOPageData, peekSEOMetadata } from "@/lib/seo-pages/peek";
 import { siteConfig } from "@/lib/site";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -14,6 +16,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+  if (slug === "peek") return peekSEOMetadata;
+
   const material = getMaterialBySlug(slug);
   if (!material) return { title: "Material Not Found" };
 
@@ -28,5 +32,9 @@ export default async function MaterialPage({ params }: PageProps) {
   const { slug } = await params;
   const material = getMaterialBySlug(slug, await getMaterialsData());
   if (!material) notFound();
+  if (slug === "peek") {
+    return <MaterialSEOPageTemplate material={createPeekSEOPageData(material)} />;
+  }
+
   return <MaterialTemplate material={material} />;
 }
