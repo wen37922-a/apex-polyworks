@@ -266,6 +266,29 @@ export function MaterialSEOPageTemplate({
         </div>
       </section>
 
+      {material.grades?.length ? (
+        <section className="border-b border-graphite/10 bg-white py-14 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <SectionHeader
+              eyebrow="Grade selection"
+              title="Common PEEK Grades"
+              text="Grade selection should reflect the operating environment, component design, mating surfaces, and required documentation."
+            />
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {material.grades.map((grade) => (
+                <article
+                  key={grade.title}
+                  className="rounded-md border border-graphite/10 bg-slate-50 p-6 shadow-sm"
+                >
+                  <h3 className="text-lg font-semibold text-graphite">{grade.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-steel">{grade.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section id="available-forms" className="scroll-mt-24 bg-white py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionHeader
@@ -371,6 +394,42 @@ export function MaterialSEOPageTemplate({
           </div>
         </div>
       </section>
+
+      {material.supplierAdvantages?.length ? (
+        <section className="border-y border-graphite/10 bg-slate-50 py-14 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <SectionHeader
+              eyebrow="PEEK sourcing support"
+              title="Why Choose Apex PolyWorks for PEEK Components"
+              text="Material sourcing and machining support organized around the drawing, application, and purchasing requirements."
+            />
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {material.supplierAdvantages.map((advantage) => (
+                <article
+                  key={advantage.title}
+                  className="rounded-md border border-graphite/10 bg-white p-6 shadow-sm"
+                >
+                  <CheckCircle2 className="size-6 text-teal" aria-hidden="true" />
+                  <h3 className="mt-4 text-lg font-semibold text-graphite">
+                    {advantage.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-steel">
+                    {advantage.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {material.midPageCta ? (
+        <QuoteCTASection
+          quoteCta={material.midPageCta}
+          defaultTitle="Need Custom PEEK Components?"
+          defaultDescription="Send your drawings, specifications or application requirements. Our team will review your project and provide quotation support."
+        />
+      ) : null}
 
       <RelatedContentSection
         eyebrow={`Related ${material.materialName} resources`}

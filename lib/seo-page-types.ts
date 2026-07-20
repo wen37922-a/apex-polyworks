@@ -84,6 +84,7 @@ export type MaterialSEOPageData = {
   propertyLabels?: Partial<Record<MaterialPropertyKey, string>>;
   formLabels?: Partial<Record<MaterialFormKey, string>>;
   properties: Record<MaterialPropertyKey, string>;
+  grades?: SEOContentCard[];
   availableForms: Record<MaterialFormKey, Omit<SEOContentCard, "title">>;
   applications: Record<MaterialApplicationKey, Omit<SEOContentCard, "title">>;
   machiningCapability: {
@@ -91,6 +92,8 @@ export type MaterialSEOPageData = {
     capabilities: string[];
     image?: SEOImage;
   };
+  supplierAdvantages?: SEOContentCard[];
+  midPageCta?: SEOQuoteCta;
   faqs: SixToEightItems<SEOFaqItem>;
   relatedLinks: SEOContentLink[];
   quoteCta?: SEOQuoteCta;

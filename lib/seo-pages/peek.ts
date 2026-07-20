@@ -98,6 +98,28 @@ export function createPeekSEOPageData(material: Material): MaterialSEOPageData {
       electricalProperties:
         "PEEK is used for insulating components in electrical and semiconductor equipment. Grade, wall thickness, environment, and documentation requirements should be specified."
     },
+    grades: [
+      {
+        title: "Virgin PEEK",
+        description:
+          "Virgin PEEK is an unfilled grade selected for a balanced combination of mechanical, thermal, chemical, and electrical performance in demanding components."
+      },
+      {
+        title: "Glass Filled PEEK",
+        description:
+          "Glass filled PEEK is considered when higher stiffness and dimensional control are important. Fiber content, machining behavior, and the application environment should be reviewed."
+      },
+      {
+        title: "Carbon Filled PEEK",
+        description:
+          "Carbon filled PEEK can provide increased stiffness and grade-dependent wear or electrical characteristics for precision industrial components."
+      },
+      {
+        title: "Bearing Grade PEEK",
+        description:
+          "Bearing grade PEEK uses application-specific fillers for sliding, friction, and wear components. Load, speed, mating surface, and lubrication should be included in the review."
+      }
+    ],
     formLabels: {
       sheet: "PEEK Sheet",
       rod: "PEEK Rod",
@@ -180,6 +202,37 @@ export function createPeekSEOPageData(material: Material): MaterialSEOPageData {
         machiningDetail,
         "CNC machining of a custom PEEK component from an engineering drawing"
       )
+    },
+    supplierAdvantages: [
+      {
+        title: "Engineering Plastic Expertise",
+        description:
+          "Application-focused review of PEEK grades, stock forms, operating conditions, component geometry, and manufacturing considerations."
+      },
+      {
+        title: "Custom CNC Machining Support",
+        description:
+          "Milling and turning support for drawing-based PEEK prototypes, replacement components, and repeat production requirements."
+      },
+      {
+        title: "Material Verification",
+        description:
+          "Requested PEEK grade and project documentation requirements are reviewed before material and production scope are confirmed."
+      },
+      {
+        title: "Global Industrial Supply",
+        description:
+          "Material sourcing, export packaging, and logistics coordination for industrial customers worldwide."
+      }
+    ],
+    midPageCta: {
+      title: "Need Custom PEEK Components?",
+      description:
+        "Send your drawings, specifications or application requirements. Our team will review your project and provide quotation support.",
+      primaryLabel: "Request a PEEK Quote",
+      primaryHref: "/request-a-quote",
+      secondaryLabel: "Upload Your Drawing",
+      secondaryHref: "/request-a-quote"
     },
     faqs: [
       {
