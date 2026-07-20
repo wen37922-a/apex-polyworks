@@ -99,6 +99,33 @@ export type MaterialSEOPageData = {
   quoteCta?: SEOQuoteCta;
 };
 
+export type ProductSEOPageData = {
+  productName: string;
+  slug: string;
+  eyebrow?: string;
+  heroTitle: string;
+  introduction: string;
+  heroHighlights: string[];
+  heroImage: SEOImage;
+  overview: {
+    whatIs: string;
+    selectionReasons: string[];
+    image?: SEOImage;
+  };
+  supplyOptions: SEOContentCard[];
+  properties: SEOContentCard[];
+  applications: SEOContentCard[];
+  machiningCapability: {
+    description: string;
+    capabilities: string[];
+    image?: SEOImage;
+    href: string;
+  };
+  relatedLinks: SEOContentLink[];
+  faqs: SixToEightItems<SEOFaqItem>;
+  quoteCta?: SEOQuoteCta;
+};
+
 export type ApplicationSEOPageData = {
   industryName: string;
   slug: string;
