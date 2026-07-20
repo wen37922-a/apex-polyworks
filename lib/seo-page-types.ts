@@ -186,6 +186,7 @@ export type TechnicalArticleSection = {
   paragraphs: string[];
   bullets?: string[];
   image?: SEOImage;
+  links?: SEOContentLink[];
 };
 
 export type TechnicalComparisonTable = {
@@ -210,6 +211,7 @@ export type TechnicalArticleData = {
   heroImage?: SEOImage;
   sections: TechnicalArticleSection[];
   comparisonTables?: TechnicalComparisonTable[];
+  comparisonTableAfterSectionId?: string;
   faqs?: SEOFaqItem[];
   relatedProducts: SEOContentLink[];
   quoteCta?: SEOQuoteCta;
