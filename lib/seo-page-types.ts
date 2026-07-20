@@ -112,14 +112,47 @@ export type ProductSEOPageData = {
     selectionReasons: string[];
     image?: SEOImage;
   };
+  sectionCopy?: {
+    overviewTitle?: string;
+    overviewReasonsTitle?: string;
+    supplyOptionsEyebrow?: string;
+    supplyOptionsTitle?: string;
+    supplyOptionsDescription?: string;
+    propertiesEyebrow?: string;
+    propertiesTitle?: string;
+    propertiesDescription?: string;
+    applicationsEyebrow?: string;
+    applicationsTitle?: string;
+    applicationsDescription?: string;
+    machiningEyebrow?: string;
+    machiningTitle?: string;
+    machiningLinkLabel?: string;
+    relatedEyebrow?: string;
+    relatedTitle?: string;
+    faqTitle?: string;
+    faqDescription?: string;
+  };
+  manufacturingSupport?: {
+    title: string;
+    description: string;
+    capabilities: string[];
+    image?: SEOImage;
+    href?: string;
+    hrefLabel?: string;
+  };
   supplyOptions: SEOContentCard[];
   properties: SEOContentCard[];
   applications: SEOContentCard[];
-  machiningCapability: {
+  machiningCapability?: {
     description: string;
     capabilities: string[];
     image?: SEOImage;
     href: string;
+  };
+  supplierAdvantages?: {
+    title: string;
+    description: string;
+    items: SEOContentCard[];
   };
   relatedLinks: SEOContentLink[];
   faqs: SixToEightItems<SEOFaqItem>;

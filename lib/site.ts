@@ -837,6 +837,7 @@ export const allStaticRoutes = [
   "/contact",
   "/privacy-policy",
   "/terms-and-conditions",
+  "/products/peek-machined-parts",
   ...services.map((item) => `/services/${item.slug}`),
   ...materialsData.map((item) => `/materials/${item.slug}`),
   ...products.map((item) => `/products/${item.slug}`),
