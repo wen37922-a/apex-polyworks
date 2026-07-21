@@ -21,7 +21,11 @@ export function Footer() {
           <div>
             <p className="text-xl font-semibold">{siteConfig.name}</p>
             <p className="mt-4 max-w-md text-sm leading-7 text-white/70">
-              Engineering plastic materials, cut-to-size stock, CNC machined parts, and custom fabrication support for US industrial buyers.
+              Engineering plastics supply and CNC machining support based in Shenzhen, China.
+              <br />
+              Sales support: Hong Kong.
+              <br />
+              Serving industrial customers worldwide.
             </p>
             <div className="mt-6 grid gap-3 text-sm text-white/75">
               <Link className="flex items-center gap-3 hover:text-white" href={`mailto:${siteConfig.email}`}>
@@ -32,7 +36,7 @@ export function Footer() {
                 <Phone className="size-4" aria-hidden="true" />
                 Phone: {siteConfig.phone}
               </Link>
-              <Link className="flex items-center gap-3 hover:text-white" href={siteConfig.whatsappUrl}>
+              <Link className="flex items-center gap-3 hover:text-white" href={siteConfig.whatsappUrl} data-whatsapp-location="footer">
                 <MessageCircle className="size-4" aria-hidden="true" />
                 WhatsApp: {siteConfig.whatsapp}
               </Link>

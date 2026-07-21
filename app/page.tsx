@@ -9,6 +9,7 @@ import {
   FileCheck2,
   Globe2,
   Layers3,
+  MapPin,
   MessageCircle,
   PackageCheck,
   Settings2,
@@ -97,8 +98,54 @@ const whyChoose = [
   },
   {
     title: "Global Supply Support",
-    text: "Hong Kong based sales office serving international industrial customers.",
+    text: "Shenzhen-based operations with Hong Kong sales support for industrial customers worldwide.",
     icon: Globe2
+  }
+];
+
+const companyInformation = [
+  {
+    title: "Location",
+    lines: ["Shenzhen, China"],
+    icon: MapPin
+  },
+  {
+    title: "Materials",
+    lines: ["PEEK, PTFE, POM, UHMWPE, Nylon and more"],
+    icon: Layers3
+  },
+  {
+    title: "Services",
+    lines: ["Cut-to-size supply", "CNC plastic machining"],
+    icon: Settings2
+  },
+  {
+    title: "Customers",
+    lines: ["Serving industrial buyers worldwide"],
+    icon: Globe2
+  }
+];
+
+const qualitySupport = [
+  {
+    title: "Material Certificates Support",
+    text: "Material certificate requirements can be reviewed with the selected grade and sourcing scope.",
+    icon: FileCheck2
+  },
+  {
+    title: "Inspection Reports",
+    text: "Inspection report requirements can be defined according to the drawing and project needs.",
+    icon: ShieldCheck
+  },
+  {
+    title: "Drawing Review",
+    text: "Drawings are reviewed for material, dimensions, critical features, and documentation requirements.",
+    icon: Settings2
+  },
+  {
+    title: "CMM Inspection Support",
+    text: "CMM inspection can be coordinated when required by part geometry, drawing requirements, and project scope.",
+    icon: BadgeCheck
   }
 ];
 
@@ -177,7 +224,6 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const images = await getProductImages();
-  const qualityImage = images.HOMEPAGE.quality;
   const materialHighlights = [
     {
       title: "PEEK Sheet Supplier",
@@ -221,6 +267,10 @@ export default async function HomePage() {
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-steel">
               Apex PolyWorks supplies high-performance engineering plastics including PEEK, PTFE, POM, UHMWPE and custom CNC machined plastic components for industrial customers worldwide.
+            </p>
+            <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-graphite">
+              <MapPin className="size-4 shrink-0 text-amber" aria-hidden="true" />
+              Based in Shenzhen, China
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/request-a-quote">Request a Quote</ButtonLink>
@@ -365,6 +415,63 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <section className="border-b border-graphite/10 bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+            <SectionHeader
+              eyebrow="Company profile"
+              title="About Apex PolyWorks"
+              text="Engineering Plastics & CNC Machining Partner Based in Shenzhen, China"
+            />
+            <div className="grid gap-4 text-sm leading-7 text-steel sm:text-base sm:leading-8">
+              <p>
+                Apex PolyWorks is an engineering plastics supplier and CNC machining partner based in Shenzhen, China.
+              </p>
+              <p>
+                We provide high-performance engineering plastics, cut-to-size materials, and custom machined plastic components for industrial customers worldwide.
+              </p>
+              <p>
+                Our team supports engineers and purchasing teams with material selection, drawing review, production requirements, and technical communication.
+              </p>
+              <p>
+                From prototype development to repeat production, we help customers find practical plastic solutions for demanding applications.
+              </p>
+            </div>
+          </div>
+          <div className="mt-10 grid overflow-hidden rounded-md border border-graphite/10 bg-slate-50 shadow-sm sm:grid-cols-[0.72fr_1.28fr] sm:items-stretch">
+            <div className="relative aspect-[4/3] min-h-[13rem] overflow-hidden sm:aspect-auto">
+              <Image
+                src={images.PEEK.cnc[3] ?? images.HOMEPAGE.cnc}
+                alt="CNC machined engineering plastic components supported by the Shenzhen team"
+                fill
+                sizes="(min-width: 640px) 40vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="flex flex-col justify-center p-6 lg:p-8">
+              <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-teal">
+                <MapPin className="size-4 shrink-0 text-amber" aria-hidden="true" />
+                Based in Shenzhen, China
+              </p>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-steel">
+                Located within a major manufacturing supply chain, our team coordinates material sourcing, drawing review, machining requirements, and export communication for industrial projects.
+              </p>
+            </div>
+          </div>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {companyInformation.map((item) => (
+              <article key={item.title} className="rounded-md border border-graphite/10 bg-slate-50 p-5 shadow-sm">
+                <item.icon className="size-6 text-teal" aria-hidden="true" />
+                <h2 className="mt-4 text-lg font-semibold text-graphite">{item.title}</h2>
+                <div className="mt-3 grid gap-1 text-sm leading-6 text-steel">
+                  {item.lines.map((line) => <p key={line}>{line}</p>)}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionHeader
@@ -438,56 +545,25 @@ export default async function HomePage() {
       </section>
 
       <section className="border-y border-graphite/10 bg-slate-50 py-16 lg:py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal">
-              Quality & Documentation
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold text-graphite">
-              Documentation support for industrial procurement
-            </h2>
-            <div className="mt-6 grid gap-4">
-              {[
-                "Material documentation and inspection reports may be available depending on the material and project requirements.",
-                "Inspection requirements are reviewed against the drawing and selected material.",
-                "Documentation needs should be included with the RFQ."
-              ].map((item) => (
-                <div key={item} className="flex gap-3 rounded-md border border-graphite/10 bg-white p-4 text-sm font-semibold text-ink shadow-sm">
-                  <FileCheck2 className="size-5 shrink-0 text-teal" aria-hidden="true" />
-                  {item}
-                </div>
-              ))}
-            </div>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <SectionHeader
+            eyebrow="Quality support"
+            title="Quality Documentation & Inspection Support"
+            text="Documentation and inspection requirements are reviewed against the selected material, customer drawing, and agreed project scope."
+            align="center"
+          />
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {qualitySupport.map((item) => (
+              <article key={item.title} className="rounded-md border border-graphite/10 bg-white p-5 shadow-sm">
+                <item.icon className="size-6 text-teal" aria-hidden="true" />
+                <h2 className="mt-4 text-lg font-semibold text-graphite">{item.title}</h2>
+                <p className="mt-3 text-sm leading-7 text-steel">{item.text}</p>
+              </article>
+            ))}
           </div>
-          <div className="relative min-h-[18rem] overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm sm:min-h-[24rem]">
-            {qualityImage ? (
-              <>
-                <Image
-                  src={qualityImage}
-                  alt="CMM dimensional inspection of a CNC-machined PEEK precision component"
-                  width={1600}
-                  height={1000}
-                  loading="lazy"
-                  sizes="(min-width: 1024px) 48vw, 100vw"
-                  className="h-[18rem] w-full object-cover sm:h-[24rem]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-graphite/75 via-transparent to-transparent" aria-hidden="true" />
-                <p className="absolute bottom-5 left-5 right-5 text-lg font-semibold text-white">
-                  Inspection requirements are reviewed against the drawing and project needs.
-                </p>
-              </>
-            ) : (
-              <div className="grid min-h-[18rem] place-items-center bg-graphite p-8 text-center text-white sm:min-h-[24rem]">
-                <div>
-                  <FileCheck2 className="mx-auto size-10 text-citrus" aria-hidden="true" />
-                  <p className="mt-5 text-lg font-semibold">Inspection and Material Traceability</p>
-                  <p className="mx-auto mt-3 max-w-md text-sm leading-7 text-white/70">
-                    Project-specific inspection and documentation requirements are reviewed before quote release.
-                  </p>
-                </div>
-              </div>
-            )}
-          </div>
+          <p className="mx-auto mt-8 max-w-3xl text-center text-sm leading-7 text-steel">
+            Include certificate, inspection, critical-dimension, or CMM requirements with the RFQ so availability and scope can be confirmed before quotation.
+          </p>
         </div>
       </section>
 

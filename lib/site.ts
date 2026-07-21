@@ -51,7 +51,7 @@ export const siteConfig = {
   phone: "+852 6555 0970",
   whatsapp: "+852 6555 0970",
   whatsappUrl: "https://wa.me/85265550970",
-  address: "Hong Kong sales office serving US industrial buyers"
+  address: "Shenzhen, China"
 };
 
 const peekSheetImages = {
