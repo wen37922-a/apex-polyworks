@@ -839,6 +839,7 @@ export const allStaticRoutes = [
   "/terms-and-conditions",
   "/products/peek-machined-parts",
   "/blog/peek-vs-ptfe",
+  "/blog/how-to-machine-peek",
   ...services.map((item) => `/services/${item.slug}`),
   ...materialsData.map((item) => `/materials/${item.slug}`),
   ...products.map((item) => `/products/${item.slug}`),

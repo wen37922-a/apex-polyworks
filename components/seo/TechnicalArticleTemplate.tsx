@@ -233,6 +233,23 @@ export function TechnicalArticleTemplate({
                         ))}
                       </ul>
                     ) : null}
+                    {section.cards?.length ? (
+                      <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {section.cards.map((card) => (
+                          <article
+                            key={card.title}
+                            className="rounded-md border border-graphite/10 bg-slate-50 p-5 shadow-sm"
+                          >
+                            <h3 className="text-lg font-semibold text-graphite">
+                              {card.title}
+                            </h3>
+                            <p className="mt-3 text-sm leading-7 text-steel">
+                              {card.description}
+                            </p>
+                          </article>
+                        ))}
+                      </div>
+                    ) : null}
                     {section.links?.length ? (
                       <div className="mt-7 grid gap-4 sm:grid-cols-2">
                         {section.links.map((link) => (

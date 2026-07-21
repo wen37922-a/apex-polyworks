@@ -185,6 +185,7 @@ export type TechnicalArticleSection = {
   title: string;
   paragraphs: string[];
   bullets?: string[];
+  cards?: SEOContentCard[];
   image?: SEOImage;
   links?: SEOContentLink[];
 };
