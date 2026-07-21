@@ -46,7 +46,7 @@ export const siteConfig = {
   url: "https://apexpolyworks.com",
   lastModified: "2026-07-18",
   description:
-    "US-focused supplier for engineering plastics, cut-to-size plastic sheets, plastic rods, films, CNC machined plastic parts, and custom fabrication.",
+    "Worldwide supplier of engineering plastics, cut-to-size plastic sheets, plastic rods, films, CNC machined plastic parts, and custom fabrication.",
   email: "sales@apexpolyworks.com",
   phone: "+852 6555 0970",
   whatsapp: "+852 6555 0970",
@@ -846,6 +846,15 @@ export const allStaticRoutes = [
   ...industries.map((item) => `/industries/${item.slug}`),
   ...blogPosts.map((item) => `/blog/${item.slug}`)
 ];
+
+export const routeLastModified: Partial<Record<(typeof allStaticRoutes)[number], string>> = {
+  "/materials/peek": "2026-07-21",
+  "/products/peek-sheet": "2026-07-18",
+  "/products/peek-rod": "2026-07-21",
+  "/products/peek-machined-parts": "2026-07-21",
+  "/blog/peek-vs-ptfe": "2026-07-21",
+  "/blog/how-to-machine-peek": "2026-07-21"
+};
 
 export function findBySlug(items: DetailItem[], slug: string) {
   return items.find((item) => item.slug === slug);

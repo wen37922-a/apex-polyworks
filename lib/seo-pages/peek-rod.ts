@@ -148,7 +148,7 @@ export function createPeekRodSEOPageData(
         title: "CNC Machined PEEK Parts",
         description:
           "Explore drawing-based CNC machining support for custom PEEK components.",
-        href: "/services/cnc-plastic-machining"
+        href: "/products/peek-machined-parts"
       },
       {
         title: "PEEK Material Page",

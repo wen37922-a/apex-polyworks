@@ -290,10 +290,28 @@ export function createPeekSEOPageData(material: Material): MaterialSEOPageData {
         href: "/products/peek-rod"
       },
       {
+        title: "CNC Machined PEEK Parts",
+        description:
+          "Explore drawing-based production support for custom PEEK components and precision industrial parts.",
+        href: "/products/peek-machined-parts"
+      },
+      {
         title: "PEEK CNC Machining",
         description:
           "Send drawings for custom milled and turned PEEK components from prototype through repeat production.",
         href: "/services/cnc-plastic-machining"
+      },
+      {
+        title: "PEEK vs PTFE",
+        description:
+          "Compare PEEK and PTFE characteristics for industrial material selection and application requirements.",
+        href: "/blog/peek-vs-ptfe"
+      },
+      {
+        title: "How to Machine PEEK",
+        description:
+          "Review practical design, material, and manufacturing considerations for CNC machined PEEK components.",
+        href: "/blog/how-to-machine-peek"
       }
     ],
     quoteCta: {

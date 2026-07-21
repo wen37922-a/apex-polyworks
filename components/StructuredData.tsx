@@ -14,11 +14,11 @@ export function OrganizationJsonLd() {
         contactType: "sales",
         email: siteConfig.email,
         telephone: siteConfig.phone,
-        areaServed: "US",
+        areaServed: "Worldwide",
         availableLanguage: ["English"]
       }
     ],
-    areaServed: "US",
+    areaServed: "Worldwide",
     description: siteConfig.description,
     sameAs: [siteConfig.whatsappUrl]
   };
