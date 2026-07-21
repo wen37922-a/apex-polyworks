@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock3, FileCheck2, Layers3, PackageCheck } from "lucide-react";
+import { CheckCircle2, Clock3, FileCheck2, Layers3, PackageCheck } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { QuoteForm } from "@/components/QuoteForm";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -56,7 +56,24 @@ export default function RequestQuotePage() {
               ))}
             </div>
           </div>
-          <QuoteForm />
+          <div>
+            <div className="mb-6 rounded-md border border-teal/20 bg-slate-50 p-5 sm:p-6">
+              <h2 className="text-lg font-semibold text-graphite">Send your project requirements</h2>
+              <p className="mt-2 text-sm leading-6 text-steel">
+                Send your drawings, specifications or material requirements. Our engineering team will review your request and provide feedback.
+              </p>
+              <p className="mt-5 text-sm font-semibold text-graphite">What information helps us quote faster?</p>
+              <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+                {["Material requirement", "Dimensions or drawings", "Quantity", "Application details"].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm text-steel">
+                    <CheckCircle2 className="size-4 shrink-0 text-teal" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <QuoteForm />
+          </div>
         </div>
       </section>
     </main>

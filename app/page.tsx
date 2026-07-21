@@ -103,6 +103,33 @@ const whyChoose = [
   }
 ];
 
+const projectSupportSteps = [
+  {
+    number: "01",
+    title: "Send Your Requirements",
+    text: "Share drawings, specifications, materials, dimensions or application requirements.",
+    icon: FileCheck2
+  },
+  {
+    number: "02",
+    title: "Engineering Review",
+    text: "Review material options, machining requirements and production considerations.",
+    icon: Settings2
+  },
+  {
+    number: "03",
+    title: "Quotation & Confirmation",
+    text: "Provide quotation details including material, process and estimated lead time.",
+    icon: BadgeCheck
+  },
+  {
+    number: "04",
+    title: "Production Support",
+    text: "Coordinate manufacturing, inspection requirements and delivery arrangements.",
+    icon: PackageCheck
+  }
+];
+
 const companyInformation = [
   {
     title: "Location",
@@ -486,6 +513,29 @@ export default async function HomePage() {
                 <item.icon className="size-6 text-teal" aria-hidden="true" />
                 <h2 className="mt-4 text-lg font-semibold text-graphite">{item.title}</h2>
                 <p className="mt-3 text-sm leading-7 text-steel">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-graphite/10 bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <SectionHeader
+            eyebrow="Customer workflow"
+            title="How We Support Your Project"
+            text="A clear review process helps engineering and purchasing teams move from requirements to production planning."
+            align="center"
+          />
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {projectSupportSteps.map((step) => (
+              <article key={step.number} className="rounded-md border border-graphite/10 bg-slate-50 p-5 shadow-sm">
+                <div className="flex items-center justify-between gap-4">
+                  <span className="text-sm font-semibold text-citrus">{step.number}</span>
+                  <step.icon className="size-6 text-teal" aria-hidden="true" />
+                </div>
+                <h2 className="mt-5 text-lg font-semibold text-graphite">{step.title}</h2>
+                <p className="mt-3 text-sm leading-7 text-steel">{step.text}</p>
               </article>
             ))}
           </div>

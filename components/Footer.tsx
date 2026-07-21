@@ -21,11 +21,13 @@ export function Footer() {
           <div>
             <p className="text-xl font-semibold">{siteConfig.name}</p>
             <p className="mt-4 max-w-md text-sm leading-7 text-white/70">
-              Engineering plastics supply and CNC machining support based in Shenzhen, China.
-              <br />
-              Sales support: Hong Kong.
+              Engineering plastics supplier and CNC machining support based in Shenzhen, China.
               <br />
               Serving industrial customers worldwide.
+              <br />
+              Sales Support: Hong Kong.
+              <br />
+              Manufacturing Supply Chain: Shenzhen, China.
             </p>
             <div className="mt-6 grid gap-3 text-sm text-white/75">
               <Link className="flex items-center gap-3 hover:text-white" href={`mailto:${siteConfig.email}`}>
