@@ -7,9 +7,9 @@ import { getCatalogMaterials, getMaterialCardImages, getMaterialsData } from "@/
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Engineering Plastic Materials: ABS, PC, Nylon, Acetal, PEEK, PTFE, PVC, HDPE, PP, Acrylic",
+  title: "Engineering Plastic Materials: PEEK, PTFE, Acetal, UHMWPE, Nylon, HDPE, PC, PP, ABS, Acrylic",
   description:
-    "Compare engineering plastic materials including ABS, polycarbonate, nylon, acetal, PEEK, PTFE, PVC, HDPE, PP, and acrylic for custom parts.",
+    "Compare engineering plastic materials including PEEK, PTFE, acetal, UHMWPE, nylon, HDPE, polycarbonate, PP, ABS, and acrylic for custom parts.",
   alternates: {
     canonical: `${siteConfig.url}/materials`
   }

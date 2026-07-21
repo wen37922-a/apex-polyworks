@@ -22,8 +22,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!material) return { title: "Material Not Found" };
 
   return {
-    title: `${material.shortName} Supplier & CNC Parts Manufacturer`,
-    description: `Source ${material.shortName} sheet, rod, tube, and CNC machined parts from an engineering plastics supplier. Send drawings for material and machining review.`,
+    title: material.seoTitle,
+    description: material.seoDescription,
     alternates: { canonical: `${siteConfig.url}/materials/${material.slug}` }
   };
 }

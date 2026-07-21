@@ -13,7 +13,7 @@ export type MaterialImages = Record<MaterialImageRole, string[]>;
 export type MaterialForm = {
   title: string;
   description: string;
-  imageRole: "sheet" | "rod";
+  imageRole: "sheet" | "rod" | "cnc" | "gallery";
 };
 
 export type Material = {

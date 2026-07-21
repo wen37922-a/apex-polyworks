@@ -781,29 +781,14 @@ export const serviceLinks = services.map((item) => ({
   href: `/services/${item.slug}`
 }));
 
-const materialNavOrder = [
-  "peek",
-  "ptfe",
-  "pom-acetal",
-  "nylon-pa",
-  "uhmwpe",
-  "polycarbonate-pc",
-  "hdpe",
-  "pp",
-  "abs",
-  "acrylic-pmma"
-] as const;
-
-export const materialLinks = materialNavOrder.flatMap((slug) => {
-  const item = materialsData.find((material) => material.slug === slug);
-
-  return item
-    ? [{
-        title: slug === "pom-acetal" ? "POM / Acetal" : item.shortName,
-        href: `/materials/${slug}`
-      }]
-    : [];
-});
+export const materialLinks = getCatalogMaterials(materialsData).map((material) => ({
+  title: material.slug === "pom-acetal"
+    ? "POM / Acetal"
+    : material.slug === "polycarbonate-pc"
+      ? "Polycarbonate PC"
+      : material.shortName,
+  href: `/materials/${material.slug}`
+}));
 
 export const productLinks = products.map((item) => ({
   title: item.title,

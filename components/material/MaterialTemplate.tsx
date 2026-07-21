@@ -40,12 +40,12 @@ export function MaterialTemplate({ material }: { material: Material }) {
   const applicationImage = material.images.applications[0] || material.images.gallery[0] || heroImage;
   const stockImage = material.images.warehouse[0] || siteImages.warehouse;
   const cncImages = material.images.cnc.length ? material.images.cnc.slice(0, 2) : [heroImage];
-  const productTypes = [
-    { title: "Sheet & Plate", text: "Full-size stock, cut blanks, and production-ready plate.", image: imageForRole(material, "sheet") },
-    { title: "Rod & Bar", text: "Round stock for turning, bushings, seals, and mechanical parts.", image: imageForRole(material, "rod") },
-    { title: "Tube & Profile", text: "Grade-dependent tube, profile, and custom extrusion sourcing.", image: imageForRole(material, "rod") },
-    { title: "CNC Parts", text: "Milled and turned components made to drawing and tolerance.", image: imageForRole(material, "cnc") }
-  ];
+  const productTypes = material.forms.map((form) => ({
+    title: form.title,
+    text: form.description,
+    image: imageForRole(material, form.imageRole)
+  }));
+  const productGridColumns = productTypes.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3";
 
   return (
     <main>
@@ -61,7 +61,7 @@ export function MaterialTemplate({ material }: { material: Material }) {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <RfqLink>Get {material.shortName} Pricing</RfqLink>
               <Link href="#product-types" className="inline-flex min-h-11 items-center justify-center rounded-md bg-slate-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">View Product Types</Link>
-              <a href={siteConfig.whatsappUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center justify-center rounded-md border border-emerald-600 bg-white px-5 py-3 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50">WhatsApp</a>
+              <a href={siteConfig.whatsappUrl} target="_blank" rel="noreferrer" data-whatsapp-location="material_hero" data-tracking-material={material.shortName} className="inline-flex min-h-11 items-center justify-center rounded-md border border-emerald-600 bg-white px-5 py-3 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50">WhatsApp</a>
             </div>
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-steel">
               <span>Typical RFQ review within 24 business hours</span><span>OEM custom machining</span><span>Global shipping</span><span>Factory-direct support</span>
@@ -103,8 +103,8 @@ export function MaterialTemplate({ material }: { material: Material }) {
       <section id="product-types" className="scroll-mt-24 bg-white py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber">Product types</p>
-          <h2 className="mt-3 text-3xl font-semibold text-graphite">Rod, sheet, tube, and CNC machined parts</h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <h2 className="mt-3 text-3xl font-semibold text-graphite">Available material forms and custom parts</h2>
+          <div className={`mt-8 grid gap-6 sm:grid-cols-2 ${productGridColumns}`}>
             {productTypes.map((product) => (
               <article key={product.title} className="flex h-full flex-col overflow-hidden rounded-md border border-graphite/10 bg-slate-50 shadow-sm">
                 <div className="relative aspect-[4/3] overflow-hidden">
@@ -164,7 +164,7 @@ export function MaterialTemplate({ material }: { material: Material }) {
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber">Fast material RFQ</p>
             <h2 className="mt-3 text-3xl font-semibold text-graphite">Get purchasing-ready {material.shortName} pricing</h2>
             <p className="mt-4 text-base leading-8 text-steel">Send size, quantity, grade, and drawing files. Our team will review material availability, manufacturing scope, lead time, and shipping requirements.</p>
-            <a href={siteConfig.whatsappUrl} target="_blank" rel="noreferrer" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-md border border-emerald-600 bg-white px-5 py-3 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50">WhatsApp {siteConfig.whatsapp}</a>
+            <a href={siteConfig.whatsappUrl} target="_blank" rel="noreferrer" data-whatsapp-location="material_rfq" data-tracking-material={material.shortName} className="mt-7 inline-flex min-h-11 items-center justify-center rounded-md border border-emerald-600 bg-white px-5 py-3 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50">WhatsApp {siteConfig.whatsapp}</a>
           </div>
           <QuoteForm compact showQuantity showSize defaultMaterial={material.shortName} title={`Request a ${material.shortName} quote`} description="Add dimensions, quantity, and a drawing for an efficient technical review." />
         </div>
