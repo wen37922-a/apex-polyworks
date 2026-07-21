@@ -178,29 +178,34 @@ const qualitySupport = [
 
 const industries = [
   {
-    title: "Semiconductor Equipment",
+    title: "Machinery & Equipment",
+    href: "/industries/industrial-equipment",
+    text: "Custom plastic parts, wear components, insulation parts and replacement components for equipment manufacturers."
+  },
+  {
+    title: "Automation & Robotics",
+    href: "/services/cnc-plastic-machining",
+    text: "Guide rails, sliders, fixtures, supports and custom plastic components."
+  },
+  {
+    title: "Semiconductor & Electronics",
     href: "/industries/electronics",
-    text: "Insulators, fixtures, trays, and precision plastic components."
+    text: "Insulation parts, tooling fixtures, carriers and high-performance engineering plastic components."
   },
   {
-    title: "Medical Devices",
-    href: "/industries/medical-devices",
-    text: "Prototype fixtures, stable plastics, and clean machined parts."
-  },
-  {
-    title: "Industrial Automation",
-    href: "/industries/industrial-equipment",
-    text: "Wear parts, guides, rollers, guards, and equipment components."
-  },
-  {
-    title: "Food Processing",
+    title: "Food & Packaging Equipment",
     href: "/industries/food-processing",
-    text: "HDPE, UHMWPE, PP, and machined parts for production lines."
+    text: "Wear strips, rollers, conveyor components and equipment plastic parts."
   },
   {
-    title: "Machinery Manufacturing",
-    href: "/industries/industrial-equipment",
-    text: "Replacement parts, panels, bushings, liners, and custom parts."
+    title: "Medical & Laboratory Equipment",
+    href: "/industries/medical-devices",
+    text: "Chemical-resistant plastic components and custom machined parts."
+  },
+  {
+    title: "Custom Industrial Applications",
+    href: "/request-a-quote",
+    text: "Special requirements are welcome. Our engineering team can help evaluate material selection and custom solutions."
   }
 ];
 
@@ -578,11 +583,11 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionHeader
             eyebrow="Industries"
-            title="Industries We Serve"
-            text="Industrial plastic material and part support for engineering teams, maintenance teams, OEMs, and manufacturing buyers."
+            title="Industries We Support"
+            text="Supporting engineers, OEMs, maintenance teams and manufacturers across different industries with engineering plastics and custom plastic components."
             align="center"
           />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {industries.map((industry) => (
               <Link key={industry.title} href={industry.href} className="rounded-md border border-graphite/10 bg-slate-50 p-5 shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft">
                 <Factory className="size-5 text-amber" aria-hidden="true" />
