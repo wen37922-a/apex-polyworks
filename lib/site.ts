@@ -822,6 +822,7 @@ export const allStaticRoutes = [
   "/contact",
   "/privacy-policy",
   "/terms-and-conditions",
+  "/services/replacement-plastic-parts",
   "/products/peek-machined-parts",
   "/blog/peek-vs-ptfe",
   "/blog/how-to-machine-peek",
@@ -833,6 +834,7 @@ export const allStaticRoutes = [
 ];
 
 export const routeLastModified: Partial<Record<(typeof allStaticRoutes)[number], string>> = {
+  "/services/replacement-plastic-parts": "2026-07-22",
   "/materials/peek": "2026-07-21",
   "/products/peek-sheet": "2026-07-18",
   "/products/peek-rod": "2026-07-21",

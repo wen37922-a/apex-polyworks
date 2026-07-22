@@ -13,6 +13,8 @@ type QuoteFormProps = {
   defaultMaterial?: string;
   showQuantity?: boolean;
   showSize?: boolean;
+  serviceNeeded?: string;
+  sourceTracking?: string;
   title?: string;
   description?: string;
 };
@@ -22,6 +24,8 @@ export function QuoteForm({
   defaultMaterial = "",
   showQuantity = false,
   showSize = false,
+  serviceNeeded = "Material Supply / CNC Machining",
+  sourceTracking = "",
   title = "Request pricing and lead time",
   description = "Share material, drawings, and end-use details. RFQs are typically reviewed within 24 hours on business days."
 }: QuoteFormProps) {
@@ -110,7 +114,12 @@ export function QuoteForm({
       <input type="hidden" name="drawingFileName" value={fileName} readOnly />
       <input type="hidden" name="company" value="Not provided" readOnly />
       <input type="hidden" name="country" value="United States" readOnly />
-      <input type="hidden" name="serviceNeeded" value="Material Supply / CNC Machining" readOnly />
+      <input
+        type="hidden"
+        name="serviceNeeded"
+        value={sourceTracking ? `${serviceNeeded} | Source: ${sourceTracking}` : serviceNeeded}
+        readOnly
+      />
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-medium text-graphite">
