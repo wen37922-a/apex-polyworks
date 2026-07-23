@@ -87,18 +87,18 @@ const peekCncImages = productImages.PEEK.cnc.map((src, index) => ({
 
 export const services: DetailItem[] = [
   {
-    title: "CNC Plastic Machining",
+    title: "Custom CNC Plastic Machining for Industrial Components",
     slug: "cnc-plastic-machining",
-    eyebrow: "Precision machining",
+    eyebrow: "Custom manufacturing support",
     summary:
-      "Milled and turned plastic parts from prototypes to repeat production, with material guidance before quote release.",
+      "Custom milled and turned engineering plastic parts from drawings, CAD files, photos, or samples.",
     description:
-      "Apex PolyWorks machines engineering plastics for fixtures, wear parts, housings, insulators, fluid handling components, guards, and replacement parts. Our team reviews material behavior, tolerance needs, edge finish, and production volume before quoting so buyers get a practical manufacturing path instead of a generic price.",
+      "Apex PolyWorks supports custom CNC plastic parts from drawings, CAD files, photos, or existing samples. Projects can include prototypes, low-volume requirements, replacement components, and repeat production orders, with material and manufacturing details reviewed before quotation.",
     highlights: [
       "CNC milling for plates, blocks, pockets, and complex profiles",
       "CNC turning for bushings, rollers, spacers, sleeves, and threaded parts",
       "Prototype, bridge, repair, and low-volume production orders",
-      "Material-aware machining for PEEK, PTFE, acetal, nylon, PC, HDPE, PVC, and acrylic"
+      "Material-aware machining for POM, UHMWPE, nylon, PTFE, PEEK, PC, HDPE, PVC, and acrylic"
     ],
     specs: [
       "Typical tolerances reviewed by geometry and material",
@@ -107,23 +107,23 @@ export const services: DetailItem[] = [
       "Material documentation and inspection reports may be available depending on the material and project requirements"
     ],
     applications: [
-      "Machine guards",
-      "Insulators",
-      "Bearing surfaces",
-      "Medical and lab fixtures",
-      "Conveyor change parts"
+      "Replacement machine parts",
+      "Automation fixtures",
+      "Wear strips and guides",
+      "Bushings and rollers",
+      "Equipment supports and covers"
     ],
     heroImage: {
-      src: productImages.PEEK.hero,
-      alt: "PEEK plastic stock and CNC machining setup for custom parts"
+      src: productImages.HOMEPAGE.cnc,
+      alt: "CNC machining capability for custom engineering plastic components"
     },
     galleryImages: peekCncImages,
-    galleryTitle: "PEEK CNC machining gallery",
+    galleryTitle: "Multi-material CNC plastic component examples",
     galleryText:
-      "Examples of machined PEEK components, milled features, clean edges, and finished plastic parts for high-performance applications.",
-    seoTitle: "CNC Plastic Machining Services for US Buyers",
+      "Examples of machined components across multiple engineering plastics. Material, geometry, finish, and inspection requirements are reviewed for each project.",
+    seoTitle: "Custom CNC Plastic Parts & Machining Services | Apex PolyWorks",
     seoDescription:
-      "Request CNC machined plastic parts in PEEK, PTFE, acetal, nylon, PC, HDPE, PVC, and more for prototype and production requirements."
+      "Request custom CNC machined plastic parts from drawings, CAD files, photos or samples. Milling, turning, prototypes and low-volume production in engineering plastics."
   },
   {
     title: "Laser Cutting",

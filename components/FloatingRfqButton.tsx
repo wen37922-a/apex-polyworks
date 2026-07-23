@@ -9,7 +9,11 @@ import { siteConfig } from "@/lib/site";
 export function FloatingRfqButton() {
   const pathname = usePathname();
   const href = pathname.startsWith("/materials/") ? "#material-rfq" : "/request-a-quote";
-  const shouldAvoidHeroCtas = pathname === "/" || pathname === "/products/peek-sheet";
+  const shouldAvoidHeroCtas =
+    pathname === "/"
+    || pathname === "/products/peek-sheet"
+    || pathname === "/services/cnc-plastic-machining";
+  const shouldAvoidEntireHero = pathname === "/services/cnc-plastic-machining";
   const floatingRef = useRef<HTMLDivElement>(null);
   const [overlapsHeroCtas, setOverlapsHeroCtas] = useState(shouldAvoidHeroCtas);
 
@@ -32,7 +36,7 @@ export function FloatingRfqButton() {
 
         const hero = document.querySelector("main > section:first-of-type");
         const heroCtas = hero?.querySelectorAll<HTMLAnchorElement>(
-          'a[href="/request-a-quote"]'
+          'a[href="/request-a-quote"], a[href="#cnc-rfq"]'
         );
 
         if (!heroCtas?.length) {
@@ -41,15 +45,18 @@ export function FloatingRfqButton() {
         }
 
         const floatingRect = floatingRef.current.getBoundingClientRect();
-        const overlaps = Array.from(heroCtas).some((cta) => {
-          const ctaRect = cta.getBoundingClientRect();
-          return (
-            ctaRect.left < floatingRect.right &&
-            ctaRect.right > floatingRect.left &&
-            ctaRect.top < floatingRect.bottom &&
-            ctaRect.bottom > floatingRect.top
-          );
-        });
+        const heroRect = hero?.getBoundingClientRect();
+        const overlaps = shouldAvoidEntireHero && heroRect
+          ? heroRect.bottom > floatingRect.top
+          : Array.from(heroCtas).some((cta) => {
+              const ctaRect = cta.getBoundingClientRect();
+              return (
+                ctaRect.left < floatingRect.right &&
+                ctaRect.right > floatingRect.left &&
+                ctaRect.top < floatingRect.bottom &&
+                ctaRect.bottom > floatingRect.top
+              );
+            });
 
         setOverlapsHeroCtas(overlaps);
       });
@@ -66,7 +73,7 @@ export function FloatingRfqButton() {
       window.removeEventListener("resize", updateOverlap);
       mobileQuery.removeEventListener("change", updateOverlap);
     };
-  }, [shouldAvoidHeroCtas]);
+  }, [shouldAvoidEntireHero, shouldAvoidHeroCtas]);
 
   return (
     <div
