@@ -187,6 +187,11 @@ const relatedLinks = [
     title: "CNC plastic machining",
     text: "Review machining support for custom plastic components produced from customer drawings.",
     href: "/services/cnc-plastic-machining"
+  },
+  {
+    title: "Automation plastic components",
+    text: "Explore guides, sliders, fixtures, rollers, supports, and other components for automation equipment.",
+    href: "/products/automation-plastic-components"
   }
 ];
 
@@ -515,7 +520,7 @@ export default async function UhmwpeWearPartsPage() {
             title="Continue with material, replacement, or machining information"
             text="Use the most relevant page for the next purchasing or engineering decision."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {relatedLinks.map((item) => (
               <Link
                 key={item.href}

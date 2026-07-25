@@ -184,7 +184,7 @@ const industries = [
   },
   {
     title: "Automation & Robotics",
-    href: "/services/cnc-plastic-machining",
+    href: "/products/automation-plastic-components",
     text: "Guide rails, sliders, fixtures, supports and custom plastic components."
   },
   {

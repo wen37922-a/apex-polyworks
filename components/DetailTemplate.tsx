@@ -138,6 +138,11 @@ const cncRelatedLinks = [
     text: "Wear strips, guide rails, liners, slide plates, and custom wear components."
   },
   {
+    href: "/products/automation-plastic-components",
+    label: "Automation Plastic Components",
+    text: "Fixtures, guide rails, rollers, spacers, supports, covers, and other equipment components."
+  },
+  {
     href: "/materials/pom-acetal",
     label: "POM / Acetal",
     text: "Review acetal material options for machined industrial components."

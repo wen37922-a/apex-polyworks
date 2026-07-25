@@ -350,6 +350,7 @@ export default function ReplacementPlasticPartsPage() {
           />
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <ButtonLink href="/services/cnc-plastic-machining" variant="secondary">CNC Plastic Machining</ButtonLink>
+            <ButtonLink href="/products/automation-plastic-components" variant="secondary">Automation Plastic Components</ButtonLink>
             <ButtonLink href="/materials" variant="secondary">Browse Relevant Materials</ButtonLink>
             <ButtonLink href="/request-a-quote">Use the Full RFQ Form</ButtonLink>
           </div>
