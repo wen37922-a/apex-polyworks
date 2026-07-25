@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
+import { ConversionTracking } from "@/components/ConversionTracking";
 import { FloatingRfqButton } from "@/components/FloatingRfqButton";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -10,6 +11,10 @@ import { getProductImages } from "@/lib/product-images";
 import { siteConfig } from "@/lib/site";
 
 const defaultTitle = "Apex PolyWorks | Engineering Plastics and CNC Plastic Machining";
+const configuredGa4Id = process.env.GA4_MEASUREMENT_ID?.trim() ?? "";
+const ga4MeasurementId = /^G-[A-Z0-9]+$/i.test(configuredGa4Id)
+  ? configuredGa4Id.toUpperCase()
+  : "";
 
 export async function generateMetadata(): Promise<Metadata> {
   const images = await getProductImages();
@@ -77,9 +82,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             window.dataLayer = window.dataLayer || [];
             window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
             window.gtag('js', new Date());
-            ${googleAdsIds.map((id) => `window.gtag('config', '${id}');`).join("\n            ")}
+            ${googleAdsIds.map((id) => `window.gtag('config', ${JSON.stringify(id)});`).join("\n            ")}
+            ${ga4MeasurementId ? `window.gtag('config', ${JSON.stringify(ga4MeasurementId)}, { send_page_view: false });` : ""}
+            ${ga4MeasurementId ? `window.__APEX_GA4_MEASUREMENT_ID__ = ${JSON.stringify(ga4MeasurementId)};` : ""}
           `}
         </Script>
+        <ConversionTracking measurementId={ga4MeasurementId || undefined} />
         <OrganizationJsonLd />
         <Header />
         {children}

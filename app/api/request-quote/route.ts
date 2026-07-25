@@ -30,6 +30,20 @@ type RfqPayload = {
   drawingFileName: string;
   drawingUrl: string;
   projectDescription: string;
+  sourcePage: string;
+  attribution: {
+    utmSource: string;
+    utmMedium: string;
+    utmCampaign: string;
+    utmTerm: string;
+    utmContent: string;
+    gclid: string;
+    gbraid: string;
+    wbraid: string;
+    landingPage: string;
+    referrer: string;
+    capturedAt: string;
+  };
 };
 
 function clean(value: FormDataEntryValue | null, maxLength = 1000) {
@@ -69,11 +83,11 @@ function getSafeFileName(fileName: string) {
   return cleanedName || "drawing-upload";
 }
 
-function fieldRow(label: string, value: string) {
+function fieldRow(label: string, value: string, fallback = "Not provided") {
   return `
     <tr>
       <td style="padding:10px 12px;border:1px solid #e5e7eb;background:#f8fafc;font-weight:600;width:180px;">${escapeHtml(label)}</td>
-      <td style="padding:10px 12px;border:1px solid #e5e7eb;">${escapeHtml(value || "Not provided")}</td>
+      <td style="padding:10px 12px;border:1px solid #e5e7eb;word-break:break-word;">${escapeHtml(value || fallback)}</td>
     </tr>
   `;
 }
@@ -94,6 +108,20 @@ function buildEmail(payload: RfqPayload) {
     `Drawing Upload: ${payload.drawingFileName || "No file uploaded"}`,
     `Drawing Download Link: ${payload.drawingUrl || "No file uploaded"}`,
     "",
+    "Marketing Attribution:",
+    `RFQ Source Page: ${payload.sourcePage || "Not captured"}`,
+    `Landing Page: ${payload.attribution.landingPage || "Not captured"}`,
+    `Referrer: ${payload.attribution.referrer || "Not captured"}`,
+    `UTM Source: ${payload.attribution.utmSource || "Not captured"}`,
+    `UTM Medium: ${payload.attribution.utmMedium || "Not captured"}`,
+    `UTM Campaign: ${payload.attribution.utmCampaign || "Not captured"}`,
+    `UTM Term: ${payload.attribution.utmTerm || "Not captured"}`,
+    `UTM Content: ${payload.attribution.utmContent || "Not captured"}`,
+    `GCLID: ${payload.attribution.gclid || "Not captured"}`,
+    `GBRAID: ${payload.attribution.gbraid || "Not captured"}`,
+    `WBRAID: ${payload.attribution.wbraid || "Not captured"}`,
+    `Attribution Captured At: ${payload.attribution.capturedAt || "Not captured"}`,
+    "",
     "Project Description:",
     payload.projectDescription || "Not provided"
   ].join("\n");
@@ -112,6 +140,21 @@ function buildEmail(payload: RfqPayload) {
         ${fieldRow("Quantity", payload.quantity)}
         ${fieldRow("Drawing Upload", payload.drawingFileName || "No file uploaded")}
         ${fieldRow("Drawing Download Link", payload.drawingUrl)}
+      </table>
+      <h2 style="font-size:16px;margin:22px 0 8px;">Marketing Attribution</h2>
+      <table style="border-collapse:collapse;width:100%;max-width:760px;font-size:14px;">
+        ${fieldRow("RFQ Source Page", payload.sourcePage, "Not captured")}
+        ${fieldRow("Landing Page", payload.attribution.landingPage, "Not captured")}
+        ${fieldRow("Referrer", payload.attribution.referrer, "Not captured")}
+        ${fieldRow("UTM Source", payload.attribution.utmSource, "Not captured")}
+        ${fieldRow("UTM Medium", payload.attribution.utmMedium, "Not captured")}
+        ${fieldRow("UTM Campaign", payload.attribution.utmCampaign, "Not captured")}
+        ${fieldRow("UTM Term", payload.attribution.utmTerm, "Not captured")}
+        ${fieldRow("UTM Content", payload.attribution.utmContent, "Not captured")}
+        ${fieldRow("GCLID", payload.attribution.gclid, "Not captured")}
+        ${fieldRow("GBRAID", payload.attribution.gbraid, "Not captured")}
+        ${fieldRow("WBRAID", payload.attribution.wbraid, "Not captured")}
+        ${fieldRow("Captured At", payload.attribution.capturedAt, "Not captured")}
       </table>
       <h2 style="font-size:16px;margin:22px 0 8px;">Project Description</h2>
       <div style="max-width:760px;white-space:pre-wrap;border:1px solid #e5e7eb;background:#f8fafc;padding:14px;">${escapeHtml(payload.projectDescription || "Not provided")}</div>
@@ -160,7 +203,21 @@ export async function POST(request: Request) {
     quantity: clean(formData.get("quantity"), 120),
     drawingFileName: clean(formData.get("drawingFileName"), 260),
     drawingUrl: "",
-    projectDescription: clean(formData.get("projectDescription"), 4000)
+    projectDescription: clean(formData.get("projectDescription"), 4000),
+    sourcePage: clean(formData.get("sourcePage"), 600),
+    attribution: {
+      utmSource: clean(formData.get("utmSource"), 300),
+      utmMedium: clean(formData.get("utmMedium"), 300),
+      utmCampaign: clean(formData.get("utmCampaign"), 300),
+      utmTerm: clean(formData.get("utmTerm"), 300),
+      utmContent: clean(formData.get("utmContent"), 300),
+      gclid: clean(formData.get("gclid"), 500),
+      gbraid: clean(formData.get("gbraid"), 500),
+      wbraid: clean(formData.get("wbraid"), 500),
+      landingPage: clean(formData.get("landingPage"), 1000),
+      referrer: clean(formData.get("referrer"), 1000),
+      capturedAt: clean(formData.get("attributionCapturedAt"), 80)
+    }
   };
 
   if (!payload.name || !payload.company || !payload.email || !payload.country) {

@@ -3,6 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Clock3, Send, Upload } from "lucide-react";
+import { getPagePath, trackGenerateLead } from "@/lib/analytics";
+import {
+  captureMarketingAttribution,
+  getStoredMarketingAttribution
+} from "@/lib/attribution";
 import { rfqConversion } from "@/lib/google-ads";
 
 const fieldClass =
@@ -42,8 +47,26 @@ export function QuoteForm({
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const sourcePage = getPagePath();
     formData.set("formStartedAt", String(formStartedAt));
     formData.set("drawingFileName", fileName);
+    formData.set("sourcePage", sourcePage);
+    const submittedMaterial = String(formData.get("material") || "").trim();
+    captureMarketingAttribution();
+    const attribution = getStoredMarketingAttribution();
+    if (attribution) {
+      formData.set("utmSource", attribution.utmSource);
+      formData.set("utmMedium", attribution.utmMedium);
+      formData.set("utmCampaign", attribution.utmCampaign);
+      formData.set("utmTerm", attribution.utmTerm);
+      formData.set("utmContent", attribution.utmContent);
+      formData.set("gclid", attribution.gclid);
+      formData.set("gbraid", attribution.gbraid);
+      formData.set("wbraid", attribution.wbraid);
+      formData.set("landingPage", attribution.landingPage);
+      formData.set("referrer", attribution.referrer);
+      formData.set("attributionCapturedAt", attribution.capturedAt);
+    }
     const size = String(formData.get("size") || "").trim();
     const projectDescription = String(formData.get("projectDescription") || "").trim();
     if (size) {
@@ -66,6 +89,11 @@ export function QuoteForm({
       if (data?.ok !== true) {
         throw new Error("Unable to submit the RFQ. Please email sales@apexpolyworks.com directly.");
       }
+
+      trackGenerateLead({
+        material: submittedMaterial,
+        sourcePage
+      });
 
       try {
         sessionStorage.setItem(rfqConversion.storageKey, "1");
