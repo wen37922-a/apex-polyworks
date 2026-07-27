@@ -24,10 +24,10 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Engineering Plastics Supplier & CNC Machined Plastic Parts | Apex PolyWorks"
+    absolute: "Engineering Plastics Supplier | Sheets, Rods & Custom Sizes | Apex PolyWorks"
   },
   description:
-    "Apex PolyWorks supplies high-performance engineering plastics including PEEK, PTFE, POM and UHMWPE, with custom CNC machining services for industrial customers worldwide.",
+    "Apex PolyWorks supplies engineering plastic sheets, rods and custom cut sizes including PEEK, POM, PTFE and UHMWPE, with CNC machining support for industrial applications.",
   alternates: {
     canonical: `${siteConfig.url}/`
   }
@@ -40,18 +40,32 @@ const trustTags = [
   "Serving Global Industrial Customers"
 ];
 
-const buyerQuestions = [
-  ["Materials?", "PEEK, PTFE, UHMWPE, PC, Nylon, Acetal, HDPE, PP, ABS, Acrylic"],
-  ["Machining?", "CNC milled and turned plastic components from drawings"],
-  ["Lead Time?", "RFQs are typically reviewed within 24 hours on business days"],
-  ["Quality?", "Documentation and inspection requirements are reviewed by material and project"]
+const heroCapabilityCards = [
+  {
+    title: "Engineering Plastic Sheets & Rods",
+    description:
+      "PEEK, POM, PTFE, UHMWPE and other engineering plastics available in various sizes.",
+    icon: Layers3
+  },
+  {
+    title: "Custom Cut-to-Size Service",
+    description:
+      "Plastic sheets and rods can be cut according to your required dimensions.",
+    icon: Wrench
+  },
+  {
+    title: "CNC Machining Support",
+    description:
+      "Prototype and small-batch plastic components based on drawings or samples.",
+    icon: Settings2
+  }
 ];
 
 const supplyCards = [
   {
-    title: "Engineering Plastic Sheets & Rods",
+    title: "Full Sheet & Rod Supply",
     description:
-      "PEEK, PTFE, UHMWPE and other high-performance plastic materials available in sheets, rods and custom sizes.",
+      "Standard engineering plastic sheets and rods for industrial buyers.",
     href: "/materials",
     button: "View Materials",
     image: productImages.PEEK.sheet[0],
@@ -59,24 +73,24 @@ const supplyCards = [
     icon: Layers3
   },
   {
-    title: "Custom CNC Plastic Parts",
+    title: "Custom Cut Sizes",
     description:
-      "Precision machined plastic components from prototype quantities to production runs.",
+      "Order only the dimensions you need without purchasing oversized stock.",
+    href: "/services/cut-to-size-plastic-sheets",
+    button: "Explore Cut-to-Size",
+    image: siteImages.warehouse,
+    alt: "Engineering plastic stock prepared for custom cut sizes",
+    icon: Wrench
+  },
+  {
+    title: "CNC Machined Parts",
+    description:
+      "Additional machining support for custom plastic components.",
     href: "/services/cnc-plastic-machining",
     button: "Explore CNC Machining",
     image: productImages.PEEK.cnc[0],
-    alt: "CNC machined PEEK plastic part for manufacturing applications",
+    alt: "CNC machined engineering plastic component",
     icon: Settings2
-  },
-  {
-    title: "Cut-to-Size Plastic Supply",
-    description:
-      "Flexible sizing options for industrial applications and replacement parts.",
-    href: "/request-a-quote",
-    button: "Request Quote",
-    image: siteImages.warehouse,
-    alt: "Warehouse inventory of engineering plastic sheets and rods",
-    icon: Wrench
   }
 ];
 
@@ -258,25 +272,33 @@ export default async function HomePage() {
   const images = await getProductImages();
   const materialHighlights = [
     {
-      title: "PEEK Sheet Supplier",
-      href: "/products/peek-sheet",
+      title: "PEEK",
+      description:
+        "High-performance engineering plastic for demanding industrial applications.",
+      href: "/materials/peek",
       image: images.PEEK.hero,
       alt: "PEEK engineering plastic sheet and machined component supply"
     },
     {
-      title: "POM / Acetal Supplier",
+      title: "POM / Acetal",
+      description:
+        "Low friction plastic material for precision mechanical components.",
       href: "/materials/pom-acetal",
       image: images.POM.hero,
       alt: "POM acetal engineering plastic stock for precision components"
     },
     {
-      title: "PTFE Rod Supplier",
+      title: "PTFE",
+      description:
+        "Chemical-resistant material with excellent low-friction properties.",
       href: "/materials/ptfe",
       image: images.PTFE.hero,
       alt: "PTFE engineering plastic stock for chemical resistant components"
     },
     {
-      title: "UHMWPE Sheet Supplier",
+      title: "UHMWPE",
+      description:
+        "Wear-resistant material for guides, liners and industrial applications.",
       href: "/materials/uhmwpe",
       image: images.UHMWPE.hero,
       alt: "UHMWPE sheet material for wear strips and industrial liners"
@@ -292,21 +314,21 @@ export default async function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-8 lg:py-20">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal">
-              Global engineering plastics and machining partner
+              Engineering plastic sheets, rods, and custom sizes
             </p>
             <h1 className="mt-5 text-4xl font-semibold leading-tight text-graphite sm:text-6xl">
-              Engineering Plastics Supplier & Custom CNC Machined Parts Manufacturer
+              Engineering Plastics Supplier for Industrial Applications
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-steel">
-              Apex PolyWorks supplies high-performance engineering plastics including PEEK, PTFE, POM, UHMWPE and custom CNC machined plastic components for industrial customers worldwide.
+              Supply engineering plastic sheets, rods and custom cut sizes. CNC machining support available for industrial components.
             </p>
             <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-graphite">
               <MapPin className="size-4 shrink-0 text-amber" aria-hidden="true" />
               Based in Shenzhen, China
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/request-a-quote">Request a Quote</ButtonLink>
-              <ButtonLink href="/request-a-quote" variant="secondary">Upload Your Drawing</ButtonLink>
+              <ButtonLink href="/request-a-quote">Request Material Quote</ButtonLink>
+              <ButtonLink href="/request-a-quote" variant="secondary">Send Drawing for Machining</ButtonLink>
             </div>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {trustTags.map((tag) => (
@@ -344,12 +366,13 @@ export default async function HomePage() {
       </section>
 
       <section className="border-b border-graphite/10 bg-white py-8">
-        <div className="mx-auto grid max-w-7xl gap-4 px-6 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
-          {buyerQuestions.map(([title, text]) => (
-            <div key={title} className="rounded-md border border-graphite/10 bg-slate-50 p-4">
-              <p className="text-sm font-semibold text-graphite">{title}</p>
-              <p className="mt-2 text-sm leading-6 text-steel">{text}</p>
-            </div>
+        <div className="mx-auto grid max-w-7xl gap-4 px-6 sm:grid-cols-2 lg:grid-cols-3 lg:px-8">
+          {heroCapabilityCards.map((card) => (
+            <article key={card.title} className="rounded-md border border-graphite/10 bg-slate-50 p-5">
+              <card.icon className="size-5 text-teal" aria-hidden="true" />
+              <h2 className="mt-3 text-base font-semibold text-graphite">{card.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-steel">{card.description}</p>
+            </article>
           ))}
         </div>
       </section>
@@ -357,9 +380,71 @@ export default async function HomePage() {
       <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionHeader
-            eyebrow="What we supply"
-            title="Material supply and CNC plastic machining from one RFQ"
-            text="Start with material, drawing, size, quantity, or application requirements. Apex PolyWorks reviews the sourcing path before quoting."
+            eyebrow="Engineering materials"
+            title="Engineering Plastics We Supply"
+            text="Common stock materials for industrial purchasing, replacement components, wear applications, and drawing-based production. Additional materials, grades, and sizes are available upon request."
+            align="center"
+          />
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {materialHighlights.map((item) => (
+              <Link key={item.href} href={item.href} className="group flex h-full flex-col overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft">
+                <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition duration-300 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <h2 className="text-xl font-semibold text-graphite">{item.title}</h2>
+                  <p className="mt-3 flex-1 text-sm leading-7 text-steel">{item.description}</p>
+                  <span className="mt-5 text-sm font-semibold text-teal">View Material</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-col gap-5 border-t border-graphite/10 pt-7 lg:flex-row lg:items-center lg:justify-between">
+            <p className="max-w-xl text-sm leading-7 text-steel">
+              <span className="block font-semibold text-graphite">Need a specific grade, size or material?</span>
+              Send your requirements - our engineering team will help identify the right solution.
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/request-a-quote">Request Material Availability</ButtonLink>
+              <ButtonLink href="/materials" variant="secondary">View All Materials</ButtonLink>
+            </div>
+          </div>
+          <div className="mt-6 grid gap-6 rounded-md border border-graphite/10 bg-slate-50 p-6 shadow-sm lg:grid-cols-[1fr_auto] lg:items-center lg:p-8">
+            <div>
+              <h2 className="text-2xl font-semibold text-graphite">Need a Material Not Listed Here?</h2>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-steel">
+                Contact us for additional engineering plastics, special grades, custom sizes, and material selection support based on your application requirements.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+              <ButtonLink href="/request-a-quote">Ask About a Material</ButtonLink>
+              <a
+                href={siteConfig.whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                data-whatsapp-location="homepage_material_inquiry"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-graphite/15 bg-white px-5 py-3 text-sm font-semibold text-graphite transition hover:border-teal hover:text-teal focus-visible:outline focus-visible:outline-4 focus-visible:outline-teal/30"
+              >
+                <MessageCircle className="size-4" aria-hidden="true" />
+                WhatsApp Quick Inquiry
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-graphite/10 bg-slate-50 py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <SectionHeader
+            eyebrow="Supply formats"
+            title="Flexible Supply Options"
+            text="Choose full stock shapes, cut dimensions, or additional machining support according to your purchasing and production requirements."
             align="center"
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
@@ -379,69 +464,54 @@ export default async function HomePage() {
                   <h2 className="mt-4 text-xl font-semibold text-graphite">{card.title}</h2>
                   <p className="mt-3 flex-1 text-sm leading-7 text-steel">{card.description}</p>
                   <div className="mt-6">
-                    <ButtonLink href={card.href} variant={card.href === "/request-a-quote" ? "primary" : "secondary"}>
-                      {card.button}
-                    </ButtonLink>
+                    <ButtonLink href={card.href} variant="secondary">{card.button}</ButtonLink>
                   </div>
                 </div>
               </article>
             ))}
           </div>
+          <p className="mt-7 text-center text-sm leading-7 text-steel">
+            Need to reproduce a discontinued or damaged component? Explore our{" "}
+            <Link href="/services/replacement-plastic-parts" className="font-semibold text-teal hover:text-graphite">
+              Replacement Plastic Parts service
+            </Link>
+            .
+          </p>
         </div>
       </section>
 
-      <section className="border-y border-graphite/10 bg-slate-50 py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
-            <SectionHeader
-              eyebrow="Engineering materials"
-              title="Engineering Plastics for Demanding Industrial Applications"
-              text="Apex PolyWorks supplies a broad range of engineering plastics, including PEEK, PTFE, POM, UHMWPE, Nylon, Acrylic and other high-performance materials. The materials shown below represent commonly requested products. Additional materials, grades, sizes and custom solutions are available upon request."
+      <section className="border-b border-graphite/10 bg-white py-16 lg:py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_1fr] lg:items-center lg:px-8">
+          <div className="relative min-h-[20rem] overflow-hidden rounded-md border border-graphite/10 bg-slate-100 shadow-sm sm:min-h-[26rem]">
+            <Image
+              src={images.PEEK.sheet[0]}
+              alt="Engineering plastic sheet stock for custom cut-to-size supply"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
             />
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {materialHighlights.map((item) => (
-                <Link key={item.href} href={item.href} className="group overflow-hidden rounded-md border border-graphite/10 bg-white shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image src={item.image} alt={item.alt} fill sizes="(min-width: 1024px) 14vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-300 group-hover:scale-[1.04]" />
-                  </div>
-                  <div className="p-4">
-                    <p className="text-sm font-semibold text-graphite">{item.title}</p>
-                  </div>
-                </Link>
+          </div>
+          <div>
+            <SectionHeader
+              eyebrow="Cut-to-size service"
+              title="Engineering Plastic Sheets and Rods Cut to Your Dimensions"
+              text="Order material around the dimensions your project requires. Cut-to-size supply can reduce excess stock and simplify purchasing for prototypes, maintenance work, and repeat requirements."
+            />
+            <div className="mt-6 grid gap-3">
+              {[
+                "Full sheets and rods or custom cut dimensions",
+                "Material, size, thickness, and quantity reviewed before quotation",
+                "Machining support available when cut blanks are not enough"
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3 text-sm font-semibold leading-6 text-graphite">
+                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-teal" aria-hidden="true" />
+                  {item}
+                </div>
               ))}
             </div>
-          </div>
-
-          <div className="mt-8 flex flex-col gap-5 border-t border-graphite/10 pt-7 lg:flex-row lg:items-center lg:justify-between">
-            <p className="max-w-xl text-sm leading-7 text-steel">
-              <span className="block font-semibold text-graphite">Need a specific grade, size or material?</span>
-              Send your requirements - our engineering team will help identify the right solution.
-            </p>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/request-a-quote">Request Material Availability</ButtonLink>
-              <ButtonLink href="/contact" variant="secondary">Contact Engineering Team</ButtonLink>
-            </div>
-          </div>
-
-          <div className="mt-6 grid gap-6 rounded-md border border-graphite/10 bg-white p-6 shadow-sm lg:grid-cols-[1fr_auto] lg:items-center lg:p-8">
-            <div>
-              <h3 className="text-2xl font-semibold text-graphite">Need a Material Not Listed Here?</h3>
-              <p className="mt-3 max-w-3xl text-sm leading-7 text-steel">
-                Our engineering team can help identify the right material solution based on your application requirements. Contact us for special grades, custom sizes, and engineering plastic solutions.
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-              <ButtonLink href="/request-a-quote">Ask About a Material</ButtonLink>
-              <a
-                href={siteConfig.whatsappUrl}
-                target="_blank"
-                rel="noreferrer"
-                data-whatsapp-location="homepage_material_inquiry"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-graphite/15 bg-white px-5 py-3 text-sm font-semibold text-graphite transition hover:border-teal hover:text-teal focus-visible:outline focus-visible:outline-4 focus-visible:outline-teal/30"
-              >
-                <MessageCircle className="size-4" aria-hidden="true" />
-                WhatsApp Quick Inquiry
-              </a>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/services/cut-to-size-plastic-sheets">Explore Cut-to-Size Service</ButtonLink>
+              <ButtonLink href="/request-a-quote" variant="secondary">Request Material Quote</ButtonLink>
             </div>
           </div>
         </div>
@@ -561,19 +631,20 @@ export default async function HomePage() {
           <div>
             <SectionHeader
               eyebrow="Machining capability"
-              title="CNC plastic machining for prototypes and production runs"
-              text="Send PDF, STEP, DXF, DWG, or sample photos. Our team reviews material behavior, tolerance, finish, and quantity before quoting."
+              title="CNC Machining Support for Custom Plastic Components"
+              text="When stock sheets, rods, or cut blanks are not enough, send a drawing or sample for machining review and quotation support."
             />
             <div className="mt-6 grid gap-3">
-              {["PEEK CNC machining for high-performance parts", "PTFE, UHMWPE, Nylon, Acetal, PC, HDPE and more", "Prototype quantities through repeat production orders"].map((item) => (
+              {["Drawing and sample-based manufacturing review", "POM, UHMWPE, Nylon, PTFE, PEEK, PC and other plastics", "Prototype, small-batch, and repeat production support"].map((item) => (
                 <div key={item} className="flex items-center gap-3 text-sm font-semibold text-ink">
                   <PackageCheck className="size-5 shrink-0 text-teal" aria-hidden="true" />
                   {item}
                 </div>
               ))}
             </div>
-            <div className="mt-8">
-              <ButtonLink href="/request-a-quote">Upload Your Drawing</ButtonLink>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/services/cnc-plastic-machining">Explore CNC Plastic Machining</ButtonLink>
+              <ButtonLink href="/request-a-quote" variant="secondary">Send Drawing for Machining</ButtonLink>
             </div>
           </div>
         </div>
@@ -651,13 +722,13 @@ export default async function HomePage() {
               RFQ ready
             </div>
             <h2 className="mt-5 text-4xl font-semibold leading-tight">
-              Need Engineering Plastic Parts?
+              Need Engineering Plastic Materials or Custom Parts?
             </h2>
             <p className="mt-4 max-w-3xl text-base leading-8 text-white/75">
-              Upload your drawing or send your material requirements. Our engineering team will review your request and provide a quotation.
+              Send your material, dimensions, quantity, or drawing requirements. Our team will review the appropriate supply or machining path and provide quotation support.
             </p>
           </div>
-          <ButtonLink href="/request-a-quote">Request A Quote</ButtonLink>
+          <ButtonLink href="/request-a-quote">Request Material Quote</ButtonLink>
         </div>
       </section>
     </main>
