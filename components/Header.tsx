@@ -64,6 +64,7 @@ export function Header() {
               href={siteConfig.whatsappUrl}
               target="_blank"
               rel="noreferrer"
+              data-whatsapp-location="header_desktop"
               className="inline-flex items-center justify-end gap-1.5 text-xs font-semibold text-teal hover:text-graphite"
             >
               <MessageCircle className="size-3.5" aria-hidden="true" />
@@ -124,6 +125,7 @@ export function Header() {
                 href={siteConfig.whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
+                data-whatsapp-location="header_mobile"
                 className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-teal hover:bg-slate-100"
               >
                 <MessageCircle className="size-4" aria-hidden="true" />

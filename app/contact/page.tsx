@@ -87,7 +87,7 @@ export default function ContactPage() {
                   <span className="mt-1 block text-sm text-steel">{siteConfig.phone}</span>
                 </span>
               </Link>
-              <Link href={siteConfig.whatsappUrl} className="flex gap-4 rounded-md border border-graphite/10 bg-slate-50 p-4 hover:border-teal/40">
+              <Link href={siteConfig.whatsappUrl} data-whatsapp-location="contact_details" className="flex gap-4 rounded-md border border-graphite/10 bg-slate-50 p-4 hover:border-teal/40">
                 <MessageCircle className="mt-1 size-5 shrink-0 text-teal" aria-hidden="true" />
                 <span>
                   <span className="block font-semibold text-graphite">WhatsApp</span>
