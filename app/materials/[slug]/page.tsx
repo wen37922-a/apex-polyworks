@@ -132,6 +132,124 @@ function createPomPageData(material: Material): ProductPageProps {
   };
 }
 
+const uhmwpeMetadata: Metadata = {
+  title: "UHMWPE Sheet Supplier | Plastic Sheet & Rod",
+  description:
+    "Source UHMWPE sheet, UHMWPE rod, and cut-to-size wear-resistant plastic material for conveyors, packaging equipment, and industrial applications.",
+  alternates: { canonical: `${siteConfig.url}/materials/uhmwpe` }
+};
+
+function createUhmwpePageData(material: Material): ProductPageProps {
+  const productImages = material.images.gallery.length
+    ? material.images.gallery
+    : [getMaterialPrimaryImage(material)];
+
+  return {
+    title: "UHMWPE Sheet Supplier",
+    description:
+      "Wear-resistant UHMWPE sheets, rods, and custom cut sizes for industrial applications.",
+    materialName: "UHMWPE",
+    materialCategory: "Engineering Plastic",
+    heroTitle: "UHMWPE Sheet Supplier",
+    heroSupportingText:
+      "Wear-resistant UHMWPE sheets, rods and custom cut sizes for industrial applications.",
+    heroDescription:
+      "Source UHMWPE sheet and rod in standard or custom sizes, with cut-to-size support for conveyor, packaging, and material-handling requirements.",
+    heroImage: getMaterialPrimaryImage(material),
+    productImages,
+    applicationImages: material.images.applications,
+    warehouseImage: material.images.warehouse[0],
+    quoteCtaLabel: "Request Material Quote",
+    secondaryQuoteCtaLabel: "Send Drawing / Requirement",
+    defaultMaterial: "UHMWPE",
+    overviewTitle: "UHMWPE Material Overview",
+    overviewText:
+      "UHMWPE is an engineering polyethylene commonly selected for excellent wear resistance, low friction, impact resistance, resistance to many chemicals, and low moisture absorption. Material suitability should be reviewed against the operating environment and component requirements.",
+    forms: ["UHMWPE Sheet", "UHMWPE Rod", "Custom Cut Pieces"],
+    supplyOptions: [
+      {
+        title: "Full Sheet / Rod Supply",
+        text: "Request full UHMWPE sheet or rod stock shapes for purchasing, fabrication, or production programs."
+      },
+      {
+        title: "Cut-to-Size UHMWPE",
+        text: "Share the required dimensions and quantity for a review of custom-cut UHMWPE blanks or pieces."
+      },
+      {
+        title: "Need Finished Plastic Parts?",
+        text: "CNC machined UHMWPE components can be reviewed from drawings, dimensions, photos, or samples when finished parts are required."
+      }
+    ],
+    supplyOptionsTitle: "UHMWPE Material Supply Options",
+    supplyOptionsDescription:
+      "Choose full stock shapes, custom cut pieces, or optional finished-part support based on your purchasing requirement.",
+    sizeInformation: "Available in standard and custom sizes",
+    customOptions:
+      "Full sheet or rod supply and custom cut pieces can be reviewed for each requirement.",
+    applications: [
+      {
+        title: "Conveyor Systems",
+        text: "Wear strips, guide rails, sliding components, and other low-friction conveyor parts."
+      },
+      {
+        title: "Packaging Equipment",
+        text: "Wear plates, guides, supports, and replacement components for packaging machinery."
+      },
+      {
+        title: "Material Handling",
+        text: "Liners, impact surfaces, slide plates, and wear components for handling equipment."
+      },
+      {
+        title: "Industrial Machinery",
+        text: "Low-friction components, wear parts, guides, and custom equipment components."
+      }
+    ],
+    productGalleryTitle: "UHMWPE Sheet and Rod Supply",
+    applicationsTitle: "Industrial Applications for UHMWPE",
+    showCutToSizeSupport: true,
+    cutToSizeTitle: "Cut-to-Size UHMWPE Support",
+    cutToSizeText:
+      "Send the required UHMWPE form, dimensions, quantity, and application details. Material availability and cutting scope are confirmed during quotation review.",
+    cutToSizeCtaLabel: "Request Material Quote",
+    showCncSupport: true,
+    cncSupportTitle: "Need Finished Plastic Parts?",
+    cncSupportText:
+      "CNC machined UHMWPE components are available when required. Share drawings, dimensions, photos, or samples so the material and manufacturing scope can be reviewed.",
+    machiningCapabilities: [
+      "Drawing- and sample-based component review",
+      "Wear strips, guides, liners, slide plates, and custom equipment parts",
+      "Prototype, low-volume, and repeat-order support"
+    ],
+    faqs: [
+      {
+        question: "What is UHMWPE plastic?",
+        answer:
+          "UHMWPE is ultra-high-molecular-weight polyethylene, an engineering plastic commonly used where low friction, wear resistance, impact resistance, and low moisture absorption are important."
+      },
+      {
+        question: "Do you supply UHMWPE sheets and rods?",
+        answer:
+          "Yes. Apex PolyWorks supports UHMWPE sheet and rod sourcing in standard and custom sizes, subject to the requested grade, dimensions, and quantity."
+      },
+      {
+        question: "Can UHMWPE sheets be cut to custom sizes?",
+        answer:
+          "Yes. Send the target length, width, thickness, quantity, and application requirements for a cut-to-size review."
+      },
+      {
+        question: "What are UHMWPE sheets used for?",
+        answer:
+          "Common industrial uses include conveyor wear strips, guide rails, liners, slide plates, impact surfaces, packaging-equipment guides, and other low-friction wear components."
+      },
+      {
+        question: "What information is needed for a UHMWPE quotation?",
+        answer:
+          "Provide the required form, dimensions, quantity, grade if known, application details, and any drawings or samples. These details help clarify material supply, cutting, and optional machining requirements."
+      }
+    ]
+  };
+}
+
 export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
@@ -142,6 +260,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   if (slug === "peek") return peekSEOMetadata;
   if (slug === "pom-acetal") return pomMetadata;
+  if (slug === "uhmwpe") return uhmwpeMetadata;
 
   const material = getMaterialBySlug(slug);
   if (!material) return { title: "Material Not Found" };
@@ -171,6 +290,20 @@ export default async function MaterialPage({ params }: PageProps) {
           ]}
         />
         <ProductPageTemplate {...createPomPageData(material)} />
+      </>
+    );
+  }
+  if (slug === "uhmwpe") {
+    return (
+      <>
+        <BreadcrumbJsonLd
+          items={[
+            { name: "Home", path: "/" },
+            { name: "Materials", path: "/materials" },
+            { name: "UHMWPE", path: "/materials/uhmwpe" }
+          ]}
+        />
+        <ProductPageTemplate {...createUhmwpePageData(material)} />
       </>
     );
   }
