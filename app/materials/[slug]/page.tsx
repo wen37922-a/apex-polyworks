@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ButtonLink } from "@/components/ButtonLink";
 import { MaterialTemplate } from "@/components/material/MaterialTemplate";
 import {
   ProductPageTemplate,
@@ -18,6 +19,152 @@ import { createPeekSEOPageData, peekSEOMetadata } from "@/lib/seo-pages/peek";
 import { siteConfig } from "@/lib/site";
 
 type PageProps = { params: Promise<{ slug: string }> };
+
+const documentationItems = [
+  {
+    title: "Material Datasheets",
+    text: "Request available material datasheets for technical and purchasing review."
+  },
+  {
+    title: "Product Specifications",
+    text: "Confirm the requested material, form, grade, and project-specific supply requirements."
+  },
+  {
+    title: "Dimensional Information",
+    text: "Share target dimensions so standard sizes and cut-to-size options can be reviewed."
+  },
+  {
+    title: "Inspection Documentation",
+    text: "Inspection documentation requirements can be reviewed when they are specified with the RFQ."
+  }
+];
+
+const quoteRequirements = [
+  "Material type",
+  "Product form",
+  "Dimensions",
+  "Quantity",
+  "Application information (optional)",
+  "Drawing (if available)"
+];
+
+const materialSupportSteps = [
+  {
+    number: "01",
+    title: "Send Material Requirement",
+    text: "Share the material, form, dimensions, quantity, and any available application details."
+  },
+  {
+    number: "02",
+    title: "Confirm Specification",
+    text: "We review the requested specification, available documentation, and cut-to-size requirements."
+  },
+  {
+    number: "03",
+    title: "Quotation & Production",
+    text: "After the scope is confirmed, we provide quotation details and coordinate the approved supply requirement."
+  },
+  {
+    number: "04",
+    title: "Shipment Support",
+    text: "We coordinate packing, shipping documentation, and delivery arrangements for the confirmed order."
+  }
+];
+
+type MaterialConversionSectionsProps = {
+  materialName: string;
+  emphasis: string;
+};
+
+function MaterialConversionSections({
+  materialName,
+  emphasis
+}: MaterialConversionSectionsProps) {
+  return (
+    <div aria-label={`${materialName} purchasing support`}>
+      <section className="border-y border-graphite/10 bg-slate-50 py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal">
+              Purchasing confidence
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold text-graphite">
+              Material Documentation & Support
+            </h2>
+            <p className="mt-4 text-base leading-8 text-steel">{emphasis}</p>
+          </div>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {documentationItems.map((item) => (
+              <article
+                key={item.title}
+                className="rounded-md border border-graphite/10 bg-white p-5 shadow-sm"
+              >
+                <h3 className="text-lg font-semibold text-graphite">{item.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-steel">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-graphite/10 bg-white py-16 lg:py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber">
+              Quote checklist
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold text-graphite">
+              To Request a Quote, Please Provide:
+            </h2>
+            <p className="mt-4 text-base leading-8 text-steel">
+              Complete information helps us review the {materialName} supply requirement efficiently.
+            </p>
+          </div>
+          <div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {quoteRequirements.map((requirement) => (
+                <div
+                  key={requirement}
+                  className="rounded-md border border-graphite/10 bg-slate-50 px-4 py-5 text-sm font-semibold text-graphite shadow-sm"
+                >
+                  {requirement}
+                </div>
+              ))}
+            </div>
+            <div className="mt-6">
+              <ButtonLink href="/request-a-quote">Request Material Quote</ButtonLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-graphite/10 bg-slate-50 py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal">
+              Purchasing workflow
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold text-graphite">
+              How We Support Your Material Requirements
+            </h2>
+          </div>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {materialSupportSteps.map((step) => (
+              <article
+                key={step.number}
+                className="rounded-md border border-graphite/10 bg-white p-5 shadow-sm"
+              >
+                <span className="text-sm font-semibold text-amber">{step.number}</span>
+                <h3 className="mt-3 text-lg font-semibold text-graphite">{step.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-steel">{step.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
 
 const pomMetadata: Metadata = {
   title: "POM Sheet Supplier | Acetal Sheet & Rod",
@@ -396,7 +543,15 @@ export default async function MaterialPage({ params }: PageProps) {
   const material = getMaterialBySlug(slug, await getMaterialsData());
   if (!material) notFound();
   if (slug === "peek") {
-    return <MaterialSEOPageTemplate material={createPeekSEOPageData(material)} />;
+    return (
+      <>
+        <MaterialSEOPageTemplate material={createPeekSEOPageData(material)} />
+        <MaterialConversionSections
+          materialName="PEEK"
+          emphasis="Review available technical documentation and project requirements for high-performance applications before confirming grade, form, dimensions, and supply scope."
+        />
+      </>
+    );
   }
   if (slug === "pom-acetal") {
     return (
@@ -409,6 +564,10 @@ export default async function MaterialPage({ params }: PageProps) {
           ]}
         />
         <ProductPageTemplate {...createPomPageData(material)} />
+        <MaterialConversionSections
+          materialName="POM / Acetal"
+          emphasis="Review sheet and rod requirements for mechanical applications, including dimensions, quantity, and any cut-to-size needs."
+        />
       </>
     );
   }
@@ -423,6 +582,10 @@ export default async function MaterialPage({ params }: PageProps) {
           ]}
         />
         <ProductPageTemplate {...createUhmwpePageData(material)} />
+        <MaterialConversionSections
+          materialName="UHMWPE"
+          emphasis="Review wear, conveyor, and guide applications against material form, dimensions, and operating conditions."
+        />
       </>
     );
   }
@@ -437,6 +600,10 @@ export default async function MaterialPage({ params }: PageProps) {
           ]}
         />
         <ProductPageTemplate {...createPtfePageData(material)} />
+        <MaterialConversionSections
+          materialName="PTFE"
+          emphasis="Review chemical exposure, friction, and electrical insulation requirements when confirming PTFE form and supply scope."
+        />
       </>
     );
   }
