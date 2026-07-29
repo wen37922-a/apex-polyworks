@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ButtonLink } from "@/components/ButtonLink";
 import { MaterialTemplate } from "@/components/material/MaterialTemplate";
@@ -19,6 +20,104 @@ import { createPeekSEOPageData, peekSEOMetadata } from "@/lib/seo-pages/peek";
 import { siteConfig } from "@/lib/site";
 
 type PageProps = { params: Promise<{ slug: string }> };
+
+type RelatedMaterial = {
+  name: string;
+  href: string;
+  text: string;
+};
+
+const relatedMaterials: Record<"peek" | "pom-acetal" | "uhmwpe" | "ptfe", RelatedMaterial[]> = {
+  peek: [
+    {
+      name: "POM / Acetal",
+      href: "/materials/pom-acetal",
+      text: "For general mechanical applications requiring a more cost-effective engineering plastic, explore POM sheet and rod options."
+    },
+    {
+      name: "PTFE",
+      href: "/materials/ptfe",
+      text: "For applications requiring chemical resistance and low friction properties, PTFE may be a suitable material option."
+    }
+  ],
+  "pom-acetal": [
+    {
+      name: "UHMWPE",
+      href: "/materials/uhmwpe",
+      text: "For applications requiring higher wear resistance and sliding performance, explore UHMWPE sheets."
+    },
+    {
+      name: "PTFE",
+      href: "/materials/ptfe",
+      text: "For extreme low-friction or chemical environments, consider PTFE materials."
+    },
+    {
+      name: "PEEK",
+      href: "/materials/peek",
+      text: "For higher temperature or demanding performance requirements, see PEEK materials."
+    }
+  ],
+  uhmwpe: [
+    {
+      name: "POM / Acetal",
+      href: "/materials/pom-acetal",
+      text: "Need higher dimensional stability for precision mechanical parts? Compare POM options."
+    },
+    {
+      name: "PTFE",
+      href: "/materials/ptfe",
+      text: "For chemical environments requiring low friction and insulation properties, see PTFE materials."
+    }
+  ],
+  ptfe: [
+    {
+      name: "UHMWPE",
+      href: "/materials/uhmwpe",
+      text: "For wear-resistant applications such as guides and conveyor components, UHMWPE may be preferred."
+    },
+    {
+      name: "PEEK",
+      href: "/materials/peek",
+      text: "For high-temperature mechanical applications requiring higher strength, consider PEEK materials."
+    }
+  ]
+};
+
+function RelatedEngineeringPlastics({ materials }: { materials: RelatedMaterial[] }) {
+  return (
+    <section className="border-b border-graphite/10 bg-white py-16 lg:py-20">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber">
+            Material selection
+          </p>
+          <h2 className="mt-3 text-3xl font-semibold text-graphite">
+            Related Engineering Plastics
+          </h2>
+          <p className="mt-4 text-base leading-8 text-steel">
+            Compare alternative materials against the operating environment, mechanical needs,
+            and purchasing requirements of your application.
+          </p>
+        </div>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {materials.map((material) => (
+            <Link
+              key={material.href}
+              href={material.href}
+              className="flex min-w-0 flex-col rounded-md border border-graphite/10 bg-slate-50 p-5 shadow-sm transition hover:-translate-y-1 hover:border-teal/40 hover:shadow-soft"
+            >
+              <h3 className="text-lg font-semibold text-graphite">{material.name}</h3>
+              <p className="mt-3 text-sm leading-7 text-steel">{material.text}</p>
+              <span className="mt-auto pt-5 text-sm font-semibold text-teal">
+                Explore {material.name}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 const documentationItems = [
   {
@@ -546,6 +645,7 @@ export default async function MaterialPage({ params }: PageProps) {
     return (
       <>
         <MaterialSEOPageTemplate material={createPeekSEOPageData(material)} />
+        <RelatedEngineeringPlastics materials={relatedMaterials.peek} />
         <MaterialConversionSections
           materialName="PEEK"
           emphasis="Review available technical documentation and project requirements for high-performance applications before confirming grade, form, dimensions, and supply scope."
@@ -564,6 +664,7 @@ export default async function MaterialPage({ params }: PageProps) {
           ]}
         />
         <ProductPageTemplate {...createPomPageData(material)} />
+        <RelatedEngineeringPlastics materials={relatedMaterials["pom-acetal"]} />
         <MaterialConversionSections
           materialName="POM / Acetal"
           emphasis="Review sheet and rod requirements for mechanical applications, including dimensions, quantity, and any cut-to-size needs."
@@ -582,6 +683,7 @@ export default async function MaterialPage({ params }: PageProps) {
           ]}
         />
         <ProductPageTemplate {...createUhmwpePageData(material)} />
+        <RelatedEngineeringPlastics materials={relatedMaterials.uhmwpe} />
         <MaterialConversionSections
           materialName="UHMWPE"
           emphasis="Review wear, conveyor, and guide applications against material form, dimensions, and operating conditions."
@@ -600,6 +702,7 @@ export default async function MaterialPage({ params }: PageProps) {
           ]}
         />
         <ProductPageTemplate {...createPtfePageData(material)} />
+        <RelatedEngineeringPlastics materials={relatedMaterials.ptfe} />
         <MaterialConversionSections
           materialName="PTFE"
           emphasis="Review chemical exposure, friction, and electrical insulation requirements when confirming PTFE form and supply scope."
