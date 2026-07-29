@@ -250,6 +250,124 @@ function createUhmwpePageData(material: Material): ProductPageProps {
   };
 }
 
+const ptfeMetadata: Metadata = {
+  title: "PTFE Sheet Supplier | Virgin PTFE Sheet & Rod",
+  description:
+    "Source virgin PTFE sheet, PTFE rod, and cut-to-size material with chemical resistance for electrical, sealing, and industrial applications.",
+  alternates: { canonical: `${siteConfig.url}/materials/ptfe` }
+};
+
+function createPtfePageData(material: Material): ProductPageProps {
+  const productImages = material.images.gallery.length
+    ? material.images.gallery
+    : [getMaterialPrimaryImage(material)];
+
+  return {
+    title: "PTFE Sheet and Rod Supplier",
+    description:
+      "Virgin PTFE sheets, rods, and custom cut sizes for chemical, electrical, and industrial applications.",
+    materialName: "Virgin PTFE",
+    materialCategory: "Engineering Fluoropolymer",
+    heroTitle: "PTFE Sheet and Rod Supplier",
+    heroSupportingText:
+      "Virgin PTFE sheets, rods and custom cut sizes for chemical, electrical and industrial applications.",
+    heroDescription:
+      "Source PTFE sheet and rod in standard or custom sizes, with cut-to-size support for chemical processing, electrical equipment, sealing, and mechanical requirements.",
+    heroImage: getMaterialPrimaryImage(material),
+    productImages,
+    applicationImages: material.images.applications,
+    warehouseImage: material.images.warehouse[0],
+    quoteCtaLabel: "Request Material Quote",
+    secondaryQuoteCtaLabel: "Send Drawing / Requirement",
+    defaultMaterial: "PTFE",
+    overviewTitle: "PTFE Material Overview",
+    overviewText:
+      "PTFE is a fluoropolymer commonly selected for excellent resistance to many chemicals, low friction, useful performance across a wide temperature range, electrical insulation properties, and non-stick characteristics. Material suitability should be reviewed against the operating environment and component requirements.",
+    forms: ["PTFE Sheet", "PTFE Rod", "Custom Cut Pieces"],
+    supplyOptions: [
+      {
+        title: "Full Sheet / Rod Supply",
+        text: "Request full PTFE sheet or rod stock shapes for purchasing, fabrication, or production programs."
+      },
+      {
+        title: "Cut-to-Size PTFE",
+        text: "Share the required dimensions and quantity for a review of custom-cut PTFE blanks or pieces."
+      },
+      {
+        title: "Need Finished Plastic Parts?",
+        text: "CNC machined PTFE components can be reviewed from drawings, dimensions, photos, or samples when finished parts are required."
+      }
+    ],
+    supplyOptionsTitle: "PTFE Material Supply Options",
+    supplyOptionsDescription:
+      "Choose full stock shapes, custom cut pieces, or optional finished-part support based on your purchasing requirement.",
+    sizeInformation: "Available in standard and custom sizes",
+    customOptions:
+      "Full sheet or rod supply and custom cut pieces can be reviewed for each requirement.",
+    applications: [
+      {
+        title: "Chemical Processing",
+        text: "Liners and chemical-resistant components for process equipment and handling applications."
+      },
+      {
+        title: "Electrical Equipment",
+        text: "Insulation parts and electrically insulating components for industrial equipment."
+      },
+      {
+        title: "Mechanical Systems",
+        text: "Low-friction components for sliding, guiding, and other mechanical applications."
+      },
+      {
+        title: "Sealing Applications",
+        text: "Seal components and related parts where chemical resistance and low friction are important."
+      }
+    ],
+    productGalleryTitle: "PTFE Sheet and Rod Supply",
+    applicationsTitle: "Industrial Applications for PTFE",
+    showCutToSizeSupport: true,
+    cutToSizeTitle: "Cut-to-Size PTFE Support",
+    cutToSizeText:
+      "Send the required PTFE form, dimensions, quantity, and application details. Material availability and cutting scope are confirmed during quotation review.",
+    cutToSizeCtaLabel: "Request Material Quote",
+    showCncSupport: true,
+    cncSupportTitle: "Need Finished Plastic Parts?",
+    cncSupportText:
+      "CNC machined PTFE components are available when required. Share drawings, dimensions, photos, or samples so the material and manufacturing scope can be reviewed.",
+    machiningCapabilities: [
+      "Drawing- and sample-based component review",
+      "Seals, insulators, liners, bushings, and custom industrial parts",
+      "Prototype, low-volume, and repeat-order support"
+    ],
+    faqs: [
+      {
+        question: "What is PTFE plastic?",
+        answer:
+          "PTFE is polytetrafluoroethylene, a fluoropolymer commonly used where chemical resistance, low friction, electrical insulation, non-stick characteristics, or wide temperature performance are important."
+      },
+      {
+        question: "Do you supply PTFE sheets and rods?",
+        answer:
+          "Yes. Apex PolyWorks supports virgin PTFE sheet and rod sourcing in standard and custom sizes, subject to the requested dimensions and quantity."
+      },
+      {
+        question: "Can PTFE sheets be cut to custom sizes?",
+        answer:
+          "Yes. Send the target length, width, thickness, quantity, and application requirements for a cut-to-size review."
+      },
+      {
+        question: "What are PTFE sheets used for?",
+        answer:
+          "Common industrial uses include chemical-resistant liners, electrical insulation parts, low-friction components, seals, gaskets, valve components, and process-equipment parts."
+      },
+      {
+        question: "What information is needed for a PTFE quotation?",
+        answer:
+          "Provide the required form, dimensions, quantity, grade if known, application details, and any drawings or samples. These details help clarify material supply, cutting, and optional machining requirements."
+      }
+    ]
+  };
+}
+
 export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
@@ -261,6 +379,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (slug === "peek") return peekSEOMetadata;
   if (slug === "pom-acetal") return pomMetadata;
   if (slug === "uhmwpe") return uhmwpeMetadata;
+  if (slug === "ptfe") return ptfeMetadata;
 
   const material = getMaterialBySlug(slug);
   if (!material) return { title: "Material Not Found" };
@@ -304,6 +423,20 @@ export default async function MaterialPage({ params }: PageProps) {
           ]}
         />
         <ProductPageTemplate {...createUhmwpePageData(material)} />
+      </>
+    );
+  }
+  if (slug === "ptfe") {
+    return (
+      <>
+        <BreadcrumbJsonLd
+          items={[
+            { name: "Home", path: "/" },
+            { name: "Materials", path: "/materials" },
+            { name: "PTFE", path: "/materials/ptfe" }
+          ]}
+        />
+        <ProductPageTemplate {...createPtfePageData(material)} />
       </>
     );
   }
