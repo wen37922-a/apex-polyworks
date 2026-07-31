@@ -2,6 +2,8 @@ export type Ga4EventValue = string | number | boolean;
 
 type Ga4EventParameters = Record<string, Ga4EventValue | undefined>;
 
+const defaultGa4MeasurementId = "G-VZJTKBPCXW";
+
 declare global {
   interface Window {
     __APEX_GA4_MEASUREMENT_ID__?: string;
@@ -45,16 +47,31 @@ export function inferMaterial(pathname: string) {
   return match?.[1] ?? "not_specified";
 }
 
-export function trackGa4Event(eventName: string, parameters: Ga4EventParameters) {
-  if (typeof window === "undefined") {
-    return;
+function isTrackingDebugMode() {
+  if (process.env.NODE_ENV === "development") {
+    return true;
   }
 
   try {
-    const measurementId = window.__APEX_GA4_MEASUREMENT_ID__;
-    if (!measurementId) {
-      return;
-    }
+    const searchParams = new URLSearchParams(window.location.search);
+    return (
+      searchParams.get("tracking_debug") === "1" ||
+      searchParams.get("debug_mode") === "1"
+    );
+  } catch {
+    return false;
+  }
+}
+
+export function trackGa4Event(eventName: string, parameters: Ga4EventParameters) {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  try {
+    const measurementId =
+      window.__APEX_GA4_MEASUREMENT_ID__ || defaultGa4MeasurementId;
+    const debug = isTrackingDebugMode();
 
     const cleanParameters = Object.fromEntries(
       Object.entries(parameters).filter(([, value]) => value !== undefined && value !== "")
@@ -66,14 +83,18 @@ export function trackGa4Event(eventName: string, parameters: Ga4EventParameters)
     };
     window.gtag("event", eventName, {
       ...cleanParameters,
-      send_to: measurementId
+      send_to: measurementId,
+      ...(debug ? { debug_mode: true } : {})
     });
 
-    if (process.env.NODE_ENV === "development") {
-      console.info(`GA4 event fired: ${eventName}`, cleanParameters);
+    if (debug) {
+      console.info("GA4 event queued", { eventName });
     }
+
+    return true;
   } catch {
     // Analytics must never block navigation or a successful RFQ submission.
+    return false;
   }
 }
 
@@ -117,21 +138,7 @@ export function trackWhatsAppClick({
   trackGa4Event("whatsapp_click", {
     page_path: pagePath,
     location,
-    material: material || inferMaterial(pagePath)
-  });
-}
-
-export function trackGenerateLead({
-  material,
-  sourcePage
-}: {
-  material: string;
-  sourcePage?: string;
-}) {
-  const pagePath = getPagePath(sourcePage);
-  trackGa4Event("generate_lead", {
     material: material || inferMaterial(pagePath),
-    page_path: pagePath,
-    source_page: pagePath
+    transport_type: "beacon"
   });
 }

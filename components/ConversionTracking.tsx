@@ -60,6 +60,23 @@ function isRfqTarget(rawHref: string, link: HTMLAnchorElement) {
   }
 }
 
+function isWhatsAppTarget(rawHref: string, link: HTMLAnchorElement) {
+  if (link.dataset.whatsappLocation) {
+    return true;
+  }
+
+  try {
+    const url = new URL(rawHref, window.location.origin);
+    return (
+      url.hostname === "wa.me" ||
+      url.hostname === "api.whatsapp.com" ||
+      url.protocol === "whatsapp:"
+    );
+  } catch {
+    return false;
+  }
+}
+
 export function ConversionTracking({
   measurementId
 }: {
@@ -95,10 +112,7 @@ export function ConversionTracking({
       const material =
         link.dataset.trackingMaterial || inferMaterial(currentPagePath);
 
-      if (
-        rawHref.startsWith("https://wa.me/") ||
-        rawHref.startsWith("http://wa.me/")
-      ) {
+      if (isWhatsAppTarget(rawHref, link)) {
         trackWhatsAppClick({
           pathname: currentPagePath,
           material,
@@ -116,8 +130,8 @@ export function ConversionTracking({
       }
     };
 
-    document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
+    document.addEventListener("click", handleClick, true);
+    return () => document.removeEventListener("click", handleClick, true);
   }, [measurementId, pathname]);
 
   return null;

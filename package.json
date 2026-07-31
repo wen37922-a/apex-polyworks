@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
+    "test:tracking": "node --test tests/rfq-tracking.test.mts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
