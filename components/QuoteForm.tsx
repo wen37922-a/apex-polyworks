@@ -8,7 +8,10 @@ import {
   captureMarketingAttribution,
   getStoredMarketingAttribution
 } from "@/lib/attribution";
-import { storePendingRfqConversion } from "@/lib/google-ads";
+import {
+  getRfqThankYouPath,
+  storePendingRfqConversion
+} from "@/lib/google-ads";
 
 const fieldClass =
   "min-h-11 rounded-md border border-graphite/15 bg-white px-3 text-sm text-graphite outline-none transition placeholder:text-steel/60 focus:border-teal focus:ring-4 focus:ring-teal/10";
@@ -96,7 +99,7 @@ export function QuoteForm({
         sourcePage
       });
 
-      router.push("/thank-you");
+      router.push(getRfqThankYouPath(window.location.search));
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : "Unable to submit the RFQ. Please try again.");
     } finally {

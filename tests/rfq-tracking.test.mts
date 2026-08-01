@@ -3,6 +3,8 @@ import test from "node:test";
 import { trackWhatsAppClick } from "../lib/analytics.ts";
 import {
   ga4MeasurementId,
+  getRfqThankYouPath,
+  parseRfqConversionDebugResult,
   parsePendingRfqConversion,
   queuePendingRfqConversion,
   rfqConversion,
@@ -42,6 +44,19 @@ function getEventCommands(dataLayer: unknown[]) {
     .filter((entry): entry is unknown[] => Array.isArray(entry))
     .filter((entry) => entry[0] === "event");
 }
+
+test("debug query parameters are preserved on the thank-you redirect", () => {
+  assert.equal(
+    getRfqThankYouPath("?tracking_debug=1"),
+    "/thank-you?tracking_debug=1"
+  );
+  assert.equal(
+    getRfqThankYouPath("?debug_mode=1"),
+    "/thank-you?tracking_debug=1"
+  );
+  assert.equal(getRfqThankYouPath("?utm_source=google"), "/thank-you");
+  assert.equal(getRfqThankYouPath(""), "/thank-you");
+});
 
 test("empty, validation-failed, and API-failed submissions create no pending conversion", () => {
   const storage = new MemoryStorage();
@@ -116,9 +131,50 @@ test("successful RFQ queues one GA4 lead and one Ads conversion despite duplicat
   assert.equal(storage.getItem(rfqConversion.storageKey), null);
   assert.equal(storage.getItem(rfqConversion.sentStorageKey), eventId);
 
+  const debugResult = parseRfqConversionDebugResult(
+    storage.getItem(rfqConversion.lastResultStorageKey)
+  );
+  assert.deepEqual(debugResult, {
+    status: "queued",
+    eventId,
+    recordedAt: debugResult?.recordedAt,
+    ga4Queued: true,
+    adsQueued: true,
+    pendingRemoved: true
+  });
+  assert.ok(Number.isFinite(Date.parse(debugResult?.recordedAt || "")));
+
+  const debugResultKeys = Object.keys(debugResult || {}).sort();
+  assert.deepEqual(
+    debugResultKeys,
+    [
+      "status",
+      "eventId",
+      "recordedAt",
+      "ga4Queued",
+      "adsQueued",
+      "pendingRemoved"
+    ].sort()
+  );
+
   const eventPayload = JSON.stringify(events).toLowerCase();
   for (const forbiddenField of ["email", "phone", "message", "drawing", "file_name"]) {
     assert.equal(eventPayload.includes(forbiddenField), false);
+  }
+
+  const debugPayload = storage
+    .getItem(rfqConversion.lastResultStorageKey)
+    ?.toLowerCase() || "";
+  for (const forbiddenValue of [
+    "name",
+    "email",
+    "phone",
+    "message",
+    "drawing",
+    "filename",
+    "projectdescription"
+  ]) {
+    assert.equal(debugPayload.includes(forbiddenValue), false);
   }
 
   const eventCountBeforeRefresh = events.length;
@@ -128,6 +184,28 @@ test("successful RFQ queues one GA4 lead and one Ads conversion despite duplicat
   });
   assert.equal(refreshResult.status, "no_pending");
   assert.equal(getEventCommands(targetWindow.dataLayer).length, eventCountBeforeRefresh);
+});
+
+test("normal mode does not write a tracking debug result", async () => {
+  const storage = new MemoryStorage();
+  const targetWindow = createReadyTrackingWindow();
+
+  storePendingRfqConversion({
+    apiSucceeded: true,
+    material: "UHMWPE",
+    sourcePage: "/materials/uhmwpe",
+    eventId: "rfq-normal-mode",
+    storage
+  });
+
+  const result = await queuePendingRfqConversion({
+    targetWindow,
+    storage,
+    debug: false
+  });
+
+  assert.equal(result.status, "queued");
+  assert.equal(storage.getItem(rfqConversion.lastResultStorageKey), null);
 });
 
 test("direct thank-you access queues no events", async () => {
@@ -155,12 +233,19 @@ test("gtag timeout preserves the pending marker and sends no event", async () =>
     targetWindow,
     storage,
     maxWaitMs: 2,
-    retryIntervalMs: 1
+    retryIntervalMs: 1,
+    debug: true
   });
 
   assert.equal(result.status, "gtag_timeout");
   assert.notEqual(storage.getItem(rfqConversion.storageKey), null);
   assert.equal(targetWindow.dataLayer.length, 0);
+  assert.deepEqual(
+    parseRfqConversionDebugResult(
+      storage.getItem(rfqConversion.lastResultStorageKey)
+    )?.status,
+    "gtag_timeout"
+  );
 });
 
 test("WhatsApp click queues one GA4 event and no RFQ conversion", () => {
