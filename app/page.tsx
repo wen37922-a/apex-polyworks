@@ -76,7 +76,7 @@ const supplyCards = [
     title: "Custom Cut Sizes",
     description:
       "Order only the dimensions you need without purchasing oversized stock.",
-    href: "/services/cut-to-size-plastic-sheets",
+    href: "/services/cut-to-size-plastic",
     button: "Explore Cut-to-Size",
     image: siteImages.warehouse,
     alt: "Engineering plastic stock prepared for custom cut sizes",
@@ -510,7 +510,7 @@ export default async function HomePage() {
               ))}
             </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/services/cut-to-size-plastic-sheets">Explore Cut-to-Size Service</ButtonLink>
+              <ButtonLink href="/services/cut-to-size-plastic">Explore Cut-to-Size Service</ButtonLink>
               <ButtonLink href="/request-a-quote" variant="secondary">Request Material Quote</ButtonLink>
             </div>
           </div>

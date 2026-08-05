@@ -14,6 +14,11 @@ const nextConfig = {
         statusCode: 301
       },
       {
+        source: "/services/cut-to-size-plastic-sheets",
+        destination: "/services/cut-to-size-plastic",
+        statusCode: 301
+      },
+      {
         source: "/materials/uhmwpe-sheet",
         destination: "/materials/uhmwpe",
         permanent: true

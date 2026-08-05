@@ -158,7 +158,7 @@ export const services: DetailItem[] = [
   },
   {
     title: "Cut-to-Size Plastic Sheets",
-    slug: "cut-to-size-plastic-sheets",
+    slug: "cut-to-size-plastic",
     eyebrow: "Sheet supply",
     summary:
       "Plastic sheets cut to buyer dimensions for fabrication, maintenance, prototyping, and production use.",
