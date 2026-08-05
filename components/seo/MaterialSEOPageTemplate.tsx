@@ -11,6 +11,7 @@ import {
   Utensils
 } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
+import { QuoteForm } from "@/components/QuoteForm";
 import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/StructuredData";
 import {
@@ -177,6 +178,28 @@ export function MaterialSEOPageTemplate({
               </p>
             </aside>
           )}
+        </div>
+      </section>
+
+      <section id="material-rfq" className="scroll-mt-24 border-b border-graphite/10 bg-white py-14 lg:py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:px-8">
+          <div>
+            <SectionHeader
+              eyebrow="Quick material RFQ"
+              title={`Request a ${material.materialName} material quote`}
+              text="Share the required material form, dimensions, quantity, and any available drawing for supply and cut-to-size review."
+            />
+          </div>
+          <QuoteForm
+            compact
+            defaultMaterial={material.materialName}
+            description="Name, email, material type, size, quantity, and drawing upload are enough to start."
+            serviceNeeded="Material Supply / Cut-to-Size"
+            showQuantity
+            showSize
+            sourceTracking="material-page"
+            title={`Quick RFQ for ${material.materialName}`}
+          />
         </div>
       </section>
 
@@ -440,7 +463,6 @@ export function MaterialSEOPageTemplate({
       <FAQAccordion items={material.faqs} />
 
       <QuoteCTASection
-        id="material-rfq"
         quoteCta={material.quoteCta}
         defaultTitle={`Request a ${material.materialName} quote`}
         defaultDescription="Send grade, dimensions, quantity, application notes, and drawing files for material availability and manufacturing review."

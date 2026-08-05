@@ -229,10 +229,10 @@ export function createPeekSEOPageData(material: Material): MaterialSEOPageData {
       title: "Need Custom PEEK Components?",
       description:
         "Send your drawings, specifications or application requirements. Our team will review your project and provide quotation support.",
-      primaryLabel: "Request a PEEK Quote",
-      primaryHref: "/request-a-quote",
-      secondaryLabel: "Upload Your Drawing",
-      secondaryHref: "/request-a-quote"
+      primaryLabel: "Request Material Quote",
+      primaryHref: "/request-a-quote?material=PEEK&source=material-page",
+      secondaryLabel: "Send Drawing / Requirement",
+      secondaryHref: "/request-a-quote?material=PEEK&source=material-page"
     },
     faqs: [
       {
@@ -318,10 +318,10 @@ export function createPeekSEOPageData(material: Material): MaterialSEOPageData {
       title: "Request a PEEK material or machining quote",
       description:
         "Send the required PEEK grade, dimensions, quantity, application details, and drawing files for sourcing and manufacturing review.",
-      primaryLabel: "Request PEEK Quote",
-      primaryHref: "/request-a-quote",
-      secondaryLabel: "Upload Your Drawing",
-      secondaryHref: "/request-a-quote"
+      primaryLabel: "Request Material Quote",
+      primaryHref: "/request-a-quote?material=PEEK&source=material-page",
+      secondaryLabel: "Send Drawing / Requirement",
+      secondaryHref: "/request-a-quote?material=PEEK&source=material-page"
     }
   };
 }

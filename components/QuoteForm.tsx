@@ -19,6 +19,8 @@ const fieldClass =
 type QuoteFormProps = {
   compact?: boolean;
   defaultMaterial?: string;
+  showCompany?: boolean;
+  showDestinationCountry?: boolean;
   showQuantity?: boolean;
   showSize?: boolean;
   serviceNeeded?: string;
@@ -30,6 +32,8 @@ type QuoteFormProps = {
 export function QuoteForm({
   compact = false,
   defaultMaterial = "",
+  showCompany = false,
+  showDestinationCountry = false,
   showQuantity = false,
   showSize = false,
   serviceNeeded = "Material Supply / CNC Machining",
@@ -50,6 +54,12 @@ export function QuoteForm({
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    if (!String(formData.get("company") || "").trim()) {
+      formData.set("company", "Not provided");
+    }
+    if (!String(formData.get("country") || "").trim()) {
+      formData.set("country", "Not provided");
+    }
     const sourcePage = getPagePath();
     formData.set("formStartedAt", String(formStartedAt));
     formData.set("drawingFileName", fileName);
@@ -138,8 +148,12 @@ export function QuoteForm({
       </label>
       <input type="hidden" name="formStartedAt" value={formStartedAt} readOnly />
       <input type="hidden" name="drawingFileName" value={fileName} readOnly />
-      <input type="hidden" name="company" value="Not provided" readOnly />
-      <input type="hidden" name="country" value="United States" readOnly />
+      {!showCompany ? (
+        <input type="hidden" name="company" value="Not provided" readOnly />
+      ) : null}
+      {!showDestinationCountry ? (
+        <input type="hidden" name="country" value="United States" readOnly />
+      ) : null}
       <input
         type="hidden"
         name="serviceNeeded"
@@ -157,6 +171,30 @@ export function QuoteForm({
           <input className={fieldClass} name="email" placeholder="name@company.com" type="email" required />
         </label>
       </div>
+      {showCompany || showDestinationCountry ? (
+        <div className="grid gap-4 sm:grid-cols-2">
+          {showCompany ? (
+            <label className="grid gap-2 text-sm font-medium text-graphite">
+              Company <span className="font-normal text-steel">(optional)</span>
+              <input
+                className={fieldClass}
+                name="company"
+                placeholder="Company or organization"
+              />
+            </label>
+          ) : null}
+          {showDestinationCountry ? (
+            <label className="grid gap-2 text-sm font-medium text-graphite">
+              Destination Country <span className="font-normal text-steel">(optional)</span>
+              <input
+                className={fieldClass}
+                name="country"
+                placeholder="Delivery destination"
+              />
+            </label>
+          ) : null}
+        </div>
+      ) : null}
       <div className={`grid gap-4 ${showQuantity || showSize ? "sm:grid-cols-2" : ""}`}>
         <label className="grid gap-2 text-sm font-medium text-graphite">
           Material

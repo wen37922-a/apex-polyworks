@@ -173,11 +173,13 @@ const materialSupportSteps = [
 type MaterialConversionSectionsProps = {
   materialName: string;
   emphasis: string;
+  quoteHref: string;
 };
 
 function MaterialConversionSections({
   materialName,
-  emphasis
+  emphasis,
+  quoteHref
 }: MaterialConversionSectionsProps) {
   return (
     <div aria-label={`${materialName} purchasing support`}>
@@ -231,7 +233,7 @@ function MaterialConversionSections({
               ))}
             </div>
             <div className="mt-6">
-              <ButtonLink href="/request-a-quote">Request Material Quote</ButtonLink>
+              <ButtonLink href={quoteHref}>Request Material Quote</ButtonLink>
             </div>
           </div>
         </div>
@@ -293,6 +295,7 @@ function createPomPageData(material: Material): ProductPageProps {
     applicationImages: material.images.applications,
     quoteCtaLabel: "Request Material Quote",
     secondaryQuoteCtaLabel: "Send Drawing / Requirement",
+    quoteHref: "/request-a-quote?material=POM&source=material-page",
     defaultMaterial: "POM / Acetal",
     overviewTitle: "POM / Acetal Material Overview",
     overviewText:
@@ -407,6 +410,7 @@ function createUhmwpePageData(material: Material): ProductPageProps {
     warehouseImage: material.images.warehouse[0],
     quoteCtaLabel: "Request Material Quote",
     secondaryQuoteCtaLabel: "Send Drawing / Requirement",
+    quoteHref: "/request-a-quote?material=UHMWPE&source=material-page",
     defaultMaterial: "UHMWPE",
     overviewTitle: "UHMWPE Material Overview",
     overviewText:
@@ -525,6 +529,7 @@ function createPtfePageData(material: Material): ProductPageProps {
     warehouseImage: material.images.warehouse[0],
     quoteCtaLabel: "Request Material Quote",
     secondaryQuoteCtaLabel: "Send Drawing / Requirement",
+    quoteHref: "/request-a-quote?material=PTFE&source=material-page",
     defaultMaterial: "PTFE",
     overviewTitle: "PTFE Material Overview",
     overviewText:
@@ -649,6 +654,7 @@ export default async function MaterialPage({ params }: PageProps) {
         <MaterialConversionSections
           materialName="PEEK"
           emphasis="Review available technical documentation and project requirements for high-performance applications before confirming grade, form, dimensions, and supply scope."
+          quoteHref="/request-a-quote?material=PEEK&source=material-page"
         />
       </>
     );
@@ -668,6 +674,7 @@ export default async function MaterialPage({ params }: PageProps) {
         <MaterialConversionSections
           materialName="POM / Acetal"
           emphasis="Review sheet and rod requirements for mechanical applications, including dimensions, quantity, and any cut-to-size needs."
+          quoteHref="/request-a-quote?material=POM&source=material-page"
         />
       </>
     );
@@ -687,6 +694,7 @@ export default async function MaterialPage({ params }: PageProps) {
         <MaterialConversionSections
           materialName="UHMWPE"
           emphasis="Review wear, conveyor, and guide applications against material form, dimensions, and operating conditions."
+          quoteHref="/request-a-quote?material=UHMWPE&source=material-page"
         />
       </>
     );
@@ -706,6 +714,7 @@ export default async function MaterialPage({ params }: PageProps) {
         <MaterialConversionSections
           materialName="PTFE"
           emphasis="Review chemical exposure, friction, and electrical insulation requirements when confirming PTFE form and supply scope."
+          quoteHref="/request-a-quote?material=PTFE&source=material-page"
         />
       </>
     );

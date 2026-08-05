@@ -34,6 +34,7 @@ export type ProductPageProps = {
   warehouseImage?: string;
   quoteCtaLabel?: string;
   secondaryQuoteCtaLabel?: string;
+  quoteHref?: string;
   defaultMaterial?: string;
   overviewTitle?: string;
   overviewText?: string;
@@ -109,6 +110,7 @@ export function ProductPageTemplate({
   warehouseImage,
   quoteCtaLabel = "Request a Material Quote",
   secondaryQuoteCtaLabel = "Send Material Requirements",
+  quoteHref = "/request-a-quote",
   defaultMaterial = materialName,
   overviewTitle,
   overviewText,
@@ -216,8 +218,8 @@ export function ProductPageTemplate({
               </ul>
             ) : null}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/request-a-quote">{quoteCtaLabel}</ButtonLink>
-              <ButtonLink href="/request-a-quote" variant="secondary">
+              <ButtonLink href={quoteHref}>{quoteCtaLabel}</ButtonLink>
+              <ButtonLink href={quoteHref} variant="secondary">
                 {secondaryQuoteCtaLabel}
               </ButtonLink>
             </div>
@@ -473,7 +475,7 @@ export function ProductPageTemplate({
               </h2>
               <p className="mt-4 text-base leading-8 text-steel">{resolvedCutToSizeText}</p>
               <div className="mt-8">
-                <ButtonLink href="/request-a-quote">{cutToSizeCtaLabel}</ButtonLink>
+                <ButtonLink href={quoteHref}>{cutToSizeCtaLabel}</ButtonLink>
               </div>
             </div>
           </div>
@@ -540,8 +542,8 @@ export function ProductPageTemplate({
                 ))}
               </div>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="/request-a-quote">{quoteCtaLabel}</ButtonLink>
-                <ButtonLink href="/request-a-quote" variant="secondary">
+                <ButtonLink href={quoteHref}>{quoteCtaLabel}</ButtonLink>
+                <ButtonLink href={quoteHref} variant="secondary">
                   {secondaryQuoteCtaLabel}
                 </ButtonLink>
               </div>
@@ -636,7 +638,7 @@ export function ProductPageTemplate({
                   Send the material form, size, quantity, application details, and any drawing files for review.
                 </p>
               </div>
-              <ButtonLink href="/request-a-quote" variant="primary">
+              <ButtonLink href={quoteHref} variant="primary">
                 {quoteCtaLabel}
               </ButtonLink>
             </div>

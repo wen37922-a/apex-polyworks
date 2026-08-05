@@ -6,6 +6,15 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { BreadcrumbJsonLd } from "@/components/StructuredData";
 import { siteConfig } from "@/lib/site";
 
+type PageProps = {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
+
+function readSearchParam(value: string | string[] | undefined, maxLength: number) {
+  const resolvedValue = Array.isArray(value) ? value[0] : value;
+  return (resolvedValue ?? "").replace(/[\r\n\t]/g, " ").trim().slice(0, maxLength);
+}
+
 export const metadata: Metadata = {
   title: "Request a Quote for Plastic Materials or Custom Plastic Parts",
   description:
@@ -15,7 +24,11 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RequestQuotePage() {
+export default async function RequestQuotePage({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const defaultMaterial = readSearchParam(params.material, 120);
+  const sourceTracking = readSearchParam(params.source, 80);
+
   return (
     <main>
       <BreadcrumbJsonLd
@@ -72,7 +85,15 @@ export default function RequestQuotePage() {
                 ))}
               </ul>
             </div>
-            <QuoteForm />
+            <QuoteForm
+              defaultMaterial={defaultMaterial}
+              key={`${defaultMaterial}:${sourceTracking}`}
+              showCompany
+              showDestinationCountry
+              showQuantity
+              showSize
+              sourceTracking={sourceTracking}
+            />
           </div>
         </div>
       </section>
