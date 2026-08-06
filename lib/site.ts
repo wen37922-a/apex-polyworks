@@ -790,22 +790,30 @@ export const materialLinks = getCatalogMaterials(materialsData).map((material) =
   href: `/materials/${material.slug}`
 }));
 
-export const productLinks = products.map((item) => ({
-  title: item.title,
-  href: `/products/${item.slug}`
-}));
+export const productLinks = [
+  { title: "Stock Shapes", href: "/products/stock-shapes" },
+  ...products.map((item) => ({
+    title: item.title,
+    href: `/products/${item.slug}`
+  }))
+];
 
 export const industryLinks = industries.map((item) => ({
   title: item.title,
   href: `/industries/${item.slug}`
 }));
 
+const primaryServiceLinks = [
+  { title: "Cut-to-Size Engineering Plastics", href: "/services/cut-to-size-plastic" },
+  { title: "CNC Machining Support", href: "/services/cnc-plastic-machining" },
+  { title: "Custom Plastic Parts", href: "/products/custom-plastic-parts" }
+];
+
 export const primaryNav = [
-  { title: "Home", href: "/" },
-  { title: "Services", href: "/services", children: serviceLinks },
   { title: "Materials", href: "/materials", children: materialLinks },
+  { title: "Stock Shapes", href: "/products/stock-shapes" },
+  { title: "Services", href: "/services", children: primaryServiceLinks },
   { title: "Industries", href: "/industries" },
-  { title: "Knowledge Center", href: "/blog" },
   { title: "About", href: "/about" },
   { title: "Contact", href: "/contact" }
 ];
