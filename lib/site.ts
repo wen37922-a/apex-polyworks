@@ -815,6 +815,7 @@ export const allStaticRoutes = [
   "/services",
   "/materials",
   "/products",
+  "/products/stock-shapes",
   "/industries",
   "/blog",
   "/about",

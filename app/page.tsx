@@ -66,8 +66,8 @@ const supplyCards = [
     title: "Full Sheet & Rod Supply",
     description:
       "Standard engineering plastic sheets and rods for industrial buyers.",
-    href: "/materials",
-    button: "View Materials",
+    href: "/products/stock-shapes",
+    button: "View Stock Shapes",
     image: productImages.PEEK.sheet[0],
     alt: "PEEK engineering plastic sheet stock for industrial buyers",
     icon: Layers3
