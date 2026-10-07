@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Clock3, Send, Upload } from "lucide-react";
 import { getPagePath, inferMaterial } from "@/lib/analytics";
@@ -12,6 +12,7 @@ import {
   getRfqThankYouPath,
   storePendingRfqConversion
 } from "@/lib/google-ads";
+import { TurnstileWidget } from "@/components/TurnstileWidget";
 
 const fieldClass =
   "min-h-11 rounded-md border border-graphite/15 bg-white px-3 text-sm text-graphite outline-none transition placeholder:text-steel/60 focus:border-teal focus:ring-4 focus:ring-teal/10";
@@ -46,11 +47,20 @@ export function QuoteForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [fileName, setFileName] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileResetSignal, setTurnstileResetSignal] = useState(0);
+  const handleTurnstileTokenChange = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
-    setIsSubmitting(true);
+
+    if (!turnstileToken) {
+      setError("Please complete the bot verification before submitting.");
+      return;
+    }
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -64,6 +74,7 @@ export function QuoteForm({
     formData.set("formStartedAt", String(formStartedAt));
     formData.set("drawingFileName", fileName);
     formData.set("sourcePage", sourcePage);
+    formData.set("turnstileToken", turnstileToken);
     const submittedMaterial = String(formData.get("material") || "").trim();
     captureMarketingAttribution();
     const attribution = getStoredMarketingAttribution();
@@ -85,6 +96,17 @@ export function QuoteForm({
     if (size) {
       formData.set("projectDescription", `Size / Dimensions: ${size}${projectDescription ? `\n\n${projectDescription}` : ""}`);
     }
+    const drawing = formData.get("drawing");
+    if (
+      !submittedMaterial &&
+      !String(formData.get("projectDescription") || "").trim() &&
+      !(drawing instanceof File && drawing.size > 0)
+    ) {
+      setError("Please provide a material, project description, or drawing.");
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
       const response = await fetch("/api/request-quote", {
@@ -112,6 +134,8 @@ export function QuoteForm({
       router.push(getRfqThankYouPath(window.location.search));
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : "Unable to submit the RFQ. Please try again.");
+      setTurnstileToken("");
+      setTurnstileResetSignal((current) => current + 1);
     } finally {
       setIsSubmitting(false);
     }
@@ -198,7 +222,7 @@ export function QuoteForm({
       <div className={`grid gap-4 ${showQuantity || showSize ? "sm:grid-cols-2" : ""}`}>
         <label className="grid gap-2 text-sm font-medium text-graphite">
           Material
-          <input className={fieldClass} name="material" defaultValue={defaultMaterial} placeholder="PEEK, PTFE, UHMWPE, Nylon..." required={!compact || Boolean(defaultMaterial)} />
+          <input className={fieldClass} name="material" defaultValue={defaultMaterial} placeholder="PEEK, PTFE, UHMWPE, Nylon..." />
         </label>
         {showSize ? (
           <label className="grid gap-2 text-sm font-medium text-graphite">
@@ -241,9 +265,13 @@ export function QuoteForm({
       </label>
       <label className="grid gap-2 text-sm font-medium text-graphite">
         Message
-        <textarea className={`${fieldClass} min-h-32 py-3`} name="projectDescription" placeholder="Dimensions, tolerance, application, deadline, shipping destination..." required={!compact} />
+        <textarea className={`${fieldClass} min-h-32 py-3`} name="projectDescription" placeholder="Dimensions, tolerance, application, deadline, shipping destination..." />
       </label>
-      <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-amber px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-amber/90 focus:outline-none focus:ring-4 focus:ring-amber/20 disabled:cursor-not-allowed disabled:bg-steel" type="submit" disabled={isSubmitting}>
+      <TurnstileWidget
+        onTokenChange={handleTurnstileTokenChange}
+        resetSignal={turnstileResetSignal}
+      />
+      <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-amber px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-amber/90 focus:outline-none focus:ring-4 focus:ring-amber/20 disabled:cursor-not-allowed disabled:bg-steel" type="submit" disabled={isSubmitting || !turnstileToken}>
         {isSubmitting ? "Sending RFQ..." : "Send RFQ"}
         <Send className="size-4" aria-hidden="true" />
       </button>
