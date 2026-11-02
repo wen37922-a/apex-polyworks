@@ -348,7 +348,7 @@ export default function ContactPage() {
               </ButtonLink>
             </div>
           </div>
-          <QuoteForm compact />
+          <QuoteForm compact showDestinationCountry />
         </div>
       </section>
     </main>

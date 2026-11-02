@@ -67,9 +67,6 @@ export function QuoteForm({
     if (!String(formData.get("company") || "").trim()) {
       formData.set("company", "Not provided");
     }
-    if (!String(formData.get("country") || "").trim()) {
-      formData.set("country", "Not provided");
-    }
     const sourcePage = getPagePath();
     formData.set("formStartedAt", String(formStartedAt));
     formData.set("drawingFileName", fileName);
@@ -176,7 +173,7 @@ export function QuoteForm({
         <input type="hidden" name="company" value="Not provided" readOnly />
       ) : null}
       {!showDestinationCountry ? (
-        <input type="hidden" name="country" value="United States" readOnly />
+        <input type="hidden" name="country" value="" readOnly />
       ) : null}
       <input
         type="hidden"

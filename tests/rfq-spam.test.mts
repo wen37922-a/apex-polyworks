@@ -418,6 +418,20 @@ test("a supported drawing uploads only after all verification succeeds", async (
   assert.match(harness.calls.blob[0].pathname, /^rfq-uploads\/1750000000000-sample-drawing\.pdf$/);
 });
 
+test("optional countries are not replaced with a US default by the API", async (t) => {
+  for (const country of ["", "Canada", "South Korea", "臺灣"]) {
+    await t.test(JSON.stringify(country), async () => {
+      const harness = createHarness();
+      const request = createRequest({ country, sourcePage: "/contact" });
+      const response = await submit(request, harness);
+      assert.equal(response.status, 200);
+      const text = String(harness.calls.resend[0].text);
+      assert.ok(text.split("\n").includes(`Country: ${country}`));
+      assert.doesNotMatch(text, /Country: United States/);
+    });
+  }
+});
+
 test("an oversized declared request is rejected before rate limiting or parsing", async () => {
   const harness = createHarness();
   const request = createRequest({}, { "content-length": String(22 * 1024 * 1024) });
