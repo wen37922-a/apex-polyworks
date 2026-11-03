@@ -11,8 +11,9 @@ import {
   Scissors
 } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
+import { QuoteForm } from "@/components/QuoteForm";
 import { SectionHeader } from "@/components/SectionHeader";
-import { BreadcrumbJsonLd } from "@/components/StructuredData";
+import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/StructuredData";
 import { getProductImages } from "@/lib/product-images";
 import { siteConfig } from "@/lib/site";
 
@@ -78,12 +79,46 @@ const materialGroups = [
 ];
 
 const procurementInformation = [
-  "Material type",
+  "Material type, specifications or preferred grade",
   "Shape",
-  "Dimensions",
+  "Dimensions and any dimensional requirements",
   "Quantity",
+  "Delivery destination",
   "Application",
   "Drawing (optional)"
+];
+
+const faqs = [
+  {
+    question: "What engineering plastic stock shapes are available?",
+    answer:
+      "Stock shapes are material starting forms such as sheets, plates, rods and tubes. Cut blanks can also be reviewed for customers who need prepared dimensions for fabrication, maintenance or other requirements. Available options depend on the material grade, dimensions, quantity and delivery destination."
+  },
+  {
+    question: "What materials can be supplied?",
+    answer:
+      "Apex PolyWorks supports engineering plastic requirements including PEEK, POM (Acetal), UHMWPE, PTFE, nylon, HDPE, polypropylene, polycarbonate, ABS and acrylic. Share the material specifications or preferred grade, stock form, dimensions, quantity and destination so suitable supply options can be confirmed. Not every material is available in every grade or form."
+  },
+  {
+    question: "Do you supply plastic sheets, rods and tubes?",
+    answer:
+      "Sheets, rods and tubes can be requested for material supply. For sheets, provide length, width and thickness; for rods, diameter and length; for tubes, outside diameter, inside diameter or wall thickness, and length. Availability must be confirmed for the selected material grade, dimensions, quantity and destination."
+  },
+  {
+    question: "Can engineering plastics be supplied in custom sizes?",
+    answer:
+      "Cut-to-size requests can be reviewed for sheets, rods, blanks and other practical material dimensions. Send the material or preferred grade, required dimensions, quantity and delivery destination, plus any tolerance requirements. A drawing is optional for an initial inquiry and can help clarify profiles, holes or other custom features. The cutting scope is confirmed during quotation."
+  },
+  {
+    question: "Can materials be supplied for customer machining or optional CNC support?",
+    answer:
+      "Sheets, rods and cut blanks can be requested as material for customers to machine themselves. CNC machining support is an additional option when finished features or components are required. Drawings, specifications, dimensions, quantity and destination help define that optional scope; machining is not required when purchasing material only."
+  },
+  {
+    question: "Do you support international shipments?",
+    answer:
+      "International shipment arrangements can be reviewed for engineering plastic orders. Packaging, delivery method and export documentation depend on the material grade, stock form, dimensions, order quantity, destination and agreed requirements. Shipment arrangements and timing are confirmed for the specific quotation rather than promised as a fixed delivery time."
+  }
 ];
 
 const applications = [
@@ -135,6 +170,7 @@ export default async function StockShapesPage() {
           { name: "Engineering Plastic Stock Shapes", path: pagePath }
         ]}
       />
+      <FaqJsonLd items={faqs} />
 
       <section className="border-b border-graphite/10 bg-slate-50">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-8 lg:py-20">
@@ -323,6 +359,11 @@ export default async function StockShapesPage() {
                 <p className="text-base font-semibold text-graphite">{item}</p>
               </div>
             ))}
+            <p className="text-sm leading-7 text-steel sm:col-span-2">
+              Small-quantity requests can be reviewed, and repeat orders can be discussed.
+              Supply scope, material specifications, quantities and shipment arrangements are
+              confirmed against each requirement.
+            </p>
           </div>
         </div>
       </section>
@@ -348,6 +389,31 @@ export default async function StockShapesPage() {
         </div>
       </section>
 
+      <section className="border-t border-graphite/10 bg-slate-50 py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <SectionHeader
+            eyebrow="Material buyer FAQ"
+            title="Engineering plastic stock shapes questions"
+            text="Practical answers for material supply, custom dimensions and international purchasing."
+          />
+          <div className="mt-8 grid gap-4">
+            {faqs.map((faq) => (
+              <details
+                key={faq.question}
+                className="rounded-md border border-graphite/10 bg-white p-5 shadow-sm"
+              >
+                <summary className="cursor-pointer text-base font-semibold text-graphite">
+                  {faq.question}
+                </summary>
+                <p className="mt-4 border-t border-graphite/10 pt-4 text-sm leading-7 text-steel">
+                  {faq.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="border-t border-graphite/10 bg-slate-800 py-16 text-white lg:py-20">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[1fr_auto] lg:items-center lg:px-8">
           <div>
@@ -368,6 +434,26 @@ export default async function StockShapesPage() {
               Browse Materials
             </ButtonLink>
           </div>
+        </div>
+      </section>
+
+      <section id="material-rfq" className="scroll-mt-24 bg-white py-16 lg:py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-start lg:px-8">
+          <SectionHeader
+            eyebrow="Material supply RFQ"
+            title="Request a material supply quote"
+            text="Share the material specifications or preferred grade, stock form, dimensions, quantity and delivery destination available. Drawings are optional for an initial material inquiry."
+          />
+          <QuoteForm
+            compact
+            showSize
+            showQuantity
+            defaultMaterial="Engineering Plastics"
+            serviceNeeded="Engineering Plastics Stock Shapes"
+            sourceTracking="stock-shapes-page"
+            title="Request a material supply quote"
+            description="Add the material, sheet or rod size, required dimensions, quantity and application information for review."
+          />
         </div>
       </section>
     </main>

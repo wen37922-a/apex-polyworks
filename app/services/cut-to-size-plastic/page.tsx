@@ -358,7 +358,7 @@ export default async function CutToSizePlasticPage() {
             <ButtonLink href="/products/peek-sheet" variant="secondary">
               View PEEK Sheet Supply
             </ButtonLink>
-            <ButtonLink href="/products/engineering-plastics-stock-shapes" variant="secondary">
+            <ButtonLink href="/products/stock-shapes" variant="secondary">
               View Stock Shapes Supply
             </ButtonLink>
           </div>

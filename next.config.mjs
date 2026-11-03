@@ -3,6 +3,22 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/products/engineering-plastics-stock-shapes",
+        has: [
+          {
+            type: "host",
+            value: "www.apexpolyworks.com"
+          }
+        ],
+        destination: "https://apexpolyworks.com/products/stock-shapes",
+        statusCode: 301
+      },
+      {
+        source: "/products/engineering-plastics-stock-shapes",
+        destination: "/products/stock-shapes",
+        statusCode: 301
+      },
+      {
         source: "/:path*",
         has: [
           {
