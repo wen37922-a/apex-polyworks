@@ -16,6 +16,56 @@ export function FloatingRfqButton() {
   const shouldAvoidEntireHero = pathname === "/services/cnc-plastic-machining";
   const floatingRef = useRef<HTMLDivElement>(null);
   const [overlapsHeroCtas, setOverlapsHeroCtas] = useState(shouldAvoidHeroCtas);
+  const [rfqInView, setRfqInView] = useState(false);
+
+  useEffect(() => {
+    const mobileQuery = window.matchMedia("(max-width: 639px)");
+    const forms = new Map<Element, boolean>();
+    let restoreTimer: ReturnType<typeof setTimeout> | undefined;
+    const updateVisibility = () => {
+      clearTimeout(restoreTimer);
+      if (!mobileQuery.matches) {
+        setRfqInView(false);
+      } else if (Array.from(forms.values()).some(Boolean)) {
+        setRfqInView(true);
+      } else {
+        // Wait for scrolling to settle before restoring both floating actions.
+        restoreTimer = setTimeout(() => setRfqInView(false), 150);
+      }
+    };
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (forms.has(entry.target)) forms.set(entry.target, entry.isIntersecting);
+      }
+      updateVisibility();
+    }, { rootMargin: "48px 0px", threshold: 0 });
+    const syncForms = () => {
+      for (const form of forms.keys()) {
+        if (!form.isConnected) {
+          observer.unobserve(form);
+          forms.delete(form);
+        }
+      }
+      document.querySelectorAll('form[action="/api/request-quote"]').forEach((form) => {
+        if (forms.has(form)) return;
+        const rect = form.getBoundingClientRect();
+        forms.set(form, rect.bottom >= -48 && rect.top <= window.innerHeight + 48);
+        observer.observe(form);
+      });
+      updateVisibility();
+    };
+    syncForms();
+    // Also cover forms arriving after client navigation or streamed rendering.
+    const mutations = new MutationObserver(syncForms);
+    mutations.observe(document.body, { childList: true, subtree: true });
+    mobileQuery.addEventListener("change", updateVisibility);
+    return () => {
+      clearTimeout(restoreTimer);
+      observer.disconnect();
+      mutations.disconnect();
+      mobileQuery.removeEventListener("change", updateVisibility);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     if (!shouldAvoidHeroCtas) {
@@ -79,7 +129,7 @@ export function FloatingRfqButton() {
     <div
       ref={floatingRef}
       className={`fixed bottom-4 right-4 z-50 flex flex-col items-end gap-2 transition-opacity sm:bottom-6 sm:right-6 ${
-        overlapsHeroCtas
+        overlapsHeroCtas || rfqInView
           ? "max-sm:pointer-events-none max-sm:invisible max-sm:opacity-0"
           : ""
       }`}
